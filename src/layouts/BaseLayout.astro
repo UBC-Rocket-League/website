@@ -1,4 +1,6 @@
 ---
+import easterEggLogo from '../truly-official-logo.png?url';
+
 interface Props {
   title: string;
   description: string;
@@ -34,7 +36,14 @@ const navigation = [
   <body>
     <header class:list={['site-header', { 'site-header--overlay': overlayHeader }]}>
       <a class="site-brand" href="/" aria-label="UBC RL home">
-        <img src="/ubc-rl-crest.png" alt="" width="495" height="512" />
+        <img
+          class="site-brand__logo"
+          src="/ubc-rl-crest.png"
+          data-easter-egg-src={easterEggLogo}
+          alt=""
+          width="495"
+          height="512"
+        />
         <span>UBC / RL</span>
       </a>
       <nav aria-label="Main navigation">
@@ -50,6 +59,25 @@ const navigation = [
       </nav>
     </header>
     <slot />
+
+    <script>
+      const logo = document.querySelector<HTMLImageElement>('.site-brand__logo');
+
+      logo?.addEventListener(
+        'click',
+        (event) => {
+          const easterEggSrc = logo.dataset.easterEggSrc;
+
+          if (easterEggSrc) {
+            event.preventDefault();
+            logo.src = easterEggSrc;
+            logo.width = 492;
+            logo.height = 508;
+          }
+        },
+        { once: true },
+      );
+    </script>
   </body>
 </html>
 
