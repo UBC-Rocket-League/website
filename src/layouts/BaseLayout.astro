@@ -1,0 +1,195 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  overlayHeader?: boolean;
+}
+
+const { title, description, overlayHeader = false } = Astro.props;
+const pageTitle = title === 'UBC RL' ? title : `${title} | UBC RL`;
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+const navigation = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/calendar', label: 'Calendar' },
+  { href: '/achievements', label: 'Achievements' },
+  { href: '/merch', label: 'Merch' },
+  { href: '/kibii', label: 'Kibii' },
+  { href: '/clips', label: 'Clips' },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <header class:list={['site-header', { 'site-header--overlay': overlayHeader }]}>
+      <a class="site-brand" href="/" aria-label="UBC RL home">UBC / RL</a>
+      <nav aria-label="Main navigation">
+        {navigation.map(({ href, label }) => (
+          <a
+            href={href}
+            class:list={{ active: currentPath === href }}
+            aria-current={currentPath === href ? 'page' : undefined}
+          >
+            {label}
+          </a>
+        ))}
+      </nav>
+    </header>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    color-scheme: dark;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #05070b;
+    color: #f5f7fb;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    min-height: 100%;
+    margin: 0;
+  }
+
+  body {
+    min-width: 320px;
+    min-height: 100svh;
+    background: #05070b;
+    cursor: url('/car-cursor.svg') 24 7, auto;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  .site-header {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    min-height: 4.5rem;
+    padding: 1rem clamp(1rem, 4vw, 4rem);
+    border-bottom: 1px solid #ffffff1f;
+    background: #080b10;
+  }
+
+  .site-header--overlay {
+    position: absolute;
+    inset: 0 0 auto;
+    background: linear-gradient(#03060acc, transparent);
+    border-bottom: 0;
+  }
+
+  .site-brand {
+    flex: none;
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-decoration: none;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.8rem, 2vw, 1.5rem);
+    overflow-x: auto;
+  }
+
+  nav a {
+    padding: 0.4rem 0;
+    color: #c6ccd7;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  nav a:hover,
+  nav a.active {
+    color: #fff;
+  }
+
+  nav a.active {
+    border-bottom: 2px solid #4d91ff;
+  }
+
+  .stub {
+    display: grid;
+    min-height: calc(100svh - 4.5rem);
+    place-content: center;
+    padding: clamp(3rem, 10vw, 8rem) clamp(1.25rem, 8vw, 8rem);
+    background:
+      linear-gradient(135deg, transparent 60%, #0d3d811f),
+      #05070b;
+  }
+
+  .stub__content {
+    width: min(100%, 56rem);
+  }
+
+  .stub__eyebrow {
+    margin: 0 0 1rem;
+    color: #65a1ff;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .stub h1 {
+    margin: 0;
+    font-size: clamp(3.5rem, 11vw, 8rem);
+    letter-spacing: -0.07em;
+    line-height: 0.9;
+    text-transform: uppercase;
+  }
+
+  .stub__description {
+    max-width: 42rem;
+    margin: 2rem 0 0;
+    color: #aeb6c4;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 800px) {
+    .site-header {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .site-header nav {
+      width: 100%;
+      padding-bottom: 0.25rem;
+    }
+
+    .site-header--overlay {
+      background: linear-gradient(#03060af0, transparent);
+    }
+
+    .stub {
+      min-height: 100svh;
+      padding-top: 10rem;
+    }
+  }
+</style>

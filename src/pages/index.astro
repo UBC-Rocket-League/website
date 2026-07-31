@@ -1,45 +1,43 @@
 ---
 import ferventVideo from '../../fervent.mp4?url';
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>UBC RL</title>
-  </head>
-  <body>
-    <main>
-      <section class="hero" aria-label="Fervent">
-        <video
-          class="hero-video"
-          src={ferventVideo}
-          autoplay
-          muted
-          loop
-          playsinline
-          preload="auto"
-        ></video>
-      </section>
-    </main>
-  </body>
-</html>
+<BaseLayout
+  title="UBC RL"
+  description="Home of the UBC Rocket League community."
+  overlayHeader
+>
+  <main>
+    <section class="hero" aria-label="Fervent">
+      <video
+        class="hero-video"
+        src={ferventVideo}
+        autoplay
+        muted
+        controls
+        playsinline
+        preload="auto"
+      ></video>
+    </section>
+  </main>
+
+  <script>
+    const video = document.querySelector<HTMLVideoElement>('.hero-video');
+    let completedPlays = 0;
+
+    video?.addEventListener('ended', () => {
+      completedPlays += 1;
+
+      if (completedPlays < 3) {
+        video.currentTime = 0;
+        void video.play();
+      }
+    });
+  </script>
+</BaseLayout>
 
 <style>
-  :global(html),
-  :global(body) {
-    min-height: 100%;
-    margin: 0;
-  }
-
-  :global(body) {
-    min-height: 100svh;
-    background: #000;
-    cursor: url('/car-cursor.svg') 24 7, auto;
-  }
-
   .hero {
     width: 100%;
     height: 100svh;
