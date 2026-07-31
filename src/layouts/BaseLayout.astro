@@ -27,11 +27,16 @@ const navigation = [
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/png" href="/ubc-rl-crest.png" />
+    <link rel="apple-touch-icon" href="/ubc-rl-crest.png" />
     <title>{pageTitle}</title>
   </head>
   <body>
     <header class:list={['site-header', { 'site-header--overlay': overlayHeader }]}>
-      <a class="site-brand" href="/" aria-label="UBC RL home">UBC / RL</a>
+      <a class="site-brand" href="/" aria-label="UBC RL home">
+        <img src="/ubc-rl-crest.png" alt="" width="495" height="512" />
+        <span>UBC / RL</span>
+      </a>
       <nav aria-label="Main navigation">
         {navigation.map(({ href, label }) => (
           <a
@@ -98,11 +103,20 @@ const navigation = [
   }
 
   .site-brand {
+    display: inline-flex;
+    align-items: center;
     flex: none;
+    gap: 0.75rem;
     font-size: 1rem;
     font-weight: 800;
     letter-spacing: 0.15em;
     text-decoration: none;
+  }
+
+  .site-brand img {
+    width: 2.25rem;
+    height: 2.25rem;
+    object-fit: contain;
   }
 
   nav {
