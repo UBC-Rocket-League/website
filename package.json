@@ -1,0 +1,30 @@
+{
+  "name": "ubc-rl",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@11.9.0",
+  "engines": {
+    "node": ">=22.12.0",
+    "pnpm": ">=11.9.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "check": "astro check",
+    "precheck": "pnpm generate-types",
+    "build": "pnpm check && astro build",
+    "preview": "astro preview",
+    "deploy": "pnpm build && wrangler deploy",
+    "generate-types": "wrangler types --include-runtime=false",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^14.1.7",
+    "astro": "^7.1.6",
+    "wrangler": "^4.116.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "typescript": "^5.9.3"
+  }
+}
