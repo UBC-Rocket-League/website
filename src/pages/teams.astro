@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const player = (ign: string, image?: string) => ({ ign, image });
+const player = (ign: string, image = '/pfp/drag/drag1.jpg') => ({ ign, image });
 
 const seasons = [
   {
