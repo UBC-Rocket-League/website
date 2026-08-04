@@ -1,0 +1,153 @@
+---
+const boostTicks = Array.from({ length: 36 });
+---
+
+<div class="boost-meter" aria-hidden="true">
+  <div class="boost-ring">
+    <div class="boost-ring__ticks">
+      {
+        boostTicks.map((_, i) => (
+          <span class="boost-ring__tick" style={`--i:${i}`} />
+        ))
+      }
+    </div>
+    <div class="boost-ring__core">
+      <span class="boost-ring__value">0</span>
+      <span class="boost-word">BOOST</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  const ticks = document.querySelectorAll<HTMLElement>(".boost-ring__tick");
+  const value = document.querySelector<HTMLElement>(".boost-ring__value");
+
+  function updateBoost() {
+    const doc = document.documentElement;
+    const scrollable = doc.scrollHeight - doc.clientHeight;
+    const pct =
+      scrollable > 0
+        ? Math.min(100, Math.max(0, (doc.scrollTop / scrollable) * 100))
+        : 0;
+    const litCount = Math.round((pct / 100) * ticks.length);
+
+    ticks.forEach((tick, i) => tick.classList.toggle("lit", i < litCount));
+    if (value) value.textContent = String(Math.round(pct));
+  }
+
+  document.addEventListener("scroll", updateBoost, { passive: true });
+  window.addEventListener("resize", updateBoost);
+  updateBoost();
+</script>
+
+<style>
+  .boost-meter {
+    position: fixed;
+    right: clamp(1rem, 3vw, 2.5rem);
+    bottom: clamp(1rem, 3vw, 2.5rem);
+    z-index: 40;
+    pointer-events: none;
+  }
+
+  .boost-word {
+    margin-top: -2rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-style: italic;
+    font-variation-settings:
+      "wght" 7,
+      "wdth" 85;
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    background: linear-gradient(180deg, #fff2b8, #ffb02e 55%, #ff7a00);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 16px rgba(255, 154, 30, 0.5);
+  }
+
+  .boost-ring {
+    position: relative;
+    width: 132px;
+    height: 132px;
+    transform: scale(0.75);
+    transform-origin: bottom right;
+  }
+
+  .boost-ring__ticks {
+    position: absolute;
+    inset: 0;
+  }
+
+  .boost-ring__tick {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4px;
+    height: 13px;
+    border-radius: 2px;
+    background: #ffffff1a;
+    transform: translate(-50%, -50%) rotate(calc(var(--i) * 10deg))
+      translateY(-58px);
+    transition:
+      background 0.15s linear,
+      box-shadow 0.15s linear;
+  }
+
+  .boost-ring__tick.lit {
+    background: linear-gradient(180deg, #fff2b8, #ff9d1f);
+    box-shadow: 0 0 6px 1px rgba(255, 157, 31, 0.85);
+  }
+
+  .boost-ring__core {
+    position: absolute;
+    inset: 20px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 38%, #171b22, #05070a 72%);
+    border: 1px solid #ffffff1f;
+    box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.75);
+  }
+
+  .boost-ring__value {
+    font-family: Bahnschrift, "Arial Narrow", Arial, sans-serif;
+    font-variation-settings:
+      "wght" 700,
+      "wdth" 85;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    background: linear-gradient(180deg, #fff2b8, #ffb02e 55%, #ff7a00);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 16px rgba(255, 154, 30, 0.5);
+  }
+
+  @media (max-width: 800px) {
+    .boost-meter {
+      display: none;
+    }
+
+    .boost-ring {
+      width: 100px;
+      height: 100px;
+    }
+
+    .boost-ring__tick {
+      transform: translate(-50%, -50%) rotate(calc(var(--i) * 10deg))
+        translateY(-44px);
+    }
+
+    .boost-ring__core {
+      inset: 15px;
+    }
+
+    .boost-ring__value {
+      font-size: 1.9rem;
+    }
+  }
+</style>

@@ -1,5 +1,6 @@
 ---
 import easterEggLogo from '../truly-official-logo.png?url';
+import BoostMeter from '../components/BoostMeter.astro';
 
 interface Props {
   title: string;
@@ -23,7 +24,7 @@ const navigation = [
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class:list={{ 'hide-native-scrollbar': currentPath !== '/' }}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -59,6 +60,12 @@ const navigation = [
       </nav>
     </header>
     <slot />
+
+    {currentPath !== '/' && (
+      <>
+        <BoostMeter />
+      </>
+    )}
 
     <script>
       const logo = document.querySelector<HTMLImageElement>('.site-brand__logo');
