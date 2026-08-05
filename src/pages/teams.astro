@@ -1,30 +1,35 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const player = (ign: string, image = '/pfp/drag/drag1.jpg') => ({ ign, image });
+const player = (ign: string, image: string | null = '/pfp/drag/drag1.jpg') => ({ ign, image });
+const historicalTeam = (name: string, tone: string, players: string[]) => ({
+  name: `UBC ${name}`,
+  tone,
+  players,
+});
 
 const seasons = [
   {
     year: '2026-2027',
     status: 'Upcoming season',
     summary:
-      'Tryouts have not taken place yet. The Gold and Blue rosters will be announced once selections are complete.',
+      'Tryouts will take place on August 25, 2026 at 8:00 PM in the UBC RL Discord.',
     terms: [
       {
         label: 'Roster pending',
         detail: 'Tryouts upcoming',
         teams: [
           {
-            name: 'UBC Gold Team',
+            name: 'UBC Gold',
             tier: 'Main roster',
             tone: 'gold',
-            players: [player('TBD'), player('TBD'), player('TBD')],
+            players: [player('TBD', null), player('TBD', null), player('TBD', null)],
           },
           {
-            name: 'UBC Blue Team',
+            name: 'UBC Blue',
             tier: null,
             tone: 'blue',
-            players: [player('TBD'), player('TBD'), player('TBD')],
+            players: [player('TBD', null), player('TBD', null), player('TBD', null)],
           },
         ],
       },
@@ -36,17 +41,17 @@ const seasons = [
     summary: null,
     terms: [
       {
-        label: 'Winter Session / Term 2',
-        detail: 'Second semester',
+        label: 'Term 2',
+        detail: null,
         teams: [
           {
-            name: 'UBC Gold Team',
+            name: 'UBC Gold',
             tier: 'Main roster',
             tone: 'gold',
             players: [player('J'), player('Vizion'), player('ExpiredKetchup')],
           },
           {
-            name: 'UBC Blue Team',
+            name: 'UBC Blue',
             tier: null,
             tone: 'blue',
             players: [player('Cow_B'), player('Dragussy'), player('Puffyfish14')],
@@ -54,17 +59,17 @@ const seasons = [
         ],
       },
       {
-        label: 'Winter Session / Term 1',
-        detail: 'First semester',
+        label: 'Term 1',
+        detail: null,
         teams: [
           {
-            name: 'UBC Gold Team',
+            name: 'UBC Gold',
             tier: 'Main roster',
             tone: 'gold',
             players: [player('J'), player('Vizion'), player('Cow_B')],
           },
           {
-            name: 'UBC Blue Team',
+            name: 'UBC Blue',
             tier: null,
             tone: 'blue',
             players: [player('ExpiredKetchup'), player('simp'), player('Puffyfish14')],
@@ -75,7 +80,84 @@ const seasons = [
   },
 ];
 
-const missingSeasons = ['2024-2025', '2023-2024', '2022-2023', '2021-2022'];
+const historicalSeasons = [
+  {
+    year: '2024-2025',
+    terms: [
+      {
+        label: 'Full season',
+        teams: [
+          historicalTeam('Gold', 'gold', ['Cow_B', 'Harrylakers', 'J']),
+          historicalTeam('Blue', 'blue', ['Dragoius', 'Puffyfish14', 'Delforge', 'Invictus']),
+        ],
+      },
+    ],
+  },
+  {
+    year: '2023-2024',
+    terms: [
+      {
+        label: 'Term 2',
+        teams: [
+          historicalTeam('Gold', 'gold', ['Fervent', 'J', 'Harrylakers']),
+          historicalTeam('Blue', 'blue', ['Deadpeople', 'Cow_B', 'Delforge']),
+          historicalTeam('White', 'white', ['Dragoius', 'Blueming', 'Puffyfish14']),
+        ],
+      },
+      {
+        label: 'Term 1',
+        teams: [
+          historicalTeam('Gold', 'gold', ['Fervent', 'J', 'Dragoius']),
+          historicalTeam('Blue', 'blue', ['Deadpeople', 'Cow_B', 'Puffyfish14']),
+        ],
+      },
+    ],
+  },
+  {
+    year: '2022-2023',
+    terms: [
+      {
+        label: 'Term 2',
+        teams: [
+          historicalTeam('Gold', 'gold', ['Fervent', 'Ski', 'Harrylakers']),
+          historicalTeam('Blue', 'blue', ['Delforge', 'Dragoius', 'Deadpeople', 'JaredP']),
+          historicalTeam('Navy', 'navy', ['Zindlerr', 'Blueming', 'Puffyfish14']),
+          historicalTeam('White', 'white', ['Hystrix', 'Edge', 'Rome Destroyer']),
+        ],
+      },
+      {
+        label: 'Term 1',
+        teams: [
+          historicalTeam('Gold', 'gold', ['Fervent', 'Ski', 'Harrylakers']),
+          historicalTeam('Blue', 'blue', ['Delforge', 'Dagger', 'Deadpeople', 'JaredP']),
+          historicalTeam('Navy', 'navy', ['Zindlerr', 'Blueming', 'Puffyfish14', 'Dragoius']),
+          historicalTeam('White', 'white', ['Hystrix', 'Edge', 'Rome Destroyer']),
+        ],
+      },
+    ],
+  },
+  {
+    year: '2021-2022',
+    terms: [
+      {
+        label: 'Term 2',
+        teams: [
+          historicalTeam('Gold', 'gold', ['Ski', 'Fervent', 'Frodo']),
+          historicalTeam('Blue', 'blue', ['Harrylakers', 'Blueming', 'Delforge', 'Fatal MB']),
+          historicalTeam('White', 'white', ['Giftedgecko', 'Hystrix', 'Rome Destroyer']),
+        ],
+      },
+      {
+        label: 'Term 1',
+        teams: [
+          historicalTeam('Gold', 'gold', ['Ski', 'Frodo', 'Harrylakers']),
+          historicalTeam('Blue', 'blue', ['Fervent', 'Fatal MB', 'Zindlerr']),
+          historicalTeam('White', 'white', ['Giftedgecko', 'Blueming', 'JaredP']),
+        ],
+      },
+    ],
+  },
+];
 ---
 
 <BaseLayout
@@ -85,11 +167,10 @@ const missingSeasons = ['2024-2025', '2023-2024', '2022-2023', '2021-2022'];
   <main>
     <section class="teams-hero" aria-labelledby="teams-title">
       <div class="teams-hero__content">
-        <p class="eyebrow">UBC Rocket League / Competitive</p>
         <h1 id="teams-title">Meet the<br /><span>rosters.</span></h1>
-        <p class="teams-hero__intro">
-          Two teams. One program. Explore every player who has represented UBCRL, from the newest
-          lineup back to where it all began.
+        <p class="teams-hero__description">
+          Explore every player who has represented UBCRL, from the newest lineup back to where it
+          all began.
         </p>
       </div>
 
@@ -108,8 +189,6 @@ const missingSeasons = ['2024-2025', '2023-2024', '2022-2023', '2021-2022'];
           </div>
         </div>
       </div>
-
-      <p class="teams-hero__order">Newest first <span aria-hidden="true">/</span> 2026 to 2021</p>
     </section>
 
     <section class="seasons" aria-label="Team rosters by season">
@@ -128,9 +207,6 @@ const missingSeasons = ['2024-2025', '2023-2024', '2022-2023', '2021-2022'];
                 <h2>{year}</h2>
               </div>
               {summary && <p>{summary}</p>}
-              <span class="season__number" aria-hidden="true">
-                {String(seasonIndex + 1).padStart(2, '0')}
-              </span>
             </header>
 
             <div class="season__terms">
@@ -138,7 +214,7 @@ const missingSeasons = ['2024-2025', '2023-2024', '2022-2023', '2021-2022'];
                 <section class="term" aria-label={`${year} ${label}`}>
                   <header class="term__header">
                     <h3>{label}</h3>
-                    <p>{detail}</p>
+                    {detail && <p>{detail}</p>}
                   </header>
 
                   <div class="team-grid">
@@ -149,7 +225,6 @@ const missingSeasons = ['2024-2025', '2023-2024', '2022-2023', '2021-2022'];
                             <h4>{name}</h4>
                             {tier && <p>{tier}</p>}
                           </div>
-                          <span aria-hidden="true">UBC / RL</span>
                         </header>
 
                         <ul class="players" aria-label={`${name} players`}>
@@ -173,27 +248,47 @@ const missingSeasons = ['2024-2025', '2023-2024', '2022-2023', '2021-2022'];
       }
     </section>
 
-    <section id="earlier-seasons" class="archive" aria-labelledby="archive-title">
-      <header class="archive__header">
-        <p class="eyebrow">The memory vault</p>
-        <h2 id="archive-title">Earlier<br />seasons</h2>
-        <p>
-          The roster sheet has temporarily escaped Ivan's memory. A search party has been
-          dispatched. Names will appear here once they make it back safely.
-        </p>
-      </header>
-
-      <ol class="archive__years">
+    <section id="earlier-seasons" class="archive" aria-label="Earlier season rosters">
+      <div class="archive__years">
         {
-          missingSeasons.map((year, index) => (
-            <li>
-              <span>{String(index + 3).padStart(2, '0')}</span>
-              <strong>{year}</strong>
-              <p>Roster recall pending</p>
-            </li>
+          historicalSeasons.map(({ year, terms }) => (
+            <details class="archive-season">
+              <summary>
+                <strong>{year}</strong>
+                <span class="archive-season__toggle" aria-hidden="true" />
+              </summary>
+
+              <div class="archive-season__body">
+                {terms.map(({ label, teams }) => (
+                  <section class="archive-term" aria-label={`${year} ${label}`}>
+                    <header class="archive-term__header">
+                      <h3>{label}</h3>
+                    </header>
+
+                    <div class="team-grid">
+                      {teams.map(({ name, tone, players }) => (
+                        <article class:list={['team-card', 'team-card--historical', `team-card--${tone}`]}>
+                          <header class="team-card__header">
+                            <h4>{name}</h4>
+                          </header>
+
+                          <ul class="historical-players" aria-label={`${name} players`}>
+                            {players.map((ign) => (
+                              <li>
+                                <strong>{ign}</strong>
+                              </li>
+                            ))}
+                          </ul>
+                        </article>
+                      ))}
+                    </div>
+                  </section>
+                ))}
+              </div>
+            </details>
           ))
         }
-      </ol>
+      </div>
     </section>
   </main>
 </BaseLayout>
@@ -235,33 +330,13 @@ const missingSeasons = ['2024-2025', '2023-2024', '2022-2023', '2021-2022'];
   }
 
   .teams-hero__content,
-  .team-key,
-  .teams-hero__order {
+  .team-key {
     position: relative;
     z-index: 1;
   }
 
   .teams-hero__content {
     min-width: 0;
-  }
-
-  .eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin: 0 0 1.5rem;
-    color: #6ba5ff;
-    font-size: 0.7rem;
-    font-weight: 800;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-  }
-
-  .eyebrow::before {
-    width: 2rem;
-    height: 1px;
-    background: currentColor;
-    content: '';
   }
 
   .teams-hero h1 {
@@ -278,7 +353,7 @@ const missingSeasons = ['2024-2025', '2023-2024', '2022-2023', '2021-2022'];
     -webkit-text-stroke: clamp(1px, 0.12vw, 2px) #f5f7fb;
   }
 
-  .teams-hero__intro {
+  .teams-hero__description {
     max-width: 41rem;
     margin: clamp(3rem, 6vw, 5rem) 0 0;
     color: #b3bccb;
@@ -337,22 +412,6 @@ const missingSeasons = ['2024-2025', '2023-2024', '2022-2023', '2021-2022'];
     color: #5495ff;
   }
 
-  .teams-hero__order {
-    align-self: end;
-    grid-column: 1 / -1;
-    margin: 0;
-    color: #7d8796;
-    font-size: 0.65rem;
-    font-weight: 800;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-  }
-
-  .teams-hero__order span {
-    margin: 0 0.65rem;
-    color: #4d91ff;
-  }
-
   .seasons {
     padding: clamp(4rem, 10vw, 9rem) clamp(1.25rem, 6vw, 6rem);
     background: #080b10;
@@ -374,7 +433,7 @@ const missingSeasons = ['2024-2025', '2023-2024', '2022-2023', '2021-2022'];
     grid-template-columns: minmax(18rem, 0.9fr) minmax(20rem, 1fr);
     gap: clamp(2rem, 6vw, 7rem);
     align-items: end;
-    padding: 0 4rem 2.5rem 0;
+    padding: 0 0 2.5rem;
     border-bottom: 1px solid #ffffff24;
   }
 
@@ -419,15 +478,6 @@ const missingSeasons = ['2024-2025', '2023-2024', '2022-2023', '2021-2022'];
     margin: 0;
     color: #9fa9b8;
     line-height: 1.7;
-  }
-
-  .season__number {
-    position: absolute;
-    top: 0;
-    right: 0;
-    color: #ffffff1c;
-    font-size: 1.5rem;
-    font-weight: 900;
   }
 
   .season__terms {
@@ -499,6 +549,14 @@ const missingSeasons = ['2024-2025', '2023-2024', '2022-2023', '2021-2022'];
     --team-color: #4d91ff;
   }
 
+  .team-card--navy {
+    --team-color: #344f8f;
+  }
+
+  .team-card--white {
+    --team-color: #dce3ed;
+  }
+
   .team-card__header {
     display: flex;
     align-items: start;
@@ -522,14 +580,6 @@ const missingSeasons = ['2024-2025', '2023-2024', '2022-2023', '2021-2022'];
     font-size: clamp(1.15rem, 2vw, 1.65rem);
     letter-spacing: -0.035em;
     text-transform: uppercase;
-  }
-
-  .team-card__header > span {
-    color: #ffffff24;
-    font-size: 0.58rem;
-    font-weight: 900;
-    letter-spacing: 0.14em;
-    white-space: nowrap;
   }
 
   .players {
@@ -606,68 +656,154 @@ const missingSeasons = ['2024-2025', '2023-2024', '2022-2023', '2021-2022'];
   }
 
   .archive {
-    display: grid;
-    grid-template-columns: minmax(18rem, 0.8fr) minmax(25rem, 1.2fr);
-    gap: clamp(4rem, 10vw, 11rem);
-    padding: clamp(5rem, 11vw, 10rem) clamp(1.25rem, 7vw, 7rem);
+    padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 6vw, 6rem);
     border-top: 1px solid #ffffff1a;
     background:
       radial-gradient(circle at 15% 25%, #174d9624, transparent 28rem),
       #05070b;
   }
 
-  .archive__header h2 {
-    margin: 0;
-    font-size: clamp(3.5rem, 7vw, 7rem);
-    letter-spacing: -0.075em;
-    line-height: 0.82;
-    text-transform: uppercase;
-  }
-
-  .archive__header > p:last-child {
-    max-width: 31rem;
-    margin: 2.5rem 0 0;
-    color: #929cac;
-    line-height: 1.75;
-  }
-
   .archive__years {
-    align-self: center;
-    margin: 0;
+    width: min(100%, 96rem);
+    min-width: 0;
+    margin: 0 auto;
     padding: 0;
     border-top: 1px solid #ffffff24;
-    list-style: none;
   }
 
-  .archive__years li {
-    display: grid;
-    grid-template-columns: 2rem minmax(8rem, 1fr) auto;
-    gap: 1rem;
-    align-items: center;
-    padding: 1.5rem 0;
+  .archive-season {
     border-bottom: 1px solid #ffffff24;
   }
 
-  .archive__years span {
-    color: #4d91ff;
-    font-size: 0.62rem;
-    font-weight: 900;
+  .archive-season summary {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1.5rem 0;
+    cursor: pointer;
+    list-style: none;
   }
 
-  .archive__years strong {
+  .archive-season summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .archive-season summary:focus {
+    outline: none;
+  }
+
+  .archive-season summary:focus-visible {
+    outline: 2px solid #4d91ff;
+    outline-offset: 0.35rem;
+  }
+
+  .archive-season summary strong {
     font-size: clamp(1.25rem, 2.6vw, 2rem);
     font-variant-numeric: tabular-nums;
     letter-spacing: -0.04em;
+    white-space: nowrap;
   }
 
-  .archive__years p {
+  .archive-season__toggle {
+    position: relative;
+    flex: 0 0 auto;
+    width: 1rem;
+    height: 1rem;
+    color: #4d91ff;
+    transition: transform 180ms ease;
+  }
+
+  .archive-season__toggle::before,
+  .archive-season__toggle::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    content: '';
+    transform: translate(-50%, -50%);
+  }
+
+  .archive-season__toggle::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  .archive-season[open] .archive-season__toggle {
+    transform: rotate(45deg);
+  }
+
+  .archive-season__body {
+    display: grid;
+    gap: 2.5rem;
+    padding: clamp(1.5rem, 3vw, 3rem);
+    border-top: 1px solid #ffffff17;
+    background: #080b10;
+  }
+
+  .archive-season .team-grid {
+    grid-template-columns: repeat(auto-fill, minmax(14rem, 20rem));
+    align-items: stretch;
+    justify-content: start;
+  }
+
+  .archive-term__header {
+    margin-bottom: 1rem;
+  }
+
+  .archive-term__header h3 {
     margin: 0;
-    color: #687384;
-    font-size: 0.62rem;
-    font-weight: 800;
-    letter-spacing: 0.14em;
-    text-align: right;
+    font-size: 1rem;
+    letter-spacing: -0.02em;
     text-transform: uppercase;
+  }
+
+  .team-card--historical .team-card__header {
+    min-height: 0;
+    margin-bottom: 1rem;
+  }
+
+  .team-card--historical {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .historical-players {
+    display: grid;
+    flex: 1;
+    grid-template-columns: 1fr;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid #ffffff14;
+    list-style: none;
+  }
+
+  .historical-players li {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    min-width: 0;
+    min-height: 3rem;
+    padding: 0.7rem 0.6rem;
+    border-bottom: 1px solid #ffffff14;
+  }
+
+  .historical-players li::before {
+    flex: 0 0 auto;
+    width: 0.3rem;
+    height: 0.3rem;
+    border-radius: 50%;
+    background: var(--team-color);
+    content: '';
+  }
+
+  .historical-players strong {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
   }
 
   @media (max-width: 950px) {
@@ -680,8 +816,7 @@ const missingSeasons = ['2024-2025', '2023-2024', '2022-2023', '2021-2022'];
       width: min(100%, 32rem);
     }
 
-    .season__header,
-    .archive {
+    .season__header {
       grid-template-columns: 1fr;
     }
 
@@ -699,14 +834,6 @@ const missingSeasons = ['2024-2025', '2023-2024', '2022-2023', '2021-2022'];
       font-size: clamp(2.8rem, 13vw, 4rem);
     }
 
-    .season__header {
-      padding-right: 0;
-    }
-
-    .season__number {
-      display: none;
-    }
-
     .term {
       margin-inline: -0.25rem;
     }
@@ -717,17 +844,8 @@ const missingSeasons = ['2024-2025', '2023-2024', '2022-2023', '2021-2022'];
       gap: 0.5rem;
     }
 
-    .team-card__header > span {
-      display: none;
-    }
-
-    .archive__years li {
-      grid-template-columns: 1.5rem 1fr;
-    }
-
-    .archive__years p {
-      grid-column: 2;
-      text-align: left;
+    .archive-season .team-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>
