@@ -52,7 +52,6 @@ const leadershipTimeline = [
   <main>
     <section class="story" aria-labelledby="story-title">
       <div class="story__content">
-        <p class="eyebrow">Our story</p>
         <h1 id="story-title">United by<br /><span>the game.</span></h1>
         <div class="story__copy">
           <p class="story__lead">
@@ -81,7 +80,6 @@ const leadershipTimeline = [
 
     <section class="leadership" aria-labelledby="leadership-title">
       <header class="leadership__header">
-        <p class="eyebrow">Leadership archive</p>
         <h2 id="leadership-title">Directors &amp;<br />executives</h2>
         <p>
           The people who founded UBCRL and guided the community through each stage of its
@@ -149,25 +147,6 @@ const leadershipTimeline = [
   .founded {
     position: relative;
     z-index: 1;
-  }
-
-  .eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin: 0 0 1.5rem;
-    color: #65a1ff;
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-  }
-
-  .eyebrow::before {
-    width: 2rem;
-    height: 1px;
-    background: currentColor;
-    content: '';
   }
 
   h1 {
@@ -393,13 +372,8 @@ const leadershipTimeline = [
       display: contents;
     }
 
-    .story__content > .eyebrow,
     .story__content > h1 {
       grid-column: 1;
-    }
-
-    .story__content > .eyebrow {
-      margin-bottom: -2rem;
     }
 
     .story__content > h1 {
