@@ -45,7 +45,7 @@ const navigation = [
           width="495"
           height="512"
         />
-        <span>UBC / RL</span>
+        <span>UBC Rocket League</span>
       </a>
       <nav aria-label="Main navigation">
         {navigation.map(({ href, label }) => (
@@ -57,6 +57,20 @@ const navigation = [
             {label}
           </a>
         ))}
+        <a
+          class="site-discord"
+          href="https://discord.gg/daFX3cDWh2"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M20.32 4.37a19.8 19.8 0 0 0-4.89-1.52.08.08 0 0 0-.08.04c-.21.37-.44.86-.61 1.25a18.3 18.3 0 0 0-5.48 0 12.6 12.6 0 0 0-.62-1.25.08.08 0 0 0-.08-.04A19.7 19.7 0 0 0 3.68 4.37a.07.07 0 0 0-.03.03C.53 9.05-.32 13.58.1 18.06a.08.08 0 0 0 .03.05 19.9 19.9 0 0 0 5.99 3.03.08.08 0 0 0 .09-.03c.46-.63.87-1.3 1.22-1.99a.08.08 0 0 0-.04-.11 13.1 13.1 0 0 1-1.87-.89.08.08 0 0 1-.01-.13l.37-.29a.07.07 0 0 1 .08-.01c3.93 1.79 8.18 1.79 12.06 0a.07.07 0 0 1 .08.01l.37.29a.08.08 0 0 1-.01.13c-.6.35-1.23.65-1.87.89a.08.08 0 0 0-.04.11c.36.7.77 1.36 1.23 1.99a.08.08 0 0 0 .08.03 19.8 19.8 0 0 0 6-3.03.08.08 0 0 0 .03-.05c.5-5.18-.84-9.68-3.55-13.66a.06.06 0 0 0-.03-.03ZM8.02 15.33c-1.18 0-2.16-1.08-2.16-2.42 0-1.33.96-2.42 2.16-2.42 1.21 0 2.18 1.1 2.16 2.42 0 1.34-.96 2.42-2.16 2.42Zm7.98 0c-1.18 0-2.16-1.08-2.16-2.42 0-1.33.96-2.42 2.16-2.42 1.21 0 2.17 1.1 2.16 2.42 0 1.34-.95 2.42-2.16 2.42Z"
+            />
+          </svg>
+          Join Discord
+        </a>
       </nav>
     </header>
     <slot />
@@ -141,15 +155,15 @@ const navigation = [
     align-items: center;
     flex: none;
     gap: 0.75rem;
-    font-size: 1rem;
+    font-size: 2rem;
     font-weight: 800;
     letter-spacing: 0.15em;
     text-decoration: none;
   }
 
   .site-brand img {
-    width: 2.25rem;
-    height: 2.25rem;
+    width: 5.5rem;
+    height: 5.5rem;
     object-fit: contain;
   }
 
@@ -161,9 +175,9 @@ const navigation = [
   }
 
   nav a {
-    padding: 0.4rem 0;
+    padding: 0.8rem 0.65rem;
     color: #c6ccd7;
-    font-size: 0.75rem;
+    font-size: 1rem;
     font-weight: 700;
     letter-spacing: 0.08em;
     text-decoration: none;
@@ -178,6 +192,28 @@ const navigation = [
 
   nav a.active {
     border-bottom: 2px solid #4d91ff;
+  }
+
+  nav .site-discord {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 0.9rem;
+    border: 1px solid #72a8ff;
+    background: #4d91ff;
+    color: #05070b;
+    font-weight: 900;
+  }
+
+  nav .site-discord svg {
+    flex: none;
+    width: 1rem;
+    height: 1rem;
+  }
+
+  nav .site-discord:hover {
+    background: #72a8ff;
+    color: #05070b;
   }
 
   .stub {

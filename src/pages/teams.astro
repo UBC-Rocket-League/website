@@ -12,12 +12,15 @@ const seasons = [
   {
     year: '2026-2027',
     status: 'Upcoming season',
-    summary:
-      'Tryouts will take place on August 25, 2026 at 8:00 PM in the UBC RL Discord.',
+    summary: null,
     terms: [
       {
-        label: 'Roster pending',
-        detail: 'Tryouts upcoming',
+        label: 'Tryouts upcoming:',
+        detail: null,
+        compactLabel: true,
+        tryoutDate: 'August 25, 2026',
+        tryoutTime: '8:00 PM',
+        tryoutDatetime: '2026-08-25T20:00:00-07:00',
         teams: [
           {
             name: 'UBC Gold',
@@ -43,6 +46,10 @@ const seasons = [
       {
         label: 'Term 2',
         detail: null,
+        compactLabel: false,
+        tryoutDate: null,
+        tryoutTime: null,
+        tryoutDatetime: null,
         teams: [
           {
             name: 'UBC Gold',
@@ -61,6 +68,10 @@ const seasons = [
       {
         label: 'Term 1',
         detail: null,
+        compactLabel: false,
+        tryoutDate: null,
+        tryoutTime: null,
+        tryoutDatetime: null,
         teams: [
           {
             name: 'UBC Gold',
@@ -165,32 +176,6 @@ const historicalSeasons = [
   description="UBC Rocket League Gold and Blue competitive team rosters by season."
 >
   <main>
-    <section class="teams-hero" aria-labelledby="teams-title">
-      <div class="teams-hero__content">
-        <h1 id="teams-title">Meet the<br /><span>rosters.</span></h1>
-        <p class="teams-hero__description">
-          Explore every player who has represented UBCRL, from the newest lineup back to where it
-          all began.
-        </p>
-      </div>
-
-      <div class="team-key" aria-label="Team naming convention">
-        <div class="team-key__item team-key__item--gold">
-          <span>01</span>
-          <div>
-            <strong>UBC Gold</strong>
-            <small>Main roster</small>
-          </div>
-        </div>
-        <div class="team-key__item team-key__item--blue">
-          <span>02</span>
-          <div>
-            <strong>UBC Blue</strong>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="seasons" aria-label="Team rosters by season">
       {
         seasons.map(({ year, status, summary, terms }, seasonIndex) => (
@@ -210,11 +195,33 @@ const historicalSeasons = [
             </header>
 
             <div class="season__terms">
-              {terms.map(({ label, detail, teams }) => (
-                <section class="term" aria-label={`${year} ${label}`}>
+              {terms.map(
+                ({
+                  label,
+                  detail,
+                  compactLabel,
+                  tryoutDate,
+                  tryoutTime,
+                  tryoutDatetime,
+                  teams,
+                }) => (
+                <section
+                  class="term"
+                  aria-label={`${year} ${label}${tryoutDate ? ` on ${tryoutDate} at ${tryoutTime}` : ''}`}
+                >
                   <header class="term__header">
-                    <h3>{label}</h3>
-                    {detail && <p>{detail}</p>}
+                    {compactLabel ? (
+                      <p>{label}</p>
+                    ) : (
+                      <h3>{label}</h3>
+                    )}
+                    {tryoutDate && tryoutTime && tryoutDatetime ? (
+                      <p>
+                        <time datetime={tryoutDatetime}>{tryoutDate} / {tryoutTime}</time>
+                      </p>
+                    ) : (
+                      detail && <p>{detail}</p>
+                    )}
                   </header>
 
                   <div class="team-grid">
@@ -241,7 +248,8 @@ const historicalSeasons = [
                     ))}
                   </div>
                 </section>
-              ))}
+                ),
+              )}
             </div>
           </article>
         ))
@@ -297,119 +305,6 @@ const historicalSeasons = [
   main {
     overflow: hidden;
     background: #05070b;
-  }
-
-  .teams-hero {
-    position: relative;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(18rem, 27rem);
-    gap: clamp(3rem, 8vw, 9rem);
-    min-height: calc(100svh - 4.5rem);
-    padding: clamp(5rem, 10vw, 9rem) clamp(1.25rem, 7vw, 7rem) clamp(4rem, 8vw, 7rem);
-    border-bottom: 1px solid #ffffff1a;
-    background:
-      linear-gradient(115deg, #0b101a 0%, #05070b 62%),
-      #05070b;
-  }
-
-  .teams-hero::before {
-    display: none;
-    content: none;
-  }
-
-  .teams-hero::after {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(#ffffff08 1px, transparent 1px),
-      linear-gradient(90deg, #ffffff08 1px, transparent 1px);
-    background-size: 4rem 4rem;
-    content: '';
-    mask-image: linear-gradient(to right, transparent 35%, #000);
-    pointer-events: none;
-  }
-
-  .teams-hero__content,
-  .team-key {
-    position: relative;
-    z-index: 1;
-  }
-
-  .teams-hero__content {
-    min-width: 0;
-  }
-
-  .teams-hero h1 {
-    margin: 0;
-    font-size: clamp(4.5rem, 11vw, 10rem);
-    font-weight: 900;
-    letter-spacing: -0.085em;
-    line-height: 0.78;
-    text-transform: uppercase;
-  }
-
-  .teams-hero h1 span {
-    color: transparent;
-    -webkit-text-stroke: clamp(1px, 0.12vw, 2px) #f5f7fb;
-  }
-
-  .teams-hero__description {
-    max-width: 41rem;
-    margin: clamp(3rem, 6vw, 5rem) 0 0;
-    color: #b3bccb;
-    font-size: clamp(1.05rem, 1.8vw, 1.35rem);
-    line-height: 1.65;
-  }
-
-  .team-key {
-    align-self: center;
-    display: grid;
-    border-top: 1px solid #ffffff29;
-  }
-
-  .team-key__item {
-    display: grid;
-    grid-template-columns: 3.25rem 1fr;
-    gap: 1.25rem;
-    padding: 1.5rem 0;
-    border-bottom: 1px solid #ffffff29;
-  }
-
-  .team-key__item > span {
-    align-self: center;
-    font-size: 0.7rem;
-    font-weight: 900;
-    letter-spacing: 0.12em;
-  }
-
-  .team-key__item div {
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-  }
-
-  .team-key__item strong {
-    font-size: 1.25rem;
-    letter-spacing: -0.03em;
-    text-transform: uppercase;
-  }
-
-  .team-key__item small {
-    color: #828d9d;
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-  }
-
-  .team-key__item--gold > span,
-  .team-key__item--gold strong {
-    color: #f4c542;
-  }
-
-  .team-key__item--blue > span,
-  .team-key__item--blue strong {
-    color: #5495ff;
   }
 
   .seasons {
@@ -510,7 +405,7 @@ const historicalSeasons = [
   .term__header p {
     margin: 0;
     color: #727e8f;
-    font-size: 0.65rem;
+    font-size: 0.8rem;
     font-weight: 800;
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -807,15 +702,6 @@ const historicalSeasons = [
   }
 
   @media (max-width: 950px) {
-    .teams-hero {
-      grid-template-columns: 1fr;
-      min-height: auto;
-    }
-
-    .team-key {
-      width: min(100%, 32rem);
-    }
-
     .season__header {
       grid-template-columns: 1fr;
     }
@@ -826,14 +712,6 @@ const historicalSeasons = [
   }
 
   @media (max-width: 600px) {
-    .teams-hero {
-      padding-top: 3.5rem;
-    }
-
-    .teams-hero h1 {
-      font-size: clamp(2.8rem, 13vw, 4rem);
-    }
-
     .term {
       margin-inline: -0.25rem;
     }
