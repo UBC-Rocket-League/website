@@ -1,0 +1,50 @@
+.challenge-item-card {
+  display: grid;
+  grid-template-rows: 2fr 1fr;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  padding: 0.4rem 0;
+  background: linear-gradient(to right, #2c6399, #224e7d);
+  opacity: 0.9;
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
+  transition: filter 0.2s ease;
+}
+
+.challenge-item-card__text {
+  display: flex;
+  align-items: center;
+  padding: 0 0.75rem;
+  color: #6bdee8;
+}
+
+.challenge-item-card__progress {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 0.75rem;
+}
+
+.challenge-item-card__bar {
+  width: 100%;
+  min-width: 0;
+  height: 0.9rem;
+  background: #00101f;
+  overflow: hidden;
+}
+
+.challenge-item-card__bar-fill {
+  height: 100%;
+  background: #00aaff;
+}
+
+.challenge-item-card__fraction {
+  position: absolute;
+  top: 50%;
+  right: 1.25rem;
+  z-index: 1;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  color: #ffffff;
+  font-size: 0.85rem;
+}

@@ -1,0 +1,73 @@
+.challenge-card-bottom {
+  position: relative;
+  z-index: 0;
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+  gap: 0.3rem;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  padding: 0.3rem;
+  border-radius: 1%;
+  box-shadow: 0 0 10px 2px rgba(30, 72, 98, 0.9);
+}
+
+.challenge-card-bottom::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(to top, #080812, #294678);
+  transition: filter 0.2s ease;
+}
+
+.challenge-card-bottom:hover::before {
+  filter: brightness(1.15);
+}
+
+.challenge-card-bottom:hover .challenge-item-card {
+  filter: brightness(1.15);
+}
+
+.challenge-card-bottom__header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  color: #f5f7fb;
+  text-shadow: 0 0 30px rgba(181, 225, 255, 0.7);
+}
+
+.challenge-card-bottom__title {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.challenge-card-bottom__subtitle {
+  margin: 0.25rem 0 0;
+  color: #aeb6c4;
+  font-size: 1.25rem;
+}
+
+.challenge-card-bottom__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+
+.challenge-card-bottom__actions .rl-homescreen-btn {
+  width: 95%;
+}
+
+.challenge-card-bottom:hover .rl-homescreen-btn[data-variant='challenge'] {
+  color: #144d71;
+}
+
+.challenge-card-bottom:hover .rl-homescreen-btn[data-variant='challenge']::before {
+  background:
+    radial-gradient(circle at 50% 140%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0) 100%),
+    #b5e1ff;
+  box-shadow: 0 0 10px 3px rgba(30, 72, 98, 0.9);
+}

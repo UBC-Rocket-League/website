@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Biweekly Inhouses",
+    "subtitle": "7pm PST every other thursday",
+    "image": "/ubc-rl-crest.png",
+    "items": [
+      { "text": "Inhouses hosted this semester", "current": 3, "total": 8 },
+      { "text": "Total inhouse matches played", "current": 12, "total": 32 },
+      { "text": "Clips hit in inhouses", "current": 3, "total": 3 }
+    ]
+  },
+  {
+    "title": "Tournaments",
+    "subtitle": "Hosted by UBCRL",
+    "image": "/ubc-rl-crest.png",
+    "items": [
+      { "text": "Tournaments hosted", "current": 2, "total": 3 },
+      { "text": "Cash won", "current": 123, "total": 456 },
+      { "text": "Universities represented", "current": 4, "total": 4 }
+    ]
+  },
+  {
+    "title": "Comp Teams",
+    "subtitle": "UBC Gold and Blue Teams",
+    "image": "/ubc-rl-crest.png",
+    "items": [
+      { "text": "Tournaments participated", "current": 3, "total": 5 },
+      { "text": "Matches played", "current": 10, "total": 15 },
+      { "text": "Matches thrown", "current": 2, "total": 10 }
+    ]
+  }
+]

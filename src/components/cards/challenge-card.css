@@ -1,0 +1,9 @@
+.challenge-card {
+  display: grid;
+  grid-template-rows: 4fr 6fr;
+  gap: 8px;
+  width: 340px;
+  height: 640px;
+  min-width: 0;
+  background: none;
+}
