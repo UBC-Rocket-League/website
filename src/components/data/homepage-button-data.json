@@ -1,0 +1,27 @@
+[
+  {
+    "label": "HOME",
+    "info": "The UBC Rocket League home screen — everything about our club, all in one place.",
+    "link": { "text": "Join our Discord", "href": "https://discord.gg/ubcrl" }
+  },
+  {
+    "label": "TEAM",
+    "info": "Meet the players representing UBC across our competitive rosters.",
+    "link": { "text": "View the team", "href": "/teams" }
+  },
+  {
+    "label": "CALENDAR",
+    "info": "Stay up to date with inhouses, tournaments, and club events.",
+    "link": { "text": "View the calendar", "href": "/calendar" }
+  },
+  {
+    "label": "ACHIEVEMENTS",
+    "info": "See what the club has accomplished this season.",
+    "link": { "text": "View achievements", "href": "/achievements" }
+  },
+  {
+    "label": "MERCH",
+    "info": "Grab some gear and support the club.",
+    "link": { "text": "Shop merch", "href": "/merch" }
+  }
+]

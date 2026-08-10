@@ -1,0 +1,19 @@
+.button-stack {
+  position: relative;
+  top: 60svh;
+  display: flex;
+  flex-direction: column;
+  flex: none;
+  align-self: flex-start;
+  gap: 6px;
+  margin: 0;
+  transform: translateY(-50%);
+}
+
+@media (max-width: 800px) {
+  .button-stack {
+    position: static;
+    align-self: center;
+    transform: none;
+  }
+}

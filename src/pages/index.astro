@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import RlHomescreenBtn from '../components/buttons/rl-homescreen-btn';
+import HomeButtonStack from '../components/buttons/home-button-stack';
 import ChallengeCard from '../components/cards/challenge-card';
 ---
 
@@ -20,13 +20,7 @@ import ChallengeCard from '../components/cards/challenge-card';
         playsinline
       ></video>
 
-      <div class="hero__button-stack">
-        <RlHomescreenBtn variant="default" align="left" opacity={0.9} subtext="THE HOME SCREEN" >HOME</RlHomescreenBtn>
-        <RlHomescreenBtn variant="default" align="left" opacity={0.9}>TEAM</RlHomescreenBtn>
-        <RlHomescreenBtn variant="default" align="left" opacity={0.9}>CALENDAR</RlHomescreenBtn>
-        <RlHomescreenBtn variant="default" align="left" opacity={0.9}>ACHIEVEMENTS</RlHomescreenBtn>
-        <RlHomescreenBtn variant="default" align="left" opacity={0.9}>MERCH</RlHomescreenBtn>
-      </div>
+      <HomeButtonStack client:load />
 
       <div class="hero__card">
         <ChallengeCard client:load />
@@ -58,18 +52,6 @@ import ChallengeCard from '../components/cards/challenge-card';
     pointer-events: none;
   }
 
-  .hero__button-stack {
-    position: relative;
-    top: 60svh;
-    display: flex;
-    flex-direction: column;
-    flex: none;
-    align-self: flex-start;
-    gap: 6px;
-    margin: 0;
-    transform: translateY(-50%);
-  }
-
   .hero__card {
     min-width: 0;
     margin: 0;
@@ -80,12 +62,6 @@ import ChallengeCard from '../components/cards/challenge-card';
       flex-direction: column;
       justify-content: center;
       padding: 3rem 1.5rem;
-    }
-
-    .hero__button-stack {
-      position: static;
-      align-self: center;
-      transform: none;
     }
   }
 </style>
