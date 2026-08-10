@@ -1,0 +1,151 @@
+.rl-homescreen-btn {
+  position: relative;
+  z-index: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 22rem;
+  padding: 0.8rem 1rem;
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+  font-size: var(--rl-btn-font-size, 1.2rem);
+  opacity: var(--rl-btn-opacity, 1);
+  text-decoration: none;
+  cursor: pointer;
+  --rl-highlight-left: 2.5%;
+  --rl-highlight-width: 95%;
+  transition:
+    color 0.2s ease,
+    text-shadow 0.2s ease;
+}
+
+.rl-homescreen-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: #020202;
+  transform: skewX(-10deg);
+  border-radius: 2%;
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.rl-homescreen-btn::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: var(--rl-highlight-left);
+  width: var(--rl-highlight-width);
+  height: 3px;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.rl-homescreen-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.rl-homescreen-btn__label {
+  display: inline-block;
+  transition: transform 150ms ease-out;
+}
+
+.rl-homescreen-btn[data-subtext='true']:hover .rl-homescreen-btn__label {
+  transform: translateY(-0.3em);
+  transition: transform 150ms ease-in;
+}
+
+.rl-homescreen-btn__subtext {
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 0.35rem;
+  font-size: 0.5em;
+  line-height: 1;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 60ms ease;
+}
+
+.rl-homescreen-btn:hover .rl-homescreen-btn__subtext {
+  opacity: 1;
+  transition: opacity 100ms ease;
+}
+
+.rl-homescreen-btn[data-variant='default'] {
+  /* fill in: primary styling */
+}
+
+.rl-homescreen-btn[data-variant='default']:hover {
+  color: #1b486b;
+  text-shadow: 0 0 8px rgba(27, 72, 107, 0.30);
+}
+
+.rl-homescreen-btn[data-variant='default']:hover::before {
+  background:
+    radial-gradient(circle at 30% 120%, rgba(255, 255, 255, 1.0), rgba(255, 255, 255, 0) 100%),
+    #4096c9;
+  box-shadow: 0 0 10px 3px rgba(30, 72, 98, 0.9);
+}
+
+.rl-homescreen-btn[data-variant='challenge'] {
+  color: #ffffff;
+  text-shadow: 0 0 8px #b5e1ff 0.2;
+  padding: 0.65rem 1rem;
+}
+
+.rl-homescreen-btn[data-variant='challenge']::before {
+  background:
+    radial-gradient(circle at 50% 330%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0) 70%),
+    #1b486b;
+  border: 1px solid #abb7c2;
+}
+
+.rl-homescreen-btn[data-variant='challenge']:hover {
+  color: #144d71;
+}
+
+.rl-homescreen-btn[data-variant='challenge']:hover::before {
+  background:
+    radial-gradient(circle at 50% 140%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0) 100%),
+    #b5e1ff;
+  box-shadow: 0 0 25px 10px rgba(30, 72, 98, 0.9);
+}
+
+.rl-homescreen-btn[data-variant='orange'] {
+  /* fill in: secondary styling */
+}
+
+.rl-homescreen-btn[data-variant='orange']:hover {
+  /* fill in: secondary hover styling */
+}
+
+.rl-homescreen-btn[data-align='left'] {
+  justify-content: flex-start;
+}
+
+.rl-homescreen-btn[data-align='center'] {
+  justify-content: center;
+}
+
+.rl-homescreen-btn[data-align='right'] {
+  justify-content: flex-end;
+}
+
+.rl-homescreen-btn[data-align='left'] .rl-homescreen-btn__subtext {
+  text-align: left;
+}
+
+.rl-homescreen-btn[data-align='center'] .rl-homescreen-btn__subtext {
+  text-align: center;
+}
+
+.rl-homescreen-btn[data-align='right'] .rl-homescreen-btn__subtext {
+  text-align: right;
+}
