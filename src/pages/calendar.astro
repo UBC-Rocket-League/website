@@ -3,10 +3,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="Calendar" description="Upcoming UBC Rocket League events.">
-  <main class="stub">
-    <div class="stub__content">
-      <h1>Calendar</h1>
-      <p class="stub__description">
+  <main
+    class="grid min-h-[calc(100svh-4.5rem)] place-content-center bg-[linear-gradient(135deg,transparent_60%,#0d3d811f),#05070b] px-[clamp(1.25rem,8vw,8rem)] py-[clamp(3rem,10vw,8rem)] max-[800px]:min-h-svh max-[800px]:pt-40"
+  >
+    <div class="w-full max-w-[56rem]">
+      <h1
+        class="m-0 text-[clamp(3.5rem,11vw,8rem)] leading-[0.9] font-bold tracking-[-0.07em] uppercase"
+      >
+        Calendar
+      </h1>
+      <p
+        class="mt-8 mb-0 max-w-[42rem] text-[clamp(1rem,2vw,1.25rem)] leading-[1.6] text-[#aeb6c4]"
+      >
         Events, inhouses, crew battles, competitive team games, and tournaments will appear here.
       </p>
       <!-- TODO: Embed the public Google Calendar associated with the organization email. -->
