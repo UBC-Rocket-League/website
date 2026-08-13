@@ -2,7 +2,15 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const player = (ign: string, image: string | null = '/pfp/drag/drag1.jpg') => ({ ign, image });
-const historicalTeam = (name: string, tone: string, players: string[]) => ({
+const teamToneClasses = {
+  gold: '[--team-color:#f4c542]',
+  blue: '[--team-color:#4d91ff]',
+  navy: '[--team-color:#344f8f]',
+  white: '[--team-color:#dce3ed]',
+} as const;
+type TeamTone = keyof typeof teamToneClasses;
+
+const historicalTeam = (name: string, tone: TeamTone, players: string[]) => ({
   name: `UBC ${name}`,
   tone,
   players,
@@ -175,26 +183,48 @@ const historicalSeasons = [
   title="Teams"
   description="UBC Rocket League Gold and Blue competitive team rosters by season."
 >
-  <main>
-    <section class="seasons" aria-label="Team rosters by season">
+  <main class="overflow-hidden bg-[#05070b]">
+    <section
+      class="bg-[#080b10] px-[clamp(1.25rem,6vw,6rem)] py-[clamp(4rem,10vw,9rem)]"
+      aria-label="Team rosters by season"
+    >
       {
         seasons.map(({ year, status, summary, terms }, seasonIndex) => (
           <article
             id={`season-${year}`}
-            class:list={['season', { 'season--current': seasonIndex === 0 }]}
+            class="mx-auto w-full max-w-[96rem] pb-[clamp(5rem,11vw,10rem)] last:pb-0"
           >
-            <header class="season__header">
+            <header
+              class="relative grid grid-cols-[minmax(18rem,0.9fr)_minmax(20rem,1fr)] items-end gap-[clamp(2rem,6vw,7rem)] border-b border-[#ffffff24] pt-0 pb-10 max-[950px]:grid-cols-1"
+            >
               <div>
-                <p class="season__status">
-                  <span aria-hidden="true" />
+                <p
+                  class:list={[
+                    'mt-0 mb-3 flex items-center gap-[0.6rem] text-[0.65rem] font-extrabold tracking-[0.16em] uppercase',
+                    seasonIndex === 0 ? 'text-[#72a8ff]' : 'text-[#8994a5]',
+                  ]}
+                >
+                  <span
+                    class:list={[
+                      'h-2 w-2 rounded-full',
+                      seasonIndex === 0
+                        ? 'bg-[#4d91ff] shadow-[0_0_0_0.3rem_#4d91ff21]'
+                        : 'bg-[#687384]',
+                    ]}
+                    aria-hidden="true"
+                  />
                   {status}
                 </p>
-                <h2>{year}</h2>
+                <h2
+                  class="m-0 text-[clamp(3rem,7vw,6.5rem)] leading-[0.85] font-bold tracking-[-0.07em] [font-variant-numeric:tabular-nums]"
+                >
+                  {year}
+                </h2>
               </div>
-              {summary && <p>{summary}</p>}
+              {summary && <p class="m-0 max-w-[37rem] leading-[1.7] text-[#9fa9b8]">{summary}</p>}
             </header>
 
-            <div class="season__terms">
+            <div class="grid gap-16 pt-12">
               {terms.map(
                 ({
                   label,
@@ -206,41 +236,89 @@ const historicalSeasons = [
                   teams,
                 }) => (
                 <section
-                  class="term"
+                  class="border border-[#ffffff17] bg-[#0b0f16] p-[clamp(1.25rem,3vw,2.5rem)] max-[600px]:mx-[-0.25rem]"
                   aria-label={`${year} ${label}${tryoutDate ? ` on ${tryoutDate} at ${tryoutTime}` : ''}`}
                 >
-                  <header class="term__header">
+                  <header
+                    class="mb-8 flex items-end justify-between gap-8 max-[600px]:flex-col max-[600px]:items-start max-[600px]:gap-2"
+                  >
                     {compactLabel ? (
-                      <p>{label}</p>
+                      <p class="m-0 text-[0.8rem] font-extrabold tracking-[0.15em] text-[#727e8f] uppercase">
+                        {label}
+                      </p>
                     ) : (
-                      <h3>{label}</h3>
+                      <h3
+                        class="m-0 text-[clamp(1.35rem,2.5vw,2.1rem)] font-bold tracking-[-0.04em] uppercase"
+                      >
+                        {label}
+                      </h3>
                     )}
                     {tryoutDate && tryoutTime && tryoutDatetime ? (
-                      <p>
+                      <p class="m-0 text-[0.8rem] font-extrabold tracking-[0.15em] text-[#727e8f] uppercase">
                         <time datetime={tryoutDatetime}>{tryoutDate} / {tryoutTime}</time>
                       </p>
                     ) : (
-                      detail && <p>{detail}</p>
+                      detail && (
+                        <p class="m-0 text-[0.8rem] font-extrabold tracking-[0.15em] text-[#727e8f] uppercase">
+                          {detail}
+                        </p>
+                      )
                     )}
                   </header>
 
-                  <div class="team-grid">
+                  <div
+                    class="grid grid-cols-2 gap-[clamp(1rem,2.5vw,2rem)] max-[950px]:grid-cols-1"
+                  >
                     {teams.map(({ name, tier, tone, players }) => (
-                      <article class:list={['team-card', `team-card--${tone}`]}>
-                        <header class="team-card__header">
+                      <article
+                        class:list={[
+                          "relative overflow-hidden border bg-[linear-gradient(145deg,color-mix(in_srgb,var(--team-color)_10%,transparent),transparent_48%),#080b10] p-[clamp(1rem,2.2vw,1.75rem)] [border-color:color-mix(in_srgb,var(--team-color)_30%,transparent)] before:absolute before:inset-y-0 before:left-0 before:w-[3px] before:bg-[var(--team-color)] before:content-['']",
+                          teamToneClasses[tone as TeamTone],
+                        ]}
+                      >
+                        <header
+                          class="mb-[clamp(1.5rem,3vw,2.5rem)] flex min-h-14 items-start justify-between gap-4"
+                        >
                           <div>
-                            <h4>{name}</h4>
-                            {tier && <p>{tier}</p>}
+                            <h4
+                              class="m-0 text-[clamp(1.15rem,2vw,1.65rem)] font-bold tracking-[-0.035em] uppercase"
+                            >
+                              {name}
+                            </h4>
+                            {tier && (
+                              <p class="mt-[0.4rem] mb-0 text-[0.62rem] font-black tracking-[0.18em] text-[var(--team-color)] uppercase">
+                                {tier}
+                              </p>
+                            )}
                           </div>
                         </header>
 
-                        <ul class="players" aria-label={`${name} players`}>
+                        <ul
+                          class="m-0 grid list-none grid-cols-3 gap-[clamp(0.55rem,1.5vw,1rem)] p-0"
+                          aria-label={`${name} players`}
+                        >
                           {players.map(({ ign, image }) => (
-                            <li class:list={['player', { 'player--pending': ign === 'TBD' }]}>
-                              <div class="player__photo">
-                                {image && <img src={image} alt={`Portrait of ${ign}`} loading="lazy" />}
+                            <li class="min-w-0">
+                              <div
+                                class="relative aspect-[4/5] overflow-hidden border border-[#ffffff20] bg-[linear-gradient(135deg,transparent_49.5%,#ffffff0a_50%,transparent_50.5%),linear-gradient(45deg,transparent_49.5%,#ffffff0a_50%,transparent_50.5%),linear-gradient(160deg,color-mix(in_srgb,var(--team-color)_10%,transparent),#0d121b)] before:absolute before:top-[0.45rem] before:left-[0.45rem] before:h-4 before:w-4 before:border-t before:border-l before:content-[''] after:absolute after:right-[0.45rem] after:bottom-[0.45rem] after:h-4 after:w-4 after:border-r after:border-b after:content-[''] before:[border-color:color-mix(in_srgb,var(--team-color)_70%,transparent)] after:[border-color:color-mix(in_srgb,var(--team-color)_70%,transparent)]"
+                              >
+                                {image && (
+                                  <img
+                                    class="relative z-[1] block h-full w-full object-cover"
+                                    src={image}
+                                    alt={`Portrait of ${ign}`}
+                                    loading="lazy"
+                                  />
+                                )}
                               </div>
-                              <strong>{ign}</strong>
+                              <strong
+                                class:list={[
+                                  'mt-3 block min-w-0 text-center leading-[1.2] [overflow-wrap:anywhere]',
+                                  ign === 'TBD'
+                                    ? 'text-[0.65rem] tracking-[0.15em] text-[#687384]'
+                                    : 'text-[clamp(0.65rem,1.15vw,0.9rem)] tracking-[0.02em]',
+                                ]}>{ign}</strong
+                              >
                             </li>
                           ))}
                         </ul>
@@ -256,34 +334,67 @@ const historicalSeasons = [
       }
     </section>
 
-    <section id="earlier-seasons" class="archive" aria-label="Earlier season rosters">
-      <div class="archive__years">
+    <section
+      id="earlier-seasons"
+      class="border-t border-[#ffffff1a] bg-[radial-gradient(circle_at_15%_25%,#174d9624,transparent_28rem),#05070b] px-[clamp(1.25rem,6vw,6rem)] py-[clamp(4rem,8vw,7rem)]"
+      aria-label="Earlier season rosters"
+    >
+      <div class="mx-auto w-full min-w-0 max-w-[96rem] border-t border-[#ffffff24] p-0">
         {
           historicalSeasons.map(({ year, terms }) => (
-            <details class="archive-season">
-              <summary>
-                <strong>{year}</strong>
-                <span class="archive-season__toggle" aria-hidden="true" />
+            <details class="group border-b border-[#ffffff24]">
+              <summary
+                class="flex w-full cursor-pointer list-none items-center justify-between gap-4 py-6 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-[0.35rem] focus-visible:outline-[#4d91ff] [&::-webkit-details-marker]:hidden"
+              >
+                <strong
+                  class="whitespace-nowrap text-[clamp(1.25rem,2.6vw,2rem)] tracking-[-0.04em] [font-variant-numeric:tabular-nums]"
+                  >{year}</strong
+                >
+                <span
+                  class="relative h-4 w-4 flex-none text-[#4d91ff] transition-transform duration-[180ms] before:absolute before:top-1/2 before:left-1/2 before:h-px before:w-full before:-translate-x-1/2 before:-translate-y-1/2 before:bg-current before:content-[''] after:absolute after:top-1/2 after:left-1/2 after:h-px after:w-full after:-translate-x-1/2 after:-translate-y-1/2 after:rotate-90 after:bg-current after:content-[''] group-open:rotate-45"
+                  aria-hidden="true"
+                />
               </summary>
 
-              <div class="archive-season__body">
+              <div
+                class="grid gap-10 border-t border-[#ffffff17] bg-[#080b10] p-[clamp(1.5rem,3vw,3rem)]"
+              >
                 {terms.map(({ label, teams }) => (
-                  <section class="archive-term" aria-label={`${year} ${label}`}>
-                    <header class="archive-term__header">
-                      <h3>{label}</h3>
+                  <section aria-label={`${year} ${label}`}>
+                    <header class="mb-4">
+                      <h3 class="m-0 text-[1rem] font-bold tracking-[-0.02em] uppercase">{label}</h3>
                     </header>
 
-                    <div class="team-grid">
+                    <div
+                      class="grid grid-cols-[repeat(auto-fill,minmax(14rem,20rem))] items-stretch justify-start gap-[clamp(1rem,2.5vw,2rem)] max-[600px]:grid-cols-1"
+                    >
                       {teams.map(({ name, tone, players }) => (
-                        <article class:list={['team-card', 'team-card--historical', `team-card--${tone}`]}>
-                          <header class="team-card__header">
-                            <h4>{name}</h4>
+                        <article
+                          class:list={[
+                            "relative flex flex-col overflow-hidden border bg-[linear-gradient(145deg,color-mix(in_srgb,var(--team-color)_10%,transparent),transparent_48%),#080b10] p-[clamp(1rem,2.2vw,1.75rem)] [border-color:color-mix(in_srgb,var(--team-color)_30%,transparent)] before:absolute before:inset-y-0 before:left-0 before:w-[3px] before:bg-[var(--team-color)] before:content-['']",
+                            teamToneClasses[tone],
+                          ]}
+                        >
+                          <header class="mb-4 flex min-h-0 items-start justify-between gap-4">
+                            <h4
+                              class="m-0 text-[clamp(1.15rem,2vw,1.65rem)] font-bold tracking-[-0.035em] uppercase"
+                            >
+                              {name}
+                            </h4>
                           </header>
 
-                          <ul class="historical-players" aria-label={`${name} players`}>
+                          <ul
+                            class="m-0 grid flex-1 list-none grid-cols-1 border-t border-[#ffffff14] p-0"
+                            aria-label={`${name} players`}
+                          >
                             {players.map((ign) => (
-                              <li>
-                                <strong>{ign}</strong>
+                              <li
+                                class="flex min-h-12 min-w-0 items-center gap-[0.65rem] border-b border-[#ffffff14] px-[0.6rem] py-[0.7rem] before:h-[0.3rem] before:w-[0.3rem] before:flex-none before:rounded-full before:bg-[var(--team-color)] before:content-['']"
+                              >
+                                <strong
+                                  class="min-w-0 text-[0.78rem] tracking-[0.02em] [overflow-wrap:anywhere]"
+                                  >{ign}</strong
+                                >
                               </li>
                             ))}
                           </ul>
@@ -300,430 +411,3 @@ const historicalSeasons = [
     </section>
   </main>
 </BaseLayout>
-
-<style>
-  main {
-    overflow: hidden;
-    background: #05070b;
-  }
-
-  .seasons {
-    padding: clamp(4rem, 10vw, 9rem) clamp(1.25rem, 6vw, 6rem);
-    background: #080b10;
-  }
-
-  .season {
-    width: min(100%, 96rem);
-    margin: 0 auto;
-    padding-bottom: clamp(5rem, 11vw, 10rem);
-  }
-
-  .season:last-child {
-    padding-bottom: 0;
-  }
-
-  .season__header {
-    position: relative;
-    display: grid;
-    grid-template-columns: minmax(18rem, 0.9fr) minmax(20rem, 1fr);
-    gap: clamp(2rem, 6vw, 7rem);
-    align-items: end;
-    padding: 0 0 2.5rem;
-    border-bottom: 1px solid #ffffff24;
-  }
-
-  .season__status {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    margin: 0 0 0.75rem;
-    color: #8994a5;
-    font-size: 0.65rem;
-    font-weight: 800;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-  }
-
-  .season__status span {
-    width: 0.5rem;
-    height: 0.5rem;
-    border-radius: 50%;
-    background: #687384;
-  }
-
-  .season--current .season__status {
-    color: #72a8ff;
-  }
-
-  .season--current .season__status span {
-    background: #4d91ff;
-    box-shadow: 0 0 0 0.3rem #4d91ff21;
-  }
-
-  .season h2 {
-    margin: 0;
-    font-size: clamp(3rem, 7vw, 6.5rem);
-    font-variant-numeric: tabular-nums;
-    letter-spacing: -0.07em;
-    line-height: 0.85;
-  }
-
-  .season__header > p {
-    max-width: 37rem;
-    margin: 0;
-    color: #9fa9b8;
-    line-height: 1.7;
-  }
-
-  .season__terms {
-    display: grid;
-    gap: 4rem;
-    padding-top: 3rem;
-  }
-
-  .term {
-    padding: clamp(1.25rem, 3vw, 2.5rem);
-    border: 1px solid #ffffff17;
-    background: #0b0f16;
-  }
-
-  .term__header {
-    display: flex;
-    align-items: end;
-    justify-content: space-between;
-    gap: 2rem;
-    margin-bottom: 2rem;
-  }
-
-  .term__header h3 {
-    margin: 0;
-    font-size: clamp(1.35rem, 2.5vw, 2.1rem);
-    letter-spacing: -0.04em;
-    text-transform: uppercase;
-  }
-
-  .term__header p {
-    margin: 0;
-    color: #727e8f;
-    font-size: 0.8rem;
-    font-weight: 800;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-  }
-
-  .team-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(1rem, 2.5vw, 2rem);
-  }
-
-  .team-card {
-    --team-color: #7f8998;
-    position: relative;
-    overflow: hidden;
-    padding: clamp(1rem, 2.2vw, 1.75rem);
-    border: 1px solid color-mix(in srgb, var(--team-color) 30%, transparent);
-    background:
-      linear-gradient(145deg, color-mix(in srgb, var(--team-color) 10%, transparent), transparent 48%),
-      #080b10;
-  }
-
-  .team-card::before {
-    position: absolute;
-    inset: 0 auto 0 0;
-    width: 3px;
-    background: var(--team-color);
-    content: '';
-  }
-
-  .team-card--gold {
-    --team-color: #f4c542;
-  }
-
-  .team-card--blue {
-    --team-color: #4d91ff;
-  }
-
-  .team-card--navy {
-    --team-color: #344f8f;
-  }
-
-  .team-card--white {
-    --team-color: #dce3ed;
-  }
-
-  .team-card__header {
-    display: flex;
-    align-items: start;
-    justify-content: space-between;
-    gap: 1rem;
-    min-height: 3.5rem;
-    margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
-  }
-
-  .team-card__header p {
-    margin: 0.4rem 0 0;
-    color: var(--team-color);
-    font-size: 0.62rem;
-    font-weight: 900;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-  }
-
-  .team-card h4 {
-    margin: 0;
-    font-size: clamp(1.15rem, 2vw, 1.65rem);
-    letter-spacing: -0.035em;
-    text-transform: uppercase;
-  }
-
-  .players {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(0.55rem, 1.5vw, 1rem);
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .player {
-    min-width: 0;
-  }
-
-  .player__photo {
-    position: relative;
-    overflow: hidden;
-    aspect-ratio: 4 / 5;
-    border: 1px solid #ffffff20;
-    background:
-      linear-gradient(135deg, transparent 49.5%, #ffffff0a 50%, transparent 50.5%),
-      linear-gradient(45deg, transparent 49.5%, #ffffff0a 50%, transparent 50.5%),
-      linear-gradient(160deg, color-mix(in srgb, var(--team-color) 10%, transparent), #0d121b);
-  }
-
-  .player__photo::before,
-  .player__photo::after {
-    position: absolute;
-    width: 1rem;
-    height: 1rem;
-    border-color: color-mix(in srgb, var(--team-color) 70%, transparent);
-    content: '';
-  }
-
-  .player__photo::before {
-    top: 0.45rem;
-    left: 0.45rem;
-    border-top: 1px solid;
-    border-left: 1px solid;
-  }
-
-  .player__photo::after {
-    right: 0.45rem;
-    bottom: 0.45rem;
-    border-right: 1px solid;
-    border-bottom: 1px solid;
-  }
-
-  .player__photo img {
-    position: relative;
-    z-index: 1;
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .player strong {
-    display: block;
-    min-width: 0;
-    margin-top: 0.75rem;
-    overflow-wrap: anywhere;
-    font-size: clamp(0.65rem, 1.15vw, 0.9rem);
-    letter-spacing: 0.02em;
-    line-height: 1.2;
-    text-align: center;
-  }
-
-  .player--pending strong {
-    color: #687384;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-  }
-
-  .archive {
-    padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 6vw, 6rem);
-    border-top: 1px solid #ffffff1a;
-    background:
-      radial-gradient(circle at 15% 25%, #174d9624, transparent 28rem),
-      #05070b;
-  }
-
-  .archive__years {
-    width: min(100%, 96rem);
-    min-width: 0;
-    margin: 0 auto;
-    padding: 0;
-    border-top: 1px solid #ffffff24;
-  }
-
-  .archive-season {
-    border-bottom: 1px solid #ffffff24;
-  }
-
-  .archive-season summary {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: 1.5rem 0;
-    cursor: pointer;
-    list-style: none;
-  }
-
-  .archive-season summary::-webkit-details-marker {
-    display: none;
-  }
-
-  .archive-season summary:focus {
-    outline: none;
-  }
-
-  .archive-season summary:focus-visible {
-    outline: 2px solid #4d91ff;
-    outline-offset: 0.35rem;
-  }
-
-  .archive-season summary strong {
-    font-size: clamp(1.25rem, 2.6vw, 2rem);
-    font-variant-numeric: tabular-nums;
-    letter-spacing: -0.04em;
-    white-space: nowrap;
-  }
-
-  .archive-season__toggle {
-    position: relative;
-    flex: 0 0 auto;
-    width: 1rem;
-    height: 1rem;
-    color: #4d91ff;
-    transition: transform 180ms ease;
-  }
-
-  .archive-season__toggle::before,
-  .archive-season__toggle::after {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 1px;
-    background: currentColor;
-    content: '';
-    transform: translate(-50%, -50%);
-  }
-
-  .archive-season__toggle::after {
-    transform: translate(-50%, -50%) rotate(90deg);
-  }
-
-  .archive-season[open] .archive-season__toggle {
-    transform: rotate(45deg);
-  }
-
-  .archive-season__body {
-    display: grid;
-    gap: 2.5rem;
-    padding: clamp(1.5rem, 3vw, 3rem);
-    border-top: 1px solid #ffffff17;
-    background: #080b10;
-  }
-
-  .archive-season .team-grid {
-    grid-template-columns: repeat(auto-fill, minmax(14rem, 20rem));
-    align-items: stretch;
-    justify-content: start;
-  }
-
-  .archive-term__header {
-    margin-bottom: 1rem;
-  }
-
-  .archive-term__header h3 {
-    margin: 0;
-    font-size: 1rem;
-    letter-spacing: -0.02em;
-    text-transform: uppercase;
-  }
-
-  .team-card--historical .team-card__header {
-    min-height: 0;
-    margin-bottom: 1rem;
-  }
-
-  .team-card--historical {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .historical-players {
-    display: grid;
-    flex: 1;
-    grid-template-columns: 1fr;
-    margin: 0;
-    padding: 0;
-    border-top: 1px solid #ffffff14;
-    list-style: none;
-  }
-
-  .historical-players li {
-    display: flex;
-    align-items: center;
-    gap: 0.65rem;
-    min-width: 0;
-    min-height: 3rem;
-    padding: 0.7rem 0.6rem;
-    border-bottom: 1px solid #ffffff14;
-  }
-
-  .historical-players li::before {
-    flex: 0 0 auto;
-    width: 0.3rem;
-    height: 0.3rem;
-    border-radius: 50%;
-    background: var(--team-color);
-    content: '';
-  }
-
-  .historical-players strong {
-    min-width: 0;
-    overflow-wrap: anywhere;
-    font-size: 0.78rem;
-    letter-spacing: 0.02em;
-  }
-
-  @media (max-width: 950px) {
-    .season__header {
-      grid-template-columns: 1fr;
-    }
-
-    .team-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  @media (max-width: 600px) {
-    .term {
-      margin-inline: -0.25rem;
-    }
-
-    .term__header {
-      align-items: start;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .archive-season .team-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>

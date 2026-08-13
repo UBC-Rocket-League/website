@@ -8,17 +8,30 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   overlayHeader
 >
   <main>
-    <section class="hero">
-      <div class="hero__content">
-        <div class="hero__copy">
-          <h1>Our homepage went for boost.</h1>
-          <p class="hero__punchline">
+    <section
+      class="grid min-h-svh place-items-center bg-[radial-gradient(circle_at_75%_65%,#1c5db833,transparent_34rem),linear-gradient(135deg,#080b10_0%,#05070b_60%,#0a1830_100%)] px-[clamp(1.25rem,8vw,8rem)] pt-[clamp(9rem,18vw,14rem)] pb-20 max-[850px]:pt-44"
+    >
+      <div
+        class="grid w-full max-w-[78rem] grid-cols-[minmax(0,1.2fr)_minmax(18rem,0.8fr)] items-center gap-[clamp(2rem,6vw,6rem)] max-[850px]:grid-cols-[minmax(0,1fr)]"
+      >
+        <div>
+          <h1
+            class="m-0 max-w-[12ch] text-[clamp(3.5rem,7vw,7rem)] leading-[0.9] font-bold tracking-[-0.07em] uppercase"
+          >
+            Our homepage went for boost.
+          </h1>
+          <p
+            class="mt-8 mb-0 max-w-[38rem] text-[clamp(1rem,2vw,1.25rem)] leading-[1.6] text-[#aeb6c4]"
+          >
             It'll rotate back eventually. Unlike your solo queue teammate.
           </p>
         </div>
 
-        <figure class="hero__art">
+        <figure
+          class="m-0 w-full rotate-2 max-[850px]:mx-auto max-[850px]:w-full max-[850px]:max-w-[28rem] max-[850px]:rotate-1"
+        >
           <svg
+            class="block h-auto w-full"
             viewBox="0 0 640 610"
             role="img"
             aria-labelledby="underwear-title underwear-description"
@@ -99,85 +112,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               <path d="M411 284 L500 271" stroke="#b5c1d1" stroke-width="5" stroke-linecap="round" opacity="0.45" />
             </g>
           </svg>
-          <figcaption>Officially unofficial team kit</figcaption>
+          <figcaption
+            class="-mt-4 text-center text-[0.7rem] font-bold tracking-[0.14em] text-[#718096] uppercase"
+          >
+            Officially unofficial team kit
+          </figcaption>
         </figure>
       </div>
     </section>
   </main>
 </BaseLayout>
-
-<style>
-  .hero {
-    display: grid;
-    min-height: 100svh;
-    padding: clamp(9rem, 18vw, 14rem) clamp(1.25rem, 8vw, 8rem) 5rem;
-    place-items: center;
-    background:
-      radial-gradient(circle at 75% 65%, #1c5db833, transparent 34rem),
-      linear-gradient(135deg, #080b10 0%, #05070b 60%, #0a1830 100%);
-  }
-
-  .hero__content {
-    display: grid;
-    grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
-    align-items: center;
-    gap: clamp(2rem, 6vw, 6rem);
-    width: min(100%, 78rem);
-  }
-
-  .hero h1 {
-    max-width: 12ch;
-    margin: 0;
-    font-size: clamp(3.5rem, 7vw, 7rem);
-    letter-spacing: -0.07em;
-    line-height: 0.9;
-    text-transform: uppercase;
-  }
-
-  .hero__punchline {
-    max-width: 38rem;
-    margin: 2rem 0 0;
-    color: #aeb6c4;
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    line-height: 1.6;
-  }
-
-  .hero__art {
-    width: 100%;
-    margin: 0;
-    transform: rotate(2deg);
-  }
-
-  .hero__art svg {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
-
-  .hero__art figcaption {
-    margin-top: -1rem;
-    color: #718096;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-align: center;
-    text-transform: uppercase;
-  }
-
-  @media (max-width: 850px) {
-    .hero {
-      padding-top: 11rem;
-    }
-
-    .hero__content {
-      grid-template-columns: minmax(0, 1fr);
-      width: 100%;
-    }
-
-    .hero__art {
-      width: min(100%, 28rem);
-      margin-inline: auto;
-      transform: rotate(1deg);
-    }
-  }
-</style>
