@@ -3,7 +3,11 @@ const boostTicks = Array.from({ length: 36 });
 ---
 
 <div
-  class="pointer-events-none fixed right-[clamp(1rem,3vw,2.5rem)] bottom-[clamp(1rem,3vw,2.5rem)] z-40 max-[800px]:hidden"
+  class:list={[
+    'pointer-events-none fixed z-40',
+    'right-[clamp(1rem,3vw,2.5rem)] bottom-[clamp(1rem,3vw,2.5rem)]',
+    'max-[800px]:hidden',
+  ]}
   aria-hidden="true"
 >
   <div class="relative h-[132px] w-[132px] origin-bottom-right scale-75">
@@ -11,19 +15,48 @@ const boostTicks = Array.from({ length: 36 });
       {
         boostTicks.map((_, i) => (
           <span
-            class="boost-ring__tick absolute top-1/2 left-1/2 h-[13px] w-1 rounded-xs bg-[#ffffff1a] [transform:translate(-50%,-50%)_rotate(calc(var(--i)*10deg))_translateY(-58px)] [transition:background_0.15s_linear,box-shadow_0.15s_linear] data-[lit]:bg-[linear-gradient(180deg,#fff2b8,#ff9d1f)] data-[lit]:shadow-[0_0_6px_1px_rgba(255,157,31,0.85)]"
+            class:list={[
+              'boost-ring__tick absolute top-1/2 left-1/2',
+              'h-[13px] w-1 rounded-xs bg-[#ffffff1a]',
+              '[transform:translate(-50%,-50%)_rotate(calc(var(--i)*10deg))_translateY(-58px)]',
+              '[transition:background_0.15s_linear,box-shadow_0.15s_linear]',
+              'data-[lit]:bg-[linear-gradient(180deg,#fff2b8,#ff9d1f)]',
+              'data-[lit]:shadow-[0_0_6px_1px_rgba(255,157,31,0.85)]',
+            ]}
             style={`--i:${i}`}
           />
         ))
       }
     </div>
-    <div class="absolute inset-5 grid place-items-center rounded-full border border-[#ffffff1f] bg-[radial-gradient(circle_at_50%_38%,#171b22,#05070a_72%)] shadow-[inset_0_0_18px_rgba(0,0,0,0.75)]">
+    <div
+      class:list={[
+        'absolute inset-5 grid place-items-center rounded-full',
+        'border border-[#ffffff1f]',
+        'bg-[radial-gradient(circle_at_50%_38%,#171b22,#05070a_72%)]',
+        'shadow-[inset_0_0_18px_rgba(0,0,0,0.75)]',
+      ]}
+    >
       <span
-        class="boost-ring__value bg-[linear-gradient(180deg,#fff2b8,#ffb02e_55%,#ff7a00)] bg-clip-text font-[Bahnschrift,'Arial_Narrow',Arial,sans-serif] text-[2.5rem] leading-none font-bold tracking-[-0.03em] text-transparent [font-variation-settings:'wght'_700,'wdth'_85] [text-shadow:0_0_16px_rgba(255,154,30,0.5)]"
+        class:list={[
+          'boost-ring__value',
+          'bg-[linear-gradient(180deg,#fff2b8,#ffb02e_55%,#ff7a00)] bg-clip-text',
+          "font-[Bahnschrift,'Arial_Narrow',Arial,sans-serif]",
+          'text-[2.5rem] leading-none font-bold tracking-[-0.03em] text-transparent',
+          "[font-variation-settings:'wght'_700,'wdth'_85]",
+          '[text-shadow:0_0_16px_rgba(255,154,30,0.5)]',
+        ]}
         >0</span
       >
       <span
-        class="-mt-8 bg-[linear-gradient(180deg,#fff2b8,#ffb02e_55%,#ff7a00)] bg-clip-text font-[system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open_Sans','Helvetica_Neue',sans-serif] text-[0.9rem] leading-none font-normal tracking-[-0.03em] text-transparent italic [font-variation-settings:'wght'_7,'wdth'_85] [text-shadow:0_0_16px_rgba(255,154,30,0.5)]"
+        class:list={[
+          '-mt-8',
+          'bg-[linear-gradient(180deg,#fff2b8,#ffb02e_55%,#ff7a00)] bg-clip-text',
+          "font-[system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open_Sans','Helvetica_Neue',sans-serif]",
+          'text-[0.9rem] leading-none font-normal tracking-[-0.03em]',
+          'text-transparent italic',
+          "[font-variation-settings:'wght'_7,'wdth'_85]",
+          '[text-shadow:0_0_16px_rgba(255,154,30,0.5)]',
+        ]}
         >BOOST</span
       >
     </div>

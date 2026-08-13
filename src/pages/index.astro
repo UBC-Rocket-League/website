@@ -9,26 +9,47 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 >
   <main>
     <section
-      class="grid min-h-svh place-items-center bg-[radial-gradient(circle_at_75%_65%,#1c5db833,transparent_34rem),linear-gradient(135deg,#080b10_0%,#05070b_60%,#0a1830_100%)] px-[clamp(1.25rem,8vw,8rem)] pt-[clamp(9rem,18vw,14rem)] pb-20 max-[850px]:pt-44"
+      class:list={[
+        'grid min-h-svh place-items-center',
+        'bg-[radial-gradient(circle_at_75%_65%,#1c5db833,transparent_34rem),linear-gradient(135deg,#080b10_0%,#05070b_60%,#0a1830_100%)]',
+        'px-[clamp(1.25rem,8vw,8rem)] pt-[clamp(9rem,18vw,14rem)] pb-20',
+        'max-[850px]:pt-44',
+      ]}
     >
       <div
-        class="grid w-full max-w-[78rem] grid-cols-[minmax(0,1.2fr)_minmax(18rem,0.8fr)] items-center gap-[clamp(2rem,6vw,6rem)] max-[850px]:grid-cols-[minmax(0,1fr)]"
+        class:list={[
+          'grid w-full max-w-[78rem] items-center',
+          'grid-cols-[minmax(0,1.2fr)_minmax(18rem,0.8fr)]',
+          'gap-[clamp(2rem,6vw,6rem)]',
+          'max-[850px]:grid-cols-[minmax(0,1fr)]',
+        ]}
       >
         <div>
           <h1
-            class="m-0 max-w-[12ch] text-[clamp(3.5rem,7vw,7rem)] leading-[0.9] font-bold tracking-[-0.07em] uppercase"
+            class:list={[
+              'm-0 max-w-[12ch]',
+              'text-[clamp(3.5rem,7vw,7rem)] leading-[0.9] font-bold',
+              'tracking-[-0.07em] uppercase',
+            ]}
           >
             Our homepage went for boost.
           </h1>
           <p
-            class="mt-8 mb-0 max-w-[38rem] text-[clamp(1rem,2vw,1.25rem)] leading-[1.6] text-[#aeb6c4]"
+            class:list={[
+              'mt-8 mb-0 max-w-[38rem]',
+              'text-[clamp(1rem,2vw,1.25rem)] leading-[1.6] text-[#aeb6c4]',
+            ]}
           >
             It'll rotate back eventually. Unlike your solo queue teammate.
           </p>
         </div>
 
         <figure
-          class="m-0 w-full rotate-2 max-[850px]:mx-auto max-[850px]:w-full max-[850px]:max-w-[28rem] max-[850px]:rotate-1"
+          class:list={[
+            'm-0 w-full rotate-2',
+            'max-[850px]:mx-auto max-[850px]:w-full',
+            'max-[850px]:max-w-[28rem] max-[850px]:rotate-1',
+          ]}
         >
           <svg
             class="block h-auto w-full"
@@ -113,7 +134,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </g>
           </svg>
           <figcaption
-            class="-mt-4 text-center text-[0.7rem] font-bold tracking-[0.14em] text-[#718096] uppercase"
+            class:list={[
+              '-mt-4 text-center',
+              'text-[0.7rem] font-bold tracking-[0.14em] text-[#718096] uppercase',
+            ]}
           >
             Officially unofficial team kit
           </figcaption>
