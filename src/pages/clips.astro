@@ -1,81 +1,44 @@
 ---
-import ferventVideo from '../../fervent.mp4?url';
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Clips" description="UBC Rocket League clips.">
-  <main class="clips-page">
-    <header class="clips-header">
-      <h1>Clips</h1>
+  <main
+    class:list={[
+      "min-h-[calc(100svh-4.5rem)]",
+      "px-[clamp(1.25rem,6vw,6rem)] py-[clamp(3rem,8vw,7rem)]",
+      "max-[800px]:pt-16",
+    ]}
+  >
+    <header class="mx-auto w-full max-w-[80rem]">
+      <h1
+        class:list={[
+          "mt-0 mb-[clamp(2rem,6vw,5rem)]",
+          "text-[clamp(3.5rem,10vw,8rem)] leading-[0.9] font-bold",
+          "tracking-[-0.07em] uppercase",
+        ]}
+      >
+        Clips
+      </h1>
       <!-- TODO: Add clip titles, dates, players, event details, and more videos. -->
     </header>
 
-    <article class="clip">
-      <video src={ferventVideo} controls playsinline preload="metadata"></video>
-      <div class="clip__details">
-        <h2>Fervent</h2>
-        <p>UBCRL clip.</p>
+    <article
+      class:list={[
+        "mx-auto w-full max-w-[80rem] overflow-hidden",
+        "border border-[#ffffff24] bg-[#0c1018]",
+      ]}
+    >
+      <video
+        class="block aspect-video w-full bg-black object-cover"
+        src="/clips/fervent.mp4"
+        controls
+        playsinline
+        preload="metadata"></video>
+      <div class="p-5">
+        <h2 class="m-0 text-[1.25rem] font-bold uppercase">Fervent</h2>
+        <p class="mt-[0.4rem] mb-0 text-[#aeb6c4]">UBCRL clip.</p>
       </div>
     </article>
   </main>
 </BaseLayout>
-
-<style>
-  .clips-page {
-    min-height: calc(100svh - 4.5rem);
-    padding: clamp(3rem, 8vw, 7rem) clamp(1.25rem, 6vw, 6rem);
-  }
-
-  .clips-header,
-  .clip {
-    width: min(100%, 80rem);
-    margin-inline: auto;
-  }
-
-  h1 {
-    margin: 0 0 clamp(2rem, 6vw, 5rem);
-    font-size: clamp(3.5rem, 10vw, 8rem);
-    letter-spacing: -0.07em;
-    line-height: 0.9;
-    text-transform: uppercase;
-  }
-
-  .clip {
-    overflow: hidden;
-    border: 1px solid #ffffff24;
-    background: #0c1018;
-  }
-
-  .clip video {
-    display: block;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    background: #000;
-    object-fit: cover;
-  }
-
-  .clip__details {
-    padding: 1.25rem;
-  }
-
-  .clip__details h2,
-  .clip__details p {
-    margin: 0;
-  }
-
-  .clip__details h2 {
-    font-size: 1.25rem;
-    text-transform: uppercase;
-  }
-
-  .clip__details p {
-    margin-top: 0.4rem;
-    color: #aeb6c4;
-  }
-
-  @media (max-width: 800px) {
-    .clips-page {
-      padding-top: 4rem;
-    }
-  }
-</style>

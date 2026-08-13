@@ -1,6 +1,7 @@
 ---
-import easterEggLogo from '../truly-official-logo.png?url';
-import BoostMeter from '../components/BoostMeter.astro';
+import easterEggLogo from "../truly-official-logo.png?url";
+import BoostMeter from "../components/BoostMeter.astro";
+import "../styles/tailwind.css";
 
 interface Props {
   title: string;
@@ -9,22 +10,29 @@ interface Props {
 }
 
 const { title, description, overlayHeader = false } = Astro.props;
-const pageTitle = title === 'UBC RL' ? title : `${title} | UBC RL`;
-const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const pageTitle = title === "UBC RL" ? title : `${title} | UBC RL`;
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
 
 const navigation = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/calendar', label: 'Calendar' },
-  { href: '/teams', label: 'Teams' },
-  { href: '/achievements', label: 'Achievements' },
-  { href: '/merch', label: 'Merch' },
-  { href: '/clips', label: 'Clips' },
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/calendar", label: "Calendar" },
+  { href: "/teams", label: "Teams" },
+  { href: "/achievements", label: "Achievements" },
+  { href: "/merch", label: "Merch" },
+  { href: "/clips", label: "Clips" },
 ];
 ---
 
 <!doctype html>
-<html lang="en" class:list={{ 'hide-native-scrollbar': currentPath !== '/' }}>
+<html
+  lang="en"
+  class:list={[
+    "min-h-full bg-[#05070b] text-[#f5f7fb]",
+    "font-[Arial,Helvetica,sans-serif]",
+    "[color-scheme:dark] [line-height:normal]",
+  ]}
+>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -34,11 +42,31 @@ const navigation = [
     <link rel="apple-touch-icon" href="/ubc-rl-crest.png" />
     <title>{pageTitle}</title>
   </head>
-  <body>
-    <header class:list={['site-header', { 'site-header--overlay': overlayHeader }]}>
-      <a class="site-brand" href="/" aria-label="UBC RL home">
+  <body class="m-0 min-h-svh min-w-80 bg-[#05070b]">
+    <header
+      class:list={[
+        "z-10 flex min-h-18 items-center justify-between gap-8",
+        "px-[clamp(1rem,4vw,4rem)] py-4",
+        "max-[800px]:flex-col max-[800px]:items-start max-[800px]:gap-3",
+        {
+          "absolute inset-x-0 top-0": overlayHeader,
+          "bg-[linear-gradient(#03060acc,transparent)]": overlayHeader,
+          "max-[800px]:bg-[linear-gradient(#03060af0,transparent)]":
+            overlayHeader,
+          "relative border-b border-[#ffffff1f] bg-[#080b10]": !overlayHeader,
+        },
+      ]}
+    >
+      <a
+        class:list={[
+          "inline-flex flex-none items-center gap-3",
+          "text-[2rem] font-extrabold tracking-[0.15em] no-underline",
+        ]}
+        href="/"
+        aria-label="UBC RL home"
+      >
         <img
-          class="site-brand__logo"
+          class="site-brand__logo h-22 w-22 object-contain"
           src="/ubc-rl-crest.png"
           data-easter-egg-src={easterEggLogo}
           alt=""
@@ -47,27 +75,49 @@ const navigation = [
         />
         <span>UBC Rocket League</span>
       </a>
-      <nav aria-label="Main navigation">
-        {navigation.map(({ href, label }) => (
-          <a
-            href={href}
-            class:list={{ active: currentPath === href }}
-            aria-current={currentPath === href ? 'page' : undefined}
-          >
-            {label}
-          </a>
-        ))}
+      <nav
+        class:list={[
+          "flex items-center gap-[clamp(0.8rem,2vw,1.5rem)] overflow-x-auto",
+          "max-[800px]:w-full max-[800px]:pb-1",
+        ]}
+        aria-label="Main navigation"
+      >
+        {
+          navigation.map(({ href, label }) => (
+            <a
+              href={href}
+              class:list={[
+                "whitespace-nowrap px-[0.65rem] py-[0.8rem]",
+                "text-[1rem] font-bold tracking-[0.08em]",
+                "uppercase no-underline hover:text-white",
+                currentPath === href
+                  ? "border-b-2 border-[#4d91ff] text-white"
+                  : "text-[#c6ccd7]",
+              ]}
+              aria-current={currentPath === href ? "page" : undefined}
+            >
+              {label}
+            </a>
+          ))
+        }
         <a
-          class="site-discord"
+          class:list={[
+            "inline-flex items-center gap-2 whitespace-nowrap",
+            "border border-[#72a8ff] bg-[#4d91ff]",
+            "px-[0.9rem] py-[0.65rem]",
+            "text-[1rem] font-black tracking-[0.08em] text-[#05070b]",
+            "uppercase no-underline",
+            "hover:bg-[#72a8ff] hover:text-[#05070b]",
+          ]}
           href="https://discord.gg/daFX3cDWh2"
           target="_blank"
           rel="noreferrer"
         >
-          <svg viewBox="0 0 24 24" aria-hidden="true">
+          <svg class="h-4 w-4 flex-none" viewBox="0 0 24 24" aria-hidden="true">
             <path
               fill="currentColor"
               d="M20.32 4.37a19.8 19.8 0 0 0-4.89-1.52.08.08 0 0 0-.08.04c-.21.37-.44.86-.61 1.25a18.3 18.3 0 0 0-5.48 0 12.6 12.6 0 0 0-.62-1.25.08.08 0 0 0-.08-.04A19.7 19.7 0 0 0 3.68 4.37a.07.07 0 0 0-.03.03C.53 9.05-.32 13.58.1 18.06a.08.08 0 0 0 .03.05 19.9 19.9 0 0 0 5.99 3.03.08.08 0 0 0 .09-.03c.46-.63.87-1.3 1.22-1.99a.08.08 0 0 0-.04-.11 13.1 13.1 0 0 1-1.87-.89.08.08 0 0 1-.01-.13l.37-.29a.07.07 0 0 1 .08-.01c3.93 1.79 8.18 1.79 12.06 0a.07.07 0 0 1 .08.01l.37.29a.08.08 0 0 1-.01.13c-.6.35-1.23.65-1.87.89a.08.08 0 0 0-.04.11c.36.7.77 1.36 1.23 1.99a.08.08 0 0 0 .08.03 19.8 19.8 0 0 0 6-3.03.08.08 0 0 0 .03-.05c.5-5.18-.84-9.68-3.55-13.66a.06.06 0 0 0-.03-.03ZM8.02 15.33c-1.18 0-2.16-1.08-2.16-2.42 0-1.33.96-2.42 2.16-2.42 1.21 0 2.18 1.1 2.16 2.42 0 1.34-.96 2.42-2.16 2.42Zm7.98 0c-1.18 0-2.16-1.08-2.16-2.42 0-1.33.96-2.42 2.16-2.42 1.21 0 2.17 1.1 2.16 2.42 0 1.34-.95 2.42-2.16 2.42Z"
-            />
+            ></path>
           </svg>
           Join Discord
         </a>
@@ -75,17 +125,20 @@ const navigation = [
     </header>
     <slot />
 
-    {currentPath !== '/' && (
-      <>
-        <BoostMeter />
-      </>
-    )}
+    {
+      currentPath !== "/" && (
+        <>
+          <BoostMeter />
+        </>
+      )
+    }
 
     <script>
-      const logo = document.querySelector<HTMLImageElement>('.site-brand__logo');
+      const logo =
+        document.querySelector<HTMLImageElement>(".site-brand__logo");
 
       logo?.addEventListener(
-        'click',
+        "click",
         (event) => {
           const easterEggSrc = logo.dataset.easterEggSrc;
 
@@ -101,170 +154,3 @@ const navigation = [
     </script>
   </body>
 </html>
-
-<style is:global>
-  :root {
-    color-scheme: dark;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #05070b;
-    color: #f5f7fb;
-  }
-
-  * {
-    box-sizing: border-box;
-  }
-
-  html,
-  body {
-    min-height: 100%;
-    margin: 0;
-  }
-
-  body {
-    min-width: 320px;
-    min-height: 100svh;
-    background: #05070b;
-  }
-
-  a {
-    color: inherit;
-  }
-
-  .site-header {
-    position: relative;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    min-height: 4.5rem;
-    padding: 1rem clamp(1rem, 4vw, 4rem);
-    border-bottom: 1px solid #ffffff1f;
-    background: #080b10;
-  }
-
-  .site-header--overlay {
-    position: absolute;
-    inset: 0 0 auto;
-    background: linear-gradient(#03060acc, transparent);
-    border-bottom: 0;
-  }
-
-  .site-brand {
-    display: inline-flex;
-    align-items: center;
-    flex: none;
-    gap: 0.75rem;
-    font-size: 2rem;
-    font-weight: 800;
-    letter-spacing: 0.15em;
-    text-decoration: none;
-  }
-
-  .site-brand img {
-    width: 5.5rem;
-    height: 5.5rem;
-    object-fit: contain;
-  }
-
-  nav {
-    display: flex;
-    align-items: center;
-    gap: clamp(0.8rem, 2vw, 1.5rem);
-    overflow-x: auto;
-  }
-
-  nav a {
-    padding: 0.8rem 0.65rem;
-    color: #c6ccd7;
-    font-size: 1rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-decoration: none;
-    text-transform: uppercase;
-    white-space: nowrap;
-  }
-
-  nav a:hover,
-  nav a.active {
-    color: #fff;
-  }
-
-  nav a.active {
-    border-bottom: 2px solid #4d91ff;
-  }
-
-  nav .site-discord {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.65rem 0.9rem;
-    border: 1px solid #72a8ff;
-    background: #4d91ff;
-    color: #05070b;
-    font-weight: 900;
-  }
-
-  nav .site-discord svg {
-    flex: none;
-    width: 1rem;
-    height: 1rem;
-  }
-
-  nav .site-discord:hover {
-    background: #72a8ff;
-    color: #05070b;
-  }
-
-  .stub {
-    display: grid;
-    min-height: calc(100svh - 4.5rem);
-    place-content: center;
-    padding: clamp(3rem, 10vw, 8rem) clamp(1.25rem, 8vw, 8rem);
-    background:
-      linear-gradient(135deg, transparent 60%, #0d3d811f),
-      #05070b;
-  }
-
-  .stub__content {
-    width: min(100%, 56rem);
-  }
-
-  .stub h1 {
-    margin: 0;
-    font-size: clamp(3.5rem, 11vw, 8rem);
-    letter-spacing: -0.07em;
-    line-height: 0.9;
-    text-transform: uppercase;
-  }
-
-  .stub__description {
-    max-width: 42rem;
-    margin: 2rem 0 0;
-    color: #aeb6c4;
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    line-height: 1.6;
-  }
-
-  @media (max-width: 800px) {
-    .site-header {
-      align-items: flex-start;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .site-header nav {
-      width: 100%;
-      padding-bottom: 0.25rem;
-    }
-
-    .site-header--overlay {
-      background: linear-gradient(#03060af0, transparent);
-    }
-
-    .stub {
-      min-height: 100svh;
-      padding-top: 10rem;
-    }
-  }
-</style>

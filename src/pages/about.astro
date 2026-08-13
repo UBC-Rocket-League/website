@@ -1,46 +1,46 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
 
 const leadershipTimeline = [
   {
-    period: 'June 2021',
-    datetime: '2021-06',
-    leaders: 'Ivan & Herman',
-    role: 'Co-founders',
+    period: "June 2021",
+    datetime: "2021-06",
+    leaders: "Ivan & Herman",
+    role: "Co-founders",
     description:
-      'Ivan and Herman co-founded the UBC Rocket League community after recruiting fellow UBC players through a post on Reddit.',
+      "Ivan and Herman co-founded the UBC Rocket League community after recruiting fellow UBC players through a post on Reddit.",
   },
   {
-    period: '2021-2023',
-    datetime: '2021',
-    leaders: 'Ivan & Herman',
-    role: 'Co-directors',
+    period: "2021-2023",
+    datetime: "2021",
+    leaders: "Ivan & Herman",
+    role: "Co-directors",
     description:
-      'Ivan and Herman served as the first co-directors of the UBC Rocket League department within the UBC Esports Association.',
+      "Ivan and Herman served as the first co-directors of the UBC Rocket League department within the UBC Esports Association.",
   },
   {
-    period: '2023-2024',
-    datetime: '2023',
-    leaders: 'Ivan',
-    role: 'Director',
+    period: "2023-2024",
+    datetime: "2023",
+    leaders: "Ivan",
+    role: "Director",
     description:
-      'Ivan continued to lead UBCRL as its sole director, carrying the department into its next chapter.',
+      "Ivan continued to lead UBCRL as its sole director, carrying the department into its next chapter.",
   },
   {
-    period: '2024-2026',
-    datetime: '2024',
-    leaders: 'Ben & Carter',
-    role: 'Co-directors',
+    period: "2024-2026",
+    datetime: "2024",
+    leaders: "Ben & Carter",
+    role: "Co-directors",
     description:
-      'Ben and Carter served as co-directors of UBCRL, continuing to grow its community and competitive presence.',
+      "Ben and Carter served as co-directors of UBCRL, continuing to grow its community and competitive presence.",
   },
   {
-    period: '2026-2027',
-    datetime: '2026',
-    leaders: 'Ivan & Jai',
-    role: 'Co-directors',
+    period: "2026-2027",
+    datetime: "2026",
+    leaders: "Ivan & Jai",
+    role: "Co-directors",
     description:
-      'Ivan and Jai serve as the current co-directors of UBCRL for the 2026-2027 term.',
+      "Ivan and Jai serve as the current co-directors of UBCRL for the 2026-2027 term.",
   },
 ];
 ---
@@ -49,366 +49,214 @@ const leadershipTimeline = [
   title="About"
   description="The story of UBC Rocket League and the people who have led its community."
 >
-  <main>
-    <section class="story" aria-labelledby="story-title">
-      <div class="story__content">
-        <h1 id="story-title">United by<br /><span>the game.</span></h1>
-        <div class="story__copy">
-          <p class="story__lead">
-            UBC Rocket League is a community brought together by a shared interest in Rocket
-            League.
+  <main class="overflow-hidden bg-[#05070b]">
+    <section
+      class:list={[
+        "relative grid min-h-[calc(100svh-4.5rem)]",
+        "grid-cols-[minmax(0,1fr)_auto] gap-[clamp(3rem,8vw,9rem)]",
+        "border-b border-[#ffffff1a]",
+        "bg-[radial-gradient(circle_at_82%_22%,#1656ad2b,transparent_32rem),linear-gradient(145deg,#080b11_0%,#05070b_62%)]",
+        "px-[clamp(1.25rem,7vw,7rem)] py-[clamp(5rem,10vw,9rem)]",
+        "after:pointer-events-none after:absolute",
+        "after:right-[-0.05em] after:bottom-[-0.16em]",
+        "after:text-[clamp(10rem,27vw,31rem)] after:leading-[0.8]",
+        "after:font-black after:tracking-[-0.09em] after:text-[#ffffff05]",
+        "after:content-['2021']",
+        "max-[900px]:min-h-0 max-[900px]:grid-cols-1",
+        "max-[600px]:gap-14 max-[600px]:pt-14",
+      ]}
+      aria-labelledby="story-title"
+    >
+      <div class="relative z-[1] max-[600px]:contents">
+        <h1
+          class:list={[
+            "m-0 text-[clamp(4.5rem,11vw,10rem)] leading-[0.78]",
+            "font-black tracking-[-0.08em] uppercase",
+            "max-[600px]:col-start-1",
+            "max-[600px]:text-[clamp(3.75rem,20vw,6rem)]",
+          ]}
+          id="story-title"
+        >
+          United by<br /><span
+            class="text-transparent [-webkit-text-stroke:clamp(1px,0.12vw,2px)_#f5f7fb]"
+            >the game.</span
+          >
+        </h1>
+        <div
+          class:list={[
+            "mt-[clamp(3.5rem,7vw,6rem)] grid max-w-[58rem] grid-cols-2",
+            "gap-x-[clamp(2rem,5vw,5rem)] gap-y-6",
+            "max-[600px]:mt-0 max-[600px]:grid-cols-1",
+          ]}
+        >
+          <p
+            class:list={[
+              "col-span-full m-0 max-w-[42rem]",
+              "text-[clamp(1.35rem,2.4vw,2rem)] leading-[1.35] font-bold",
+              "tracking-[-0.025em] text-[#f5f7fb]",
+              "max-[600px]:col-auto",
+            ]}
+          >
+            UBC Rocket League is a community brought together by a shared
+            interest in Rocket League.
           </p>
-          <p>
-            Primarily made up of UBC students, UBCRL also welcomes players from other
-            post-secondary institutions, including schools across the surrounding region.
+          <p class="m-0 text-[1rem] leading-[1.75] text-[#aeb6c4]">
+            Primarily made up of UBC students, UBCRL also welcomes players from
+            other post-secondary institutions, including schools across the
+            surrounding region.
           </p>
-          <p>
-            Founded in June 2021, the community became more established when it joined the UBC
-            Esports Association (UBCEA) as its Rocket League department. The move created new
-            opportunities for growth, gave competitive players access to UBCEA's gaming lounge,
-            and established a formal avenue for representing UBC in Rocket League esports.
+          <p class="m-0 text-[1rem] leading-[1.75] text-[#aeb6c4]">
+            Founded in June 2021, the community became more established when it
+            joined the UBC Esports Association (UBCEA) as its Rocket League
+            department. The move created new opportunities for growth, gave
+            competitive players access to UBCEA's gaming lounge, and established
+            a formal avenue for representing UBC in Rocket League esports.
           </p>
         </div>
       </div>
 
-      <aside class="founded" aria-label="Founded in June 2021">
-        <span>Established</span>
-        <strong>06 / 21</strong>
-        <small>UBC Rocket League</small>
+      <aside
+        class:list={[
+          "relative z-[1] flex w-[clamp(11rem,16vw,15rem)] flex-col self-start",
+          "border-t-[3px] border-t-[#4d91ff]",
+          "border-b border-b-[#ffffff2b] p-5",
+          "max-[900px]:row-start-1 max-[900px]:justify-self-end",
+          "max-[600px]:row-auto max-[600px]:justify-self-start",
+        ]}
+        aria-label="Founded in June 2021"
+      >
+        <span
+          class="text-[0.65rem] font-extrabold tracking-[0.16em] text-[#8791a1] uppercase"
+          >Established</span
+        >
+        <strong
+          class:list={[
+            "mt-2 mb-7 text-[clamp(2.4rem,4vw,4rem)] leading-none",
+            "tracking-[-0.08em] [font-variant-numeric:tabular-nums]",
+          ]}>06 / 21</strong
+        >
+        <small
+          class="text-[0.65rem] font-extrabold tracking-[0.16em] text-[#8791a1] uppercase"
+          >UBC Rocket League</small
+        >
       </aside>
     </section>
 
-    <section class="leadership" aria-labelledby="leadership-title">
-      <header class="leadership__header">
-        <h2 id="leadership-title">Directors &amp;<br />executives</h2>
-        <p>
-          The people who founded UBCRL and guided the community through each stage of its
-          development.
+    <section
+      class:list={[
+        "grid grid-cols-[minmax(17rem,0.8fr)_minmax(28rem,1.4fr)]",
+        "gap-[clamp(4rem,9vw,10rem)]",
+        "bg-[linear-gradient(90deg,#0d3d8112_1px,transparent_1px)_0_0/25%_100%,#080b10]",
+        "px-[clamp(1.25rem,7vw,7rem)] py-[clamp(5rem,11vw,10rem)]",
+        "max-[900px]:grid-cols-1",
+        "max-[900px]:bg-[linear-gradient(90deg,#0d3d8112_1px,transparent_1px)_0_0/50%_100%,#080b10]",
+      ]}
+      aria-labelledby="leadership-title"
+    >
+      <header class="sticky top-28 self-start max-[900px]:static">
+        <h2
+          class:list={[
+            "m-0 text-[clamp(3rem,6vw,6rem)] leading-[0.88] font-bold",
+            "tracking-[-0.065em] uppercase",
+          ]}
+          id="leadership-title"
+        >
+          Directors &amp;<br />executives
+        </h2>
+        <p class="mt-8 mb-0 max-w-[26rem] leading-[1.7] text-[#929cab]">
+          The people who founded UBCRL and guided the community through each
+          stage of its development.
         </p>
       </header>
 
-      <ol class="timeline">
+      <ol class="m-0 grid list-none gap-11 p-0">
         {
-          leadershipTimeline.map(({ period, datetime, leaders, role, description }, index) => (
-            <li class="timeline__entry">
-              <time datetime={datetime}>{period}</time>
-              <div class="timeline__track" aria-hidden="true">
-                <span />
-              </div>
-              <article>
-                <p class="timeline__role">{role}</p>
-                <h3>{leaders}</h3>
-                <p>{description}</p>
-                <span class="timeline__number" aria-hidden="true">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-              </article>
-            </li>
-          ))
+          leadershipTimeline.map(
+            ({ period, datetime, leaders, role, description }, index) => (
+              <li
+                class:list={[
+                  "grid grid-cols-[clamp(6.75rem,10vw,9rem)_1.5rem_minmax(0,1fr)]",
+                  "gap-5",
+                  "max-[600px]:grid-cols-[5.5rem_1rem_minmax(0,1fr)]",
+                  "max-[600px]:gap-[0.8rem]",
+                ]}
+              >
+                <time
+                  class:list={[
+                    "pt-[0.12rem] text-right",
+                    "text-[0.78rem] font-extrabold tracking-[0.08em] text-[#dce5f5]",
+                    "uppercase [font-variant-numeric:tabular-nums]",
+                    "max-[600px]:text-[0.67rem]",
+                  ]}
+                  datetime={datetime}
+                >
+                  {period}
+                </time>
+                <div
+                  class:list={[
+                    "relative flex justify-center",
+                    {
+                      "after:absolute after:top-[0.8rem] after:bottom-[-3.2rem]":
+                        index < leadershipTimeline.length - 1,
+                      "after:left-[calc(50%-0.5px)] after:w-px":
+                        index < leadershipTimeline.length - 1,
+                      "after:bg-[linear-gradient(#4d91ff,#4d91ff26)]":
+                        index < leadershipTimeline.length - 1,
+                      "after:content-['']":
+                        index < leadershipTimeline.length - 1,
+                    },
+                  ]}
+                  aria-hidden="true"
+                >
+                  <span
+                    class:list={[
+                      "relative z-[1] mt-[0.15rem] h-3 w-3 rounded-full",
+                      "border-2 border-[#69a4ff] bg-[#080b10]",
+                      "shadow-[0_0_0_0.35rem_#4d91ff17]",
+                    ]}
+                  />
+                </div>
+                <article
+                  class:list={[
+                    "relative min-h-40 border-t border-[#ffffff26]",
+                    "pt-0 pr-14 pb-11 max-[600px]:pr-0",
+                  ]}
+                >
+                  <p
+                    class:list={[
+                      "mt-4 mb-2 text-[0.7rem] font-extrabold",
+                      "tracking-[0.18em] text-[#65a1ff] uppercase",
+                    ]}
+                  >
+                    {role}
+                  </p>
+                  <h3
+                    class:list={[
+                      "m-0 text-[clamp(1.15rem,1.6vw,1.5rem)] leading-none font-bold",
+                      "tracking-[-0.045em]",
+                    ]}
+                  >
+                    {leaders}
+                  </h3>
+                  <p class="mt-5 mb-0 max-w-[36rem] leading-[1.7] text-[#aeb6c4]">
+                    {description}
+                  </p>
+                  <span
+                    class:list={[
+                      "absolute top-[0.85rem] right-0",
+                      "text-[1.5rem] font-black text-[#ffffff1f]",
+                      "[font-variant-numeric:tabular-nums] max-[600px]:hidden",
+                    ]}
+                    aria-hidden="true"
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                </article>
+              </li>
+            ),
+          )
         }
       </ol>
     </section>
   </main>
 </BaseLayout>
-
-<style>
-  main {
-    overflow: hidden;
-    background: #05070b;
-  }
-
-  .story {
-    position: relative;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: clamp(3rem, 8vw, 9rem);
-    min-height: calc(100svh - 4.5rem);
-    padding: clamp(5rem, 10vw, 9rem) clamp(1.25rem, 7vw, 7rem);
-    border-bottom: 1px solid #ffffff1a;
-    background:
-      radial-gradient(circle at 82% 22%, #1656ad2b, transparent 32rem),
-      linear-gradient(145deg, #080b11 0%, #05070b 62%);
-  }
-
-  .story::after {
-    position: absolute;
-    right: -0.05em;
-    bottom: -0.16em;
-    color: #ffffff05;
-    content: '2021';
-    font-size: clamp(10rem, 27vw, 31rem);
-    font-weight: 900;
-    letter-spacing: -0.09em;
-    line-height: 0.8;
-    pointer-events: none;
-  }
-
-  .story__content,
-  .founded {
-    position: relative;
-    z-index: 1;
-  }
-
-  h1 {
-    margin: 0;
-    font-size: clamp(4.5rem, 11vw, 10rem);
-    font-weight: 900;
-    letter-spacing: -0.08em;
-    line-height: 0.78;
-    text-transform: uppercase;
-  }
-
-  h1 span {
-    color: transparent;
-    -webkit-text-stroke: clamp(1px, 0.12vw, 2px) #f5f7fb;
-  }
-
-  .story__copy {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.5rem clamp(2rem, 5vw, 5rem);
-    max-width: 58rem;
-    margin-top: clamp(3.5rem, 7vw, 6rem);
-  }
-
-  .story__copy p {
-    margin: 0;
-    color: #aeb6c4;
-    font-size: 1rem;
-    line-height: 1.75;
-  }
-
-  .story__copy .story__lead {
-    grid-column: 1 / -1;
-    max-width: 42rem;
-    color: #f5f7fb;
-    font-size: clamp(1.35rem, 2.4vw, 2rem);
-    font-weight: 700;
-    letter-spacing: -0.025em;
-    line-height: 1.35;
-  }
-
-  .founded {
-    align-self: start;
-    display: flex;
-    flex-direction: column;
-    width: clamp(11rem, 16vw, 15rem);
-    padding: 1.25rem;
-    border-top: 3px solid #4d91ff;
-    border-bottom: 1px solid #ffffff2b;
-  }
-
-  .founded span,
-  .founded small {
-    color: #8791a1;
-    font-size: 0.65rem;
-    font-weight: 800;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-  }
-
-  .founded strong {
-    margin: 0.5rem 0 1.75rem;
-    font-size: clamp(2.4rem, 4vw, 4rem);
-    font-variant-numeric: tabular-nums;
-    letter-spacing: -0.08em;
-    line-height: 1;
-  }
-
-  .leadership {
-    display: grid;
-    grid-template-columns: minmax(17rem, 0.8fr) minmax(28rem, 1.4fr);
-    gap: clamp(4rem, 9vw, 10rem);
-    padding: clamp(5rem, 11vw, 10rem) clamp(1.25rem, 7vw, 7rem);
-    background:
-      linear-gradient(90deg, #0d3d8112 1px, transparent 1px) 0 0 / 25% 100%,
-      #080b10;
-  }
-
-  .leadership__header {
-    align-self: start;
-    position: sticky;
-    top: 7rem;
-  }
-
-  .leadership h2 {
-    margin: 0;
-    font-size: clamp(3rem, 6vw, 6rem);
-    letter-spacing: -0.065em;
-    line-height: 0.88;
-    text-transform: uppercase;
-  }
-
-  .leadership__header > p:last-child {
-    max-width: 26rem;
-    margin: 2rem 0 0;
-    color: #929cab;
-    line-height: 1.7;
-  }
-
-  .timeline {
-    display: grid;
-    gap: 2.75rem;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .timeline__entry {
-    display: grid;
-    grid-template-columns: clamp(6.75rem, 10vw, 9rem) 1.5rem minmax(0, 1fr);
-    gap: 1.25rem;
-  }
-
-  .timeline time {
-    padding-top: 0.12rem;
-    color: #dce5f5;
-    font-size: 0.78rem;
-    font-weight: 800;
-    font-variant-numeric: tabular-nums;
-    letter-spacing: 0.08em;
-    text-align: right;
-    text-transform: uppercase;
-  }
-
-  .timeline__track {
-    position: relative;
-    display: flex;
-    justify-content: center;
-  }
-
-  .timeline__entry:not(:last-child) .timeline__track::after {
-    position: absolute;
-    top: 0.8rem;
-    bottom: -3.2rem;
-    left: calc(50% - 0.5px);
-    width: 1px;
-    background: linear-gradient(#4d91ff, #4d91ff26);
-    content: '';
-  }
-
-  .timeline__track span {
-    position: relative;
-    z-index: 1;
-    width: 0.75rem;
-    height: 0.75rem;
-    margin-top: 0.15rem;
-    border: 2px solid #69a4ff;
-    border-radius: 50%;
-    background: #080b10;
-    box-shadow: 0 0 0 0.35rem #4d91ff17;
-  }
-
-  .timeline article {
-    position: relative;
-    min-height: 10rem;
-    padding: 0 3.5rem 2.75rem 0;
-    border-top: 1px solid #ffffff26;
-  }
-
-  .timeline__role {
-    margin: 1rem 0 0.5rem;
-    color: #65a1ff;
-    font-size: 0.7rem;
-    font-weight: 800;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-  }
-
-  .timeline h3 {
-    margin: 0;
-    font-size: clamp(1.15rem, 1.6vw, 1.5rem);
-    letter-spacing: -0.045em;
-    line-height: 1;
-  }
-
-  .timeline article > p:last-of-type {
-    max-width: 36rem;
-    margin: 1.25rem 0 0;
-    color: #aeb6c4;
-    line-height: 1.7;
-  }
-
-  .timeline__number {
-    position: absolute;
-    top: 0.85rem;
-    right: 0;
-    color: #ffffff1f;
-    font-size: 1.5rem;
-    font-weight: 900;
-    font-variant-numeric: tabular-nums;
-  }
-
-  @media (max-width: 900px) {
-    .story {
-      grid-template-columns: 1fr;
-      min-height: auto;
-    }
-
-    .founded {
-      grid-row: 1;
-      justify-self: end;
-    }
-
-    .leadership {
-      grid-template-columns: 1fr;
-      background:
-        linear-gradient(90deg, #0d3d8112 1px, transparent 1px) 0 0 / 50% 100%,
-        #080b10;
-    }
-
-    .leadership__header {
-      position: static;
-    }
-  }
-
-  @media (max-width: 600px) {
-    .story {
-      gap: 3.5rem;
-      padding-top: 3.5rem;
-    }
-
-    .story__content {
-      display: contents;
-    }
-
-    .story__content > h1 {
-      grid-column: 1;
-    }
-
-    .story__content > h1 {
-      font-size: clamp(3.75rem, 20vw, 6rem);
-    }
-
-    .story__copy {
-      grid-template-columns: 1fr;
-      margin-top: 0;
-    }
-
-    .story__copy .story__lead {
-      grid-column: auto;
-    }
-
-    .founded {
-      grid-row: auto;
-      justify-self: start;
-    }
-
-    .timeline__entry {
-      grid-template-columns: 5.5rem 1rem minmax(0, 1fr);
-      gap: 0.8rem;
-    }
-
-    .timeline time {
-      font-size: 0.67rem;
-    }
-
-    .timeline article {
-      padding-right: 0;
-    }
-
-    .timeline__number {
-      display: none;
-    }
-  }
-</style>

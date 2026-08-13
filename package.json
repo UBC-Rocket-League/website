@@ -10,6 +10,8 @@
   },
   "scripts": {
     "dev": "astro dev",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
     "check": "astro check",
     "precheck": "pnpm generate-types",
     "build": "pnpm check && astro build",
@@ -25,6 +27,10 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "@tailwindcss/vite": "^4.3.3",
+    "prettier": "3.9.6",
+    "prettier-plugin-astro": "0.14.1",
+    "tailwindcss": "^4.3.3",
     "typescript": "^5.9.3"
   }
 }
