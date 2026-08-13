@@ -1,46 +1,46 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
 
 const leadershipTimeline = [
   {
-    period: 'June 2021',
-    datetime: '2021-06',
-    leaders: 'Ivan & Herman',
-    role: 'Co-founders',
+    period: "June 2021",
+    datetime: "2021-06",
+    leaders: "Ivan & Herman",
+    role: "Co-founders",
     description:
-      'Ivan and Herman co-founded the UBC Rocket League community after recruiting fellow UBC players through a post on Reddit.',
+      "Ivan and Herman co-founded the UBC Rocket League community after recruiting fellow UBC players through a post on Reddit.",
   },
   {
-    period: '2021-2023',
-    datetime: '2021',
-    leaders: 'Ivan & Herman',
-    role: 'Co-directors',
+    period: "2021-2023",
+    datetime: "2021",
+    leaders: "Ivan & Herman",
+    role: "Co-directors",
     description:
-      'Ivan and Herman served as the first co-directors of the UBC Rocket League department within the UBC Esports Association.',
+      "Ivan and Herman served as the first co-directors of the UBC Rocket League department within the UBC Esports Association.",
   },
   {
-    period: '2023-2024',
-    datetime: '2023',
-    leaders: 'Ivan',
-    role: 'Director',
+    period: "2023-2024",
+    datetime: "2023",
+    leaders: "Ivan",
+    role: "Director",
     description:
-      'Ivan continued to lead UBCRL as its sole director, carrying the department into its next chapter.',
+      "Ivan continued to lead UBCRL as its sole director, carrying the department into its next chapter.",
   },
   {
-    period: '2024-2026',
-    datetime: '2024',
-    leaders: 'Ben & Carter',
-    role: 'Co-directors',
+    period: "2024-2026",
+    datetime: "2024",
+    leaders: "Ben & Carter",
+    role: "Co-directors",
     description:
-      'Ben and Carter served as co-directors of UBCRL, continuing to grow its community and competitive presence.',
+      "Ben and Carter served as co-directors of UBCRL, continuing to grow its community and competitive presence.",
   },
   {
-    period: '2026-2027',
-    datetime: '2026',
-    leaders: 'Ivan & Jai',
-    role: 'Co-directors',
+    period: "2026-2027",
+    datetime: "2026",
+    leaders: "Ivan & Jai",
+    role: "Co-directors",
     description:
-      'Ivan and Jai serve as the current co-directors of UBCRL for the 2026-2027 term.',
+      "Ivan and Jai serve as the current co-directors of UBCRL for the 2026-2027 term.",
   },
 ];
 ---
@@ -52,28 +52,28 @@ const leadershipTimeline = [
   <main class="overflow-hidden bg-[#05070b]">
     <section
       class:list={[
-        'relative grid min-h-[calc(100svh-4.5rem)]',
-        'grid-cols-[minmax(0,1fr)_auto] gap-[clamp(3rem,8vw,9rem)]',
-        'border-b border-[#ffffff1a]',
-        'bg-[radial-gradient(circle_at_82%_22%,#1656ad2b,transparent_32rem),linear-gradient(145deg,#080b11_0%,#05070b_62%)]',
-        'px-[clamp(1.25rem,7vw,7rem)] py-[clamp(5rem,10vw,9rem)]',
-        'after:pointer-events-none after:absolute',
-        'after:right-[-0.05em] after:bottom-[-0.16em]',
-        'after:text-[clamp(10rem,27vw,31rem)] after:leading-[0.8]',
-        'after:font-black after:tracking-[-0.09em] after:text-[#ffffff05]',
+        "relative grid min-h-[calc(100svh-4.5rem)]",
+        "grid-cols-[minmax(0,1fr)_auto] gap-[clamp(3rem,8vw,9rem)]",
+        "border-b border-[#ffffff1a]",
+        "bg-[radial-gradient(circle_at_82%_22%,#1656ad2b,transparent_32rem),linear-gradient(145deg,#080b11_0%,#05070b_62%)]",
+        "px-[clamp(1.25rem,7vw,7rem)] py-[clamp(5rem,10vw,9rem)]",
+        "after:pointer-events-none after:absolute",
+        "after:right-[-0.05em] after:bottom-[-0.16em]",
+        "after:text-[clamp(10rem,27vw,31rem)] after:leading-[0.8]",
+        "after:font-black after:tracking-[-0.09em] after:text-[#ffffff05]",
         "after:content-['2021']",
-        'max-[900px]:min-h-0 max-[900px]:grid-cols-1',
-        'max-[600px]:gap-14 max-[600px]:pt-14',
+        "max-[900px]:min-h-0 max-[900px]:grid-cols-1",
+        "max-[600px]:gap-14 max-[600px]:pt-14",
       ]}
       aria-labelledby="story-title"
     >
       <div class="relative z-[1] max-[600px]:contents">
         <h1
           class:list={[
-            'm-0 text-[clamp(4.5rem,11vw,10rem)] leading-[0.78]',
-            'font-black tracking-[-0.08em] uppercase',
-            'max-[600px]:col-start-1',
-            'max-[600px]:text-[clamp(3.75rem,20vw,6rem)]',
+            "m-0 text-[clamp(4.5rem,11vw,10rem)] leading-[0.78]",
+            "font-black tracking-[-0.08em] uppercase",
+            "max-[600px]:col-start-1",
+            "max-[600px]:text-[clamp(3.75rem,20vw,6rem)]",
           ]}
           id="story-title"
         >
@@ -84,56 +84,59 @@ const leadershipTimeline = [
         </h1>
         <div
           class:list={[
-            'mt-[clamp(3.5rem,7vw,6rem)] grid max-w-[58rem] grid-cols-2',
-            'gap-x-[clamp(2rem,5vw,5rem)] gap-y-6',
-            'max-[600px]:mt-0 max-[600px]:grid-cols-1',
+            "mt-[clamp(3.5rem,7vw,6rem)] grid max-w-[58rem] grid-cols-2",
+            "gap-x-[clamp(2rem,5vw,5rem)] gap-y-6",
+            "max-[600px]:mt-0 max-[600px]:grid-cols-1",
           ]}
         >
           <p
             class:list={[
-              'col-span-full m-0 max-w-[42rem]',
-              'text-[clamp(1.35rem,2.4vw,2rem)] leading-[1.35] font-bold',
-              'tracking-[-0.025em] text-[#f5f7fb]',
-              'max-[600px]:col-auto',
+              "col-span-full m-0 max-w-[42rem]",
+              "text-[clamp(1.35rem,2.4vw,2rem)] leading-[1.35] font-bold",
+              "tracking-[-0.025em] text-[#f5f7fb]",
+              "max-[600px]:col-auto",
             ]}
           >
-            UBC Rocket League is a community brought together by a shared interest in Rocket
-            League.
+            UBC Rocket League is a community brought together by a shared
+            interest in Rocket League.
           </p>
           <p class="m-0 text-[1rem] leading-[1.75] text-[#aeb6c4]">
-            Primarily made up of UBC students, UBCRL also welcomes players from other
-            post-secondary institutions, including schools across the surrounding region.
+            Primarily made up of UBC students, UBCRL also welcomes players from
+            other post-secondary institutions, including schools across the
+            surrounding region.
           </p>
           <p class="m-0 text-[1rem] leading-[1.75] text-[#aeb6c4]">
-            Founded in June 2021, the community became more established when it joined the UBC
-            Esports Association (UBCEA) as its Rocket League department. The move created new
-            opportunities for growth, gave competitive players access to UBCEA's gaming lounge,
-            and established a formal avenue for representing UBC in Rocket League esports.
+            Founded in June 2021, the community became more established when it
+            joined the UBC Esports Association (UBCEA) as its Rocket League
+            department. The move created new opportunities for growth, gave
+            competitive players access to UBCEA's gaming lounge, and established
+            a formal avenue for representing UBC in Rocket League esports.
           </p>
         </div>
       </div>
 
       <aside
         class:list={[
-          'relative z-[1] flex w-[clamp(11rem,16vw,15rem)] flex-col self-start',
-          'border-t-[3px] border-t-[#4d91ff]',
-          'border-b border-b-[#ffffff2b] p-5',
-          'max-[900px]:row-start-1 max-[900px]:justify-self-end',
-          'max-[600px]:row-auto max-[600px]:justify-self-start',
+          "relative z-[1] flex w-[clamp(11rem,16vw,15rem)] flex-col self-start",
+          "border-t-[3px] border-t-[#4d91ff]",
+          "border-b border-b-[#ffffff2b] p-5",
+          "max-[900px]:row-start-1 max-[900px]:justify-self-end",
+          "max-[600px]:row-auto max-[600px]:justify-self-start",
         ]}
         aria-label="Founded in June 2021"
       >
-        <span class="text-[0.65rem] font-extrabold tracking-[0.16em] text-[#8791a1] uppercase"
+        <span
+          class="text-[0.65rem] font-extrabold tracking-[0.16em] text-[#8791a1] uppercase"
           >Established</span
         >
         <strong
           class:list={[
-            'mt-2 mb-7 text-[clamp(2.4rem,4vw,4rem)] leading-none',
-            'tracking-[-0.08em] [font-variant-numeric:tabular-nums]',
-          ]}
-          >06 / 21</strong
+            "mt-2 mb-7 text-[clamp(2.4rem,4vw,4rem)] leading-none",
+            "tracking-[-0.08em] [font-variant-numeric:tabular-nums]",
+          ]}>06 / 21</strong
         >
-        <small class="text-[0.65rem] font-extrabold tracking-[0.16em] text-[#8791a1] uppercase"
+        <small
+          class="text-[0.65rem] font-extrabold tracking-[0.16em] text-[#8791a1] uppercase"
           >UBC Rocket League</small
         >
       </aside>
@@ -141,111 +144,117 @@ const leadershipTimeline = [
 
     <section
       class:list={[
-        'grid grid-cols-[minmax(17rem,0.8fr)_minmax(28rem,1.4fr)]',
-        'gap-[clamp(4rem,9vw,10rem)]',
-        'bg-[linear-gradient(90deg,#0d3d8112_1px,transparent_1px)_0_0/25%_100%,#080b10]',
-        'px-[clamp(1.25rem,7vw,7rem)] py-[clamp(5rem,11vw,10rem)]',
-        'max-[900px]:grid-cols-1',
-        'max-[900px]:bg-[linear-gradient(90deg,#0d3d8112_1px,transparent_1px)_0_0/50%_100%,#080b10]',
+        "grid grid-cols-[minmax(17rem,0.8fr)_minmax(28rem,1.4fr)]",
+        "gap-[clamp(4rem,9vw,10rem)]",
+        "bg-[linear-gradient(90deg,#0d3d8112_1px,transparent_1px)_0_0/25%_100%,#080b10]",
+        "px-[clamp(1.25rem,7vw,7rem)] py-[clamp(5rem,11vw,10rem)]",
+        "max-[900px]:grid-cols-1",
+        "max-[900px]:bg-[linear-gradient(90deg,#0d3d8112_1px,transparent_1px)_0_0/50%_100%,#080b10]",
       ]}
       aria-labelledby="leadership-title"
     >
       <header class="sticky top-28 self-start max-[900px]:static">
         <h2
           class:list={[
-            'm-0 text-[clamp(3rem,6vw,6rem)] leading-[0.88] font-bold',
-            'tracking-[-0.065em] uppercase',
+            "m-0 text-[clamp(3rem,6vw,6rem)] leading-[0.88] font-bold",
+            "tracking-[-0.065em] uppercase",
           ]}
           id="leadership-title"
         >
           Directors &amp;<br />executives
         </h2>
         <p class="mt-8 mb-0 max-w-[26rem] leading-[1.7] text-[#929cab]">
-          The people who founded UBCRL and guided the community through each stage of its
-          development.
+          The people who founded UBCRL and guided the community through each
+          stage of its development.
         </p>
       </header>
 
       <ol class="m-0 grid list-none gap-11 p-0">
         {
-          leadershipTimeline.map(({ period, datetime, leaders, role, description }, index) => (
-            <li
-              class:list={[
-                'grid grid-cols-[clamp(6.75rem,10vw,9rem)_1.5rem_minmax(0,1fr)]',
-                'gap-5',
-                'max-[600px]:grid-cols-[5.5rem_1rem_minmax(0,1fr)]',
-                'max-[600px]:gap-[0.8rem]',
-              ]}
-            >
-              <time
+          leadershipTimeline.map(
+            ({ period, datetime, leaders, role, description }, index) => (
+              <li
                 class:list={[
-                  'pt-[0.12rem] text-right',
-                  'text-[0.78rem] font-extrabold tracking-[0.08em] text-[#dce5f5]',
-                  'uppercase [font-variant-numeric:tabular-nums]',
-                  'max-[600px]:text-[0.67rem]',
+                  "grid grid-cols-[clamp(6.75rem,10vw,9rem)_1.5rem_minmax(0,1fr)]",
+                  "gap-5",
+                  "max-[600px]:grid-cols-[5.5rem_1rem_minmax(0,1fr)]",
+                  "max-[600px]:gap-[0.8rem]",
                 ]}
-                datetime={datetime}>{period}</time
               >
-              <div
-                class:list={[
-                  'relative flex justify-center',
-                  {
-                    'after:absolute after:top-[0.8rem] after:bottom-[-3.2rem]':
-                      index < leadershipTimeline.length - 1,
-                    'after:left-[calc(50%-0.5px)] after:w-px':
-                      index < leadershipTimeline.length - 1,
-                    'after:bg-[linear-gradient(#4d91ff,#4d91ff26)]':
-                      index < leadershipTimeline.length - 1,
-                    "after:content-['']":
-                      index < leadershipTimeline.length - 1,
-                  },
-                ]}
-                aria-hidden="true"
-              >
-                <span
+                <time
                   class:list={[
-                    'relative z-[1] mt-[0.15rem] h-3 w-3 rounded-full',
-                    'border-2 border-[#69a4ff] bg-[#080b10]',
-                    'shadow-[0_0_0_0.35rem_#4d91ff17]',
+                    "pt-[0.12rem] text-right",
+                    "text-[0.78rem] font-extrabold tracking-[0.08em] text-[#dce5f5]",
+                    "uppercase [font-variant-numeric:tabular-nums]",
+                    "max-[600px]:text-[0.67rem]",
                   ]}
-                />
-              </div>
-              <article
-                class:list={[
-                  'relative min-h-40 border-t border-[#ffffff26]',
-                  'pt-0 pr-14 pb-11 max-[600px]:pr-0',
-                ]}
-              >
-                <p
-                  class:list={[
-                    'mt-4 mb-2 text-[0.7rem] font-extrabold',
-                    'tracking-[0.18em] text-[#65a1ff] uppercase',
-                  ]}
+                  datetime={datetime}
                 >
-                  {role}
-                </p>
-                <h3
+                  {period}
+                </time>
+                <div
                   class:list={[
-                    'm-0 text-[clamp(1.15rem,1.6vw,1.5rem)] leading-none font-bold',
-                    'tracking-[-0.045em]',
-                  ]}
-                >
-                  {leaders}
-                </h3>
-                <p class="mt-5 mb-0 max-w-[36rem] leading-[1.7] text-[#aeb6c4]">{description}</p>
-                <span
-                  class:list={[
-                    'absolute top-[0.85rem] right-0',
-                    'text-[1.5rem] font-black text-[#ffffff1f]',
-                    '[font-variant-numeric:tabular-nums] max-[600px]:hidden',
+                    "relative flex justify-center",
+                    {
+                      "after:absolute after:top-[0.8rem] after:bottom-[-3.2rem]":
+                        index < leadershipTimeline.length - 1,
+                      "after:left-[calc(50%-0.5px)] after:w-px":
+                        index < leadershipTimeline.length - 1,
+                      "after:bg-[linear-gradient(#4d91ff,#4d91ff26)]":
+                        index < leadershipTimeline.length - 1,
+                      "after:content-['']":
+                        index < leadershipTimeline.length - 1,
+                    },
                   ]}
                   aria-hidden="true"
                 >
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-              </article>
-            </li>
-          ))
+                  <span
+                    class:list={[
+                      "relative z-[1] mt-[0.15rem] h-3 w-3 rounded-full",
+                      "border-2 border-[#69a4ff] bg-[#080b10]",
+                      "shadow-[0_0_0_0.35rem_#4d91ff17]",
+                    ]}
+                  />
+                </div>
+                <article
+                  class:list={[
+                    "relative min-h-40 border-t border-[#ffffff26]",
+                    "pt-0 pr-14 pb-11 max-[600px]:pr-0",
+                  ]}
+                >
+                  <p
+                    class:list={[
+                      "mt-4 mb-2 text-[0.7rem] font-extrabold",
+                      "tracking-[0.18em] text-[#65a1ff] uppercase",
+                    ]}
+                  >
+                    {role}
+                  </p>
+                  <h3
+                    class:list={[
+                      "m-0 text-[clamp(1.15rem,1.6vw,1.5rem)] leading-none font-bold",
+                      "tracking-[-0.045em]",
+                    ]}
+                  >
+                    {leaders}
+                  </h3>
+                  <p class="mt-5 mb-0 max-w-[36rem] leading-[1.7] text-[#aeb6c4]">
+                    {description}
+                  </p>
+                  <span
+                    class:list={[
+                      "absolute top-[0.85rem] right-0",
+                      "text-[1.5rem] font-black text-[#ffffff1f]",
+                      "[font-variant-numeric:tabular-nums] max-[600px]:hidden",
+                    ]}
+                    aria-hidden="true"
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                </article>
+              </li>
+            ),
+          )
         }
       </ol>
     </section>

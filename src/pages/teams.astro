@@ -1,12 +1,15 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
 
-const player = (ign: string, image: string | null = '/pfp/drag/drag1.jpg') => ({ ign, image });
+const player = (ign: string, image: string | null = "/pfp/drag/drag1.jpg") => ({
+  ign,
+  image,
+});
 const teamToneClasses = {
-  gold: '[--team-color:#f4c542]',
-  blue: '[--team-color:#4d91ff]',
-  navy: '[--team-color:#344f8f]',
-  white: '[--team-color:#dce3ed]',
+  gold: "[--team-color:#f4c542]",
+  blue: "[--team-color:#4d91ff]",
+  navy: "[--team-color:#344f8f]",
+  white: "[--team-color:#dce3ed]",
 } as const;
 type TeamTone = keyof typeof teamToneClasses;
 
@@ -18,41 +21,49 @@ const historicalTeam = (name: string, tone: TeamTone, players: string[]) => ({
 
 const seasons = [
   {
-    year: '2026-2027',
-    status: 'Upcoming season',
+    year: "2026-2027",
+    status: "Upcoming season",
     summary: null,
     terms: [
       {
-        label: 'Tryouts upcoming:',
+        label: "Tryouts upcoming:",
         detail: null,
         compactLabel: true,
-        tryoutDate: 'August 25, 2026',
-        tryoutTime: '8:00 PM',
-        tryoutDatetime: '2026-08-25T20:00:00-07:00',
+        tryoutDate: "August 25, 2026",
+        tryoutTime: "8:00 PM",
+        tryoutDatetime: "2026-08-25T20:00:00-07:00",
         teams: [
           {
-            name: 'UBC Gold',
-            tier: 'Main roster',
-            tone: 'gold',
-            players: [player('TBD', null), player('TBD', null), player('TBD', null)],
+            name: "UBC Gold",
+            tier: "Main roster",
+            tone: "gold",
+            players: [
+              player("TBD", null),
+              player("TBD", null),
+              player("TBD", null),
+            ],
           },
           {
-            name: 'UBC Blue',
+            name: "UBC Blue",
             tier: null,
-            tone: 'blue',
-            players: [player('TBD', null), player('TBD', null), player('TBD', null)],
+            tone: "blue",
+            players: [
+              player("TBD", null),
+              player("TBD", null),
+              player("TBD", null),
+            ],
           },
         ],
       },
     ],
   },
   {
-    year: '2025-2026',
-    status: 'Previous season',
+    year: "2025-2026",
+    status: "Previous season",
     summary: null,
     terms: [
       {
-        label: 'Term 2',
+        label: "Term 2",
         detail: null,
         compactLabel: false,
         tryoutDate: null,
@@ -60,21 +71,25 @@ const seasons = [
         tryoutDatetime: null,
         teams: [
           {
-            name: 'UBC Gold',
-            tier: 'Main roster',
-            tone: 'gold',
-            players: [player('J'), player('Vizion'), player('ExpiredKetchup')],
+            name: "UBC Gold",
+            tier: "Main roster",
+            tone: "gold",
+            players: [player("J"), player("Vizion"), player("ExpiredKetchup")],
           },
           {
-            name: 'UBC Blue',
+            name: "UBC Blue",
             tier: null,
-            tone: 'blue',
-            players: [player('Cow_B'), player('Dragussy'), player('Puffyfish14')],
+            tone: "blue",
+            players: [
+              player("Cow_B"),
+              player("Dragussy"),
+              player("Puffyfish14"),
+            ],
           },
         ],
       },
       {
-        label: 'Term 1',
+        label: "Term 1",
         detail: null,
         compactLabel: false,
         tryoutDate: null,
@@ -82,16 +97,20 @@ const seasons = [
         tryoutDatetime: null,
         teams: [
           {
-            name: 'UBC Gold',
-            tier: 'Main roster',
-            tone: 'gold',
-            players: [player('J'), player('Vizion'), player('Cow_B')],
+            name: "UBC Gold",
+            tier: "Main roster",
+            tone: "gold",
+            players: [player("J"), player("Vizion"), player("Cow_B")],
           },
           {
-            name: 'UBC Blue',
+            name: "UBC Blue",
             tier: null,
-            tone: 'blue',
-            players: [player('ExpiredKetchup'), player('simp'), player('Puffyfish14')],
+            tone: "blue",
+            players: [
+              player("ExpiredKetchup"),
+              player("simp"),
+              player("Puffyfish14"),
+            ],
           },
         ],
       },
@@ -101,77 +120,120 @@ const seasons = [
 
 const historicalSeasons = [
   {
-    year: '2024-2025',
+    year: "2024-2025",
     terms: [
       {
-        label: 'Full season',
+        label: "Full season",
         teams: [
-          historicalTeam('Gold', 'gold', ['Cow_B', 'Harrylakers', 'J']),
-          historicalTeam('Blue', 'blue', ['Dragoius', 'Puffyfish14', 'Delforge', 'Invictus']),
+          historicalTeam("Gold", "gold", ["Cow_B", "Harrylakers", "J"]),
+          historicalTeam("Blue", "blue", [
+            "Dragoius",
+            "Puffyfish14",
+            "Delforge",
+            "Invictus",
+          ]),
         ],
       },
     ],
   },
   {
-    year: '2023-2024',
+    year: "2023-2024",
     terms: [
       {
-        label: 'Term 2',
+        label: "Term 2",
         teams: [
-          historicalTeam('Gold', 'gold', ['Fervent', 'J', 'Harrylakers']),
-          historicalTeam('Blue', 'blue', ['Deadpeople', 'Cow_B', 'Delforge']),
-          historicalTeam('White', 'white', ['Dragoius', 'Blueming', 'Puffyfish14']),
+          historicalTeam("Gold", "gold", ["Fervent", "J", "Harrylakers"]),
+          historicalTeam("Blue", "blue", ["Deadpeople", "Cow_B", "Delforge"]),
+          historicalTeam("White", "white", [
+            "Dragoius",
+            "Blueming",
+            "Puffyfish14",
+          ]),
         ],
       },
       {
-        label: 'Term 1',
+        label: "Term 1",
         teams: [
-          historicalTeam('Gold', 'gold', ['Fervent', 'J', 'Dragoius']),
-          historicalTeam('Blue', 'blue', ['Deadpeople', 'Cow_B', 'Puffyfish14']),
+          historicalTeam("Gold", "gold", ["Fervent", "J", "Dragoius"]),
+          historicalTeam("Blue", "blue", [
+            "Deadpeople",
+            "Cow_B",
+            "Puffyfish14",
+          ]),
         ],
       },
     ],
   },
   {
-    year: '2022-2023',
+    year: "2022-2023",
     terms: [
       {
-        label: 'Term 2',
+        label: "Term 2",
         teams: [
-          historicalTeam('Gold', 'gold', ['Fervent', 'Ski', 'Harrylakers']),
-          historicalTeam('Blue', 'blue', ['Delforge', 'Dragoius', 'Deadpeople', 'Dagger']),
-          historicalTeam('Navy', 'navy', ['Zindlerr', 'Blueming', 'Puffyfish14']),
-          historicalTeam('White', 'white', ['Hystrix', 'Edge', 'Rome Destroyer']),
+          historicalTeam("Gold", "gold", ["Fervent", "Ski", "Harrylakers"]),
+          historicalTeam("Blue", "blue", [
+            "Delforge",
+            "Dragoius",
+            "Deadpeople",
+            "Dagger",
+          ]),
+          historicalTeam("Navy", "navy", [
+            "Zindlerr",
+            "Blueming",
+            "Puffyfish14",
+          ]),
+          historicalTeam("White", "white", [
+            "Hystrix",
+            "Edge",
+            "Rome Destroyer",
+          ]),
         ],
       },
       {
-        label: 'Term 1',
+        label: "Term 1",
         teams: [
-          historicalTeam('Gold', 'gold', ['Fervent', 'Ski', 'Harrylakers']),
-          historicalTeam('Blue', 'blue', ['Dragoius', 'Dagger', 'Deadpeople']),
-          historicalTeam('Navy', 'navy', ['Zindlerr', 'Blueming', 'Delforge']),
-          historicalTeam('White', 'white', ['Hystrix', 'Puffyfish14', 'Rome Destroyer']),
+          historicalTeam("Gold", "gold", ["Fervent", "Ski", "Harrylakers"]),
+          historicalTeam("Blue", "blue", ["Dragoius", "Dagger", "Deadpeople"]),
+          historicalTeam("Navy", "navy", ["Zindlerr", "Blueming", "Delforge"]),
+          historicalTeam("White", "white", [
+            "Hystrix",
+            "Puffyfish14",
+            "Rome Destroyer",
+          ]),
         ],
       },
     ],
   },
   {
-    year: '2021-2022',
+    year: "2021-2022",
     terms: [
       {
-        label: 'Term 2',
+        label: "Term 2",
         teams: [
-          historicalTeam('Gold', 'gold', ['Ski', 'Fervent', 'Frodo']),
-          historicalTeam('Blue', 'blue', ['Harrylakers', 'Blueming', 'Delforge', 'Fatal MB']),
-          historicalTeam('White', 'white', ['Giftedgecko', 'Hystrix', 'Rome Destroyer']),
+          historicalTeam("Gold", "gold", ["Ski", "Fervent", "Frodo"]),
+          historicalTeam("Blue", "blue", [
+            "Harrylakers",
+            "Blueming",
+            "Delforge",
+            "Fatal MB",
+          ]),
+          historicalTeam("White", "white", [
+            "Giftedgecko",
+            "Hystrix",
+            "Rome Destroyer",
+          ]),
         ],
       },
       {
-        label: 'Term 1',
+        label: "Term 1",
         teams: [
-          historicalTeam('Gold', 'gold', ['Ski', 'Frodo', 'Harrylakers']),
-          historicalTeam('Blue', 'blue', ['Fervent', 'Fatal MB', 'Zindlerr']),
-          historicalTeam('White', 'white', ['Giftedgecko', 'Blueming', 'JaredP']),
+          historicalTeam("Gold", "gold", ["Ski", "Frodo", "Harrylakers"]),
+          historicalTeam("Blue", "blue", ["Fervent", "Fatal MB", "Zindlerr"]),
+          historicalTeam("White", "white", [
+            "Giftedgecko",
+            "Blueming",
+            "JaredP",
+          ]),
         ],
       },
     ],
@@ -186,8 +248,8 @@ const historicalSeasons = [
   <main class="overflow-hidden bg-[#05070b]">
     <section
       class:list={[
-        'bg-[#080b10]',
-        'px-[clamp(1.25rem,6vw,6rem)] py-[clamp(4rem,10vw,9rem)]',
+        "bg-[#080b10]",
+        "px-[clamp(1.25rem,6vw,6rem)] py-[clamp(4rem,10vw,9rem)]",
       ]}
       aria-label="Team rosters by season"
     >
@@ -196,33 +258,33 @@ const historicalSeasons = [
           <article
             id={`season-${year}`}
             class:list={[
-              'mx-auto w-full max-w-[96rem]',
-              'pb-[clamp(5rem,11vw,10rem)] last:pb-0',
+              "mx-auto w-full max-w-[96rem]",
+              "pb-[clamp(5rem,11vw,10rem)] last:pb-0",
             ]}
           >
             <header
               class:list={[
-                'relative grid items-end',
-                'grid-cols-[minmax(18rem,0.9fr)_minmax(20rem,1fr)]',
-                'gap-[clamp(2rem,6vw,7rem)]',
-                'border-b border-[#ffffff24] pt-0 pb-10',
-                'max-[950px]:grid-cols-1',
+                "relative grid items-end",
+                "grid-cols-[minmax(18rem,0.9fr)_minmax(20rem,1fr)]",
+                "gap-[clamp(2rem,6vw,7rem)]",
+                "border-b border-[#ffffff24] pt-0 pb-10",
+                "max-[950px]:grid-cols-1",
               ]}
             >
               <div>
                 <p
                   class:list={[
-                    'mt-0 mb-3 flex items-center gap-[0.6rem]',
-                    'text-[0.65rem] font-extrabold tracking-[0.16em] uppercase',
-                    seasonIndex === 0 ? 'text-[#72a8ff]' : 'text-[#8994a5]',
+                    "mt-0 mb-3 flex items-center gap-[0.6rem]",
+                    "text-[0.65rem] font-extrabold tracking-[0.16em] uppercase",
+                    seasonIndex === 0 ? "text-[#72a8ff]" : "text-[#8994a5]",
                   ]}
                 >
                   <span
                     class:list={[
-                      'h-2 w-2 rounded-full',
+                      "h-2 w-2 rounded-full",
                       seasonIndex === 0
-                        ? 'bg-[#4d91ff] shadow-[0_0_0_0.3rem_#4d91ff21]'
-                        : 'bg-[#687384]',
+                        ? "bg-[#4d91ff] shadow-[0_0_0_0.3rem_#4d91ff21]"
+                        : "bg-[#687384]",
                     ]}
                     aria-hidden="true"
                   />
@@ -230,14 +292,18 @@ const historicalSeasons = [
                 </p>
                 <h2
                   class:list={[
-                    'm-0 text-[clamp(3rem,7vw,6.5rem)] leading-[0.85] font-bold',
-                    'tracking-[-0.07em] [font-variant-numeric:tabular-nums]',
+                    "m-0 text-[clamp(3rem,7vw,6.5rem)] leading-[0.85] font-bold",
+                    "tracking-[-0.07em] [font-variant-numeric:tabular-nums]",
                   ]}
                 >
                   {year}
                 </h2>
               </div>
-              {summary && <p class="m-0 max-w-[37rem] leading-[1.7] text-[#9fa9b8]">{summary}</p>}
+              {summary && (
+                <p class="m-0 max-w-[37rem] leading-[1.7] text-[#9fa9b8]">
+                  {summary}
+                </p>
+              )}
             </header>
 
             <div class="grid gap-16 pt-12">
@@ -251,157 +317,161 @@ const historicalSeasons = [
                   tryoutDatetime,
                   teams,
                 }) => (
-                <section
-                  class:list={[
-                    'border border-[#ffffff17] bg-[#0b0f16]',
-                    'p-[clamp(1.25rem,3vw,2.5rem)]',
-                    'max-[600px]:mx-[-0.25rem]',
-                  ]}
-                  aria-label={`${year} ${label}${tryoutDate ? ` on ${tryoutDate} at ${tryoutTime}` : ''}`}
-                >
-                  <header
+                  <section
                     class:list={[
-                      'mb-8 flex items-end justify-between gap-8',
-                      'max-[600px]:flex-col max-[600px]:items-start',
-                      'max-[600px]:gap-2',
+                      "border border-[#ffffff17] bg-[#0b0f16]",
+                      "p-[clamp(1.25rem,3vw,2.5rem)]",
+                      "max-[600px]:mx-[-0.25rem]",
                     ]}
+                    aria-label={`${year} ${label}${tryoutDate ? ` on ${tryoutDate} at ${tryoutTime}` : ""}`}
                   >
-                    {compactLabel ? (
-                      <p
-                        class:list={[
-                          'm-0 text-[0.8rem] font-extrabold',
-                          'tracking-[0.15em] text-[#727e8f] uppercase',
-                        ]}
-                      >
-                        {label}
-                      </p>
-                    ) : (
-                      <h3
-                        class:list={[
-                          'm-0 text-[clamp(1.35rem,2.5vw,2.1rem)] font-bold',
-                          'tracking-[-0.04em] uppercase',
-                        ]}
-                      >
-                        {label}
-                      </h3>
-                    )}
-                    {tryoutDate && tryoutTime && tryoutDatetime ? (
-                      <p
-                        class:list={[
-                          'm-0 text-[0.8rem] font-extrabold',
-                          'tracking-[0.15em] text-[#727e8f] uppercase',
-                        ]}
-                      >
-                        <time datetime={tryoutDatetime}>{tryoutDate} / {tryoutTime}</time>
-                      </p>
-                    ) : (
-                      detail && (
+                    <header
+                      class:list={[
+                        "mb-8 flex items-end justify-between gap-8",
+                        "max-[600px]:flex-col max-[600px]:items-start",
+                        "max-[600px]:gap-2",
+                      ]}
+                    >
+                      {compactLabel ? (
                         <p
                           class:list={[
-                            'm-0 text-[0.8rem] font-extrabold',
-                            'tracking-[0.15em] text-[#727e8f] uppercase',
+                            "m-0 text-[0.8rem] font-extrabold",
+                            "tracking-[0.15em] text-[#727e8f] uppercase",
                           ]}
                         >
-                          {detail}
+                          {label}
                         </p>
-                      )
-                    )}
-                  </header>
-
-                  <div
-                    class:list={[
-                      'grid grid-cols-2 gap-[clamp(1rem,2.5vw,2rem)]',
-                      'max-[950px]:grid-cols-1',
-                    ]}
-                  >
-                    {teams.map(({ name, tier, tone, players }) => (
-                      <article
-                        class:list={[
-                          'relative overflow-hidden border',
-                          'bg-[linear-gradient(145deg,color-mix(in_srgb,var(--team-color)_10%,transparent),transparent_48%),#080b10]',
-                          'p-[clamp(1rem,2.2vw,1.75rem)]',
-                          '[border-color:color-mix(in_srgb,var(--team-color)_30%,transparent)]',
-                          'before:absolute before:inset-y-0 before:left-0 before:w-[3px]',
-                          "before:bg-[var(--team-color)] before:content-['']",
-                          teamToneClasses[tone as TeamTone],
-                        ]}
-                      >
-                        <header
+                      ) : (
+                        <h3
                           class:list={[
-                            'mb-[clamp(1.5rem,3vw,2.5rem)]',
-                            'flex min-h-14 items-start justify-between gap-4',
+                            "m-0 text-[clamp(1.35rem,2.5vw,2.1rem)] font-bold",
+                            "tracking-[-0.04em] uppercase",
                           ]}
                         >
-                          <div>
-                            <h4
-                              class:list={[
-                                'm-0 text-[clamp(1.15rem,2vw,1.65rem)] font-bold',
-                                'tracking-[-0.035em] uppercase',
-                              ]}
-                            >
-                              {name}
-                            </h4>
-                            {tier && (
-                              <p
-                                class:list={[
-                                  'mt-[0.4rem] mb-0 text-[0.62rem] font-black',
-                                  'tracking-[0.18em] text-[var(--team-color)] uppercase',
-                                ]}
-                              >
-                                {tier}
-                              </p>
-                            )}
-                          </div>
-                        </header>
-
-                        <ul
+                          {label}
+                        </h3>
+                      )}
+                      {tryoutDate && tryoutTime && tryoutDatetime ? (
+                        <p
                           class:list={[
-                            'm-0 grid list-none grid-cols-3 p-0',
-                            'gap-[clamp(0.55rem,1.5vw,1rem)]',
+                            "m-0 text-[0.8rem] font-extrabold",
+                            "tracking-[0.15em] text-[#727e8f] uppercase",
                           ]}
-                          aria-label={`${name} players`}
                         >
-                          {players.map(({ ign, image }) => (
-                            <li class="min-w-0">
-                              <div
+                          <time datetime={tryoutDatetime}>
+                            {tryoutDate} / {tryoutTime}
+                          </time>
+                        </p>
+                      ) : (
+                        detail && (
+                          <p
+                            class:list={[
+                              "m-0 text-[0.8rem] font-extrabold",
+                              "tracking-[0.15em] text-[#727e8f] uppercase",
+                            ]}
+                          >
+                            {detail}
+                          </p>
+                        )
+                      )}
+                    </header>
+
+                    <div
+                      class:list={[
+                        "grid grid-cols-2 gap-[clamp(1rem,2.5vw,2rem)]",
+                        "max-[950px]:grid-cols-1",
+                      ]}
+                    >
+                      {teams.map(({ name, tier, tone, players }) => (
+                        <article
+                          class:list={[
+                            "relative overflow-hidden border",
+                            "bg-[linear-gradient(145deg,color-mix(in_srgb,var(--team-color)_10%,transparent),transparent_48%),#080b10]",
+                            "p-[clamp(1rem,2.2vw,1.75rem)]",
+                            "[border-color:color-mix(in_srgb,var(--team-color)_30%,transparent)]",
+                            "before:absolute before:inset-y-0 before:left-0 before:w-[3px]",
+                            "before:bg-[var(--team-color)] before:content-['']",
+                            teamToneClasses[tone as TeamTone],
+                          ]}
+                        >
+                          <header
+                            class:list={[
+                              "mb-[clamp(1.5rem,3vw,2.5rem)]",
+                              "flex min-h-14 items-start justify-between gap-4",
+                            ]}
+                          >
+                            <div>
+                              <h4
                                 class:list={[
-                                  'relative aspect-[4/5] overflow-hidden',
-                                  'border border-[#ffffff20]',
-                                  'bg-[linear-gradient(135deg,transparent_49.5%,#ffffff0a_50%,transparent_50.5%),linear-gradient(45deg,transparent_49.5%,#ffffff0a_50%,transparent_50.5%),linear-gradient(160deg,color-mix(in_srgb,var(--team-color)_10%,transparent),#0d121b)]',
-                                  'before:absolute before:top-[0.45rem] before:left-[0.45rem]',
-                                  'before:h-4 before:w-4 before:border-t before:border-l',
-                                  "before:content-['']",
-                                  'after:absolute after:right-[0.45rem] after:bottom-[0.45rem]',
-                                  'after:h-4 after:w-4 after:border-r after:border-b',
-                                  "after:content-['']",
-                                  'before:[border-color:color-mix(in_srgb,var(--team-color)_70%,transparent)]',
-                                  'after:[border-color:color-mix(in_srgb,var(--team-color)_70%,transparent)]',
+                                  "m-0 text-[clamp(1.15rem,2vw,1.65rem)] font-bold",
+                                  "tracking-[-0.035em] uppercase",
                                 ]}
                               >
-                                {image && (
-                                  <img
-                                    class="relative z-[1] block h-full w-full object-cover"
-                                    src={image}
-                                    alt={`Portrait of ${ign}`}
-                                    loading="lazy"
-                                  />
-                                )}
-                              </div>
-                              <strong
-                                class:list={[
-                                  'mt-3 block min-w-0 text-center leading-[1.2] [overflow-wrap:anywhere]',
-                                  ign === 'TBD'
-                                    ? 'text-[0.65rem] tracking-[0.15em] text-[#687384]'
-                                    : 'text-[clamp(0.65rem,1.15vw,0.9rem)] tracking-[0.02em]',
-                                ]}>{ign}</strong
-                              >
-                            </li>
-                          ))}
-                        </ul>
-                      </article>
-                    ))}
-                  </div>
-                </section>
+                                {name}
+                              </h4>
+                              {tier && (
+                                <p
+                                  class:list={[
+                                    "mt-[0.4rem] mb-0 text-[0.62rem] font-black",
+                                    "tracking-[0.18em] text-[var(--team-color)] uppercase",
+                                  ]}
+                                >
+                                  {tier}
+                                </p>
+                              )}
+                            </div>
+                          </header>
+
+                          <ul
+                            class:list={[
+                              "m-0 grid list-none grid-cols-3 p-0",
+                              "gap-[clamp(0.55rem,1.5vw,1rem)]",
+                            ]}
+                            aria-label={`${name} players`}
+                          >
+                            {players.map(({ ign, image }) => (
+                              <li class="min-w-0">
+                                <div
+                                  class:list={[
+                                    "relative aspect-[4/5] overflow-hidden",
+                                    "border border-[#ffffff20]",
+                                    "bg-[linear-gradient(135deg,transparent_49.5%,#ffffff0a_50%,transparent_50.5%),linear-gradient(45deg,transparent_49.5%,#ffffff0a_50%,transparent_50.5%),linear-gradient(160deg,color-mix(in_srgb,var(--team-color)_10%,transparent),#0d121b)]",
+                                    "before:absolute before:top-[0.45rem] before:left-[0.45rem]",
+                                    "before:h-4 before:w-4 before:border-t before:border-l",
+                                    "before:content-['']",
+                                    "after:absolute after:right-[0.45rem] after:bottom-[0.45rem]",
+                                    "after:h-4 after:w-4 after:border-r after:border-b",
+                                    "after:content-['']",
+                                    "before:[border-color:color-mix(in_srgb,var(--team-color)_70%,transparent)]",
+                                    "after:[border-color:color-mix(in_srgb,var(--team-color)_70%,transparent)]",
+                                  ]}
+                                >
+                                  {image && (
+                                    <img
+                                      class="relative z-[1] block h-full w-full object-cover"
+                                      src={image}
+                                      alt={`Portrait of ${ign}`}
+                                      loading="lazy"
+                                    />
+                                  )}
+                                </div>
+                                <strong
+                                  class:list={[
+                                    "mt-3 block min-w-0 text-center leading-[1.2] [overflow-wrap:anywhere]",
+                                    ign === "TBD"
+                                      ? "text-[0.65rem] tracking-[0.15em] text-[#687384]"
+                                      : "text-[clamp(0.65rem,1.15vw,0.9rem)] tracking-[0.02em]",
+                                  ]}
+                                >
+                                  {ign}
+                                </strong>
+                              </li>
+                            ))}
+                          </ul>
+                        </article>
+                      ))}
+                    </div>
+                  </section>
                 ),
               )}
             </div>
@@ -413,16 +483,16 @@ const historicalSeasons = [
     <section
       id="earlier-seasons"
       class:list={[
-        'border-t border-[#ffffff1a]',
-        'bg-[radial-gradient(circle_at_15%_25%,#174d9624,transparent_28rem),#05070b]',
-        'px-[clamp(1.25rem,6vw,6rem)] py-[clamp(4rem,8vw,7rem)]',
+        "border-t border-[#ffffff1a]",
+        "bg-[radial-gradient(circle_at_15%_25%,#174d9624,transparent_28rem),#05070b]",
+        "px-[clamp(1.25rem,6vw,6rem)] py-[clamp(4rem,8vw,7rem)]",
       ]}
       aria-label="Earlier season rosters"
     >
       <div
         class:list={[
-          'mx-auto w-full min-w-0 max-w-[96rem]',
-          'border-t border-[#ffffff24] p-0',
+          "mx-auto w-full min-w-0 max-w-[96rem]",
+          "border-t border-[#ffffff24] p-0",
         ]}
       >
         {
@@ -430,31 +500,32 @@ const historicalSeasons = [
             <details class="group border-b border-[#ffffff24]">
               <summary
                 class:list={[
-                  'flex w-full cursor-pointer list-none items-center justify-between',
-                  'gap-4 py-6 focus:outline-none',
-                  'focus-visible:outline-2 focus-visible:outline-offset-[0.35rem]',
-                  'focus-visible:outline-[#4d91ff]',
-                  '[&::-webkit-details-marker]:hidden',
+                  "flex w-full cursor-pointer list-none items-center justify-between",
+                  "gap-4 py-6 focus:outline-none",
+                  "focus-visible:outline-2 focus-visible:outline-offset-[0.35rem]",
+                  "focus-visible:outline-[#4d91ff]",
+                  "[&::-webkit-details-marker]:hidden",
                 ]}
               >
                 <strong
                   class:list={[
-                    'whitespace-nowrap text-[clamp(1.25rem,2.6vw,2rem)]',
-                    'tracking-[-0.04em] [font-variant-numeric:tabular-nums]',
+                    "whitespace-nowrap text-[clamp(1.25rem,2.6vw,2rem)]",
+                    "tracking-[-0.04em] [font-variant-numeric:tabular-nums]",
                   ]}
-                  >{year}</strong
                 >
+                  {year}
+                </strong>
                 <span
                   class:list={[
-                    'relative h-4 w-4 flex-none text-[#4d91ff]',
-                    'transition-transform duration-[180ms]',
-                    'before:absolute before:top-1/2 before:left-1/2',
-                    'before:h-px before:w-full before:-translate-x-1/2',
-                    'before:-translate-y-1/2 before:bg-current',
+                    "relative h-4 w-4 flex-none text-[#4d91ff]",
+                    "transition-transform duration-[180ms]",
+                    "before:absolute before:top-1/2 before:left-1/2",
+                    "before:h-px before:w-full before:-translate-x-1/2",
+                    "before:-translate-y-1/2 before:bg-current",
                     "before:content-['']",
-                    'after:absolute after:top-1/2 after:left-1/2',
-                    'after:h-px after:w-full after:-translate-x-1/2',
-                    'after:-translate-y-1/2 after:rotate-90 after:bg-current',
+                    "after:absolute after:top-1/2 after:left-1/2",
+                    "after:h-px after:w-full after:-translate-x-1/2",
+                    "after:-translate-y-1/2 after:rotate-90 after:bg-current",
                     "after:content-[''] group-open:rotate-45",
                   ]}
                   aria-hidden="true"
@@ -463,31 +534,33 @@ const historicalSeasons = [
 
               <div
                 class:list={[
-                  'grid gap-10 border-t border-[#ffffff17] bg-[#080b10]',
-                  'p-[clamp(1.5rem,3vw,3rem)]',
+                  "grid gap-10 border-t border-[#ffffff17] bg-[#080b10]",
+                  "p-[clamp(1.5rem,3vw,3rem)]",
                 ]}
               >
                 {terms.map(({ label, teams }) => (
                   <section aria-label={`${year} ${label}`}>
                     <header class="mb-4">
-                      <h3 class="m-0 text-[1rem] font-bold tracking-[-0.02em] uppercase">{label}</h3>
+                      <h3 class="m-0 text-[1rem] font-bold tracking-[-0.02em] uppercase">
+                        {label}
+                      </h3>
                     </header>
 
                     <div
                       class:list={[
-                        'grid grid-cols-[repeat(auto-fill,minmax(14rem,20rem))]',
-                        'items-stretch justify-start gap-[clamp(1rem,2.5vw,2rem)]',
-                        'max-[600px]:grid-cols-1',
+                        "grid grid-cols-[repeat(auto-fill,minmax(14rem,20rem))]",
+                        "items-stretch justify-start gap-[clamp(1rem,2.5vw,2rem)]",
+                        "max-[600px]:grid-cols-1",
                       ]}
                     >
                       {teams.map(({ name, tone, players }) => (
                         <article
                           class:list={[
-                            'relative flex flex-col overflow-hidden border',
-                            'bg-[linear-gradient(145deg,color-mix(in_srgb,var(--team-color)_10%,transparent),transparent_48%),#080b10]',
-                            'p-[clamp(1rem,2.2vw,1.75rem)]',
-                            '[border-color:color-mix(in_srgb,var(--team-color)_30%,transparent)]',
-                            'before:absolute before:inset-y-0 before:left-0 before:w-[3px]',
+                            "relative flex flex-col overflow-hidden border",
+                            "bg-[linear-gradient(145deg,color-mix(in_srgb,var(--team-color)_10%,transparent),transparent_48%),#080b10]",
+                            "p-[clamp(1rem,2.2vw,1.75rem)]",
+                            "[border-color:color-mix(in_srgb,var(--team-color)_30%,transparent)]",
+                            "before:absolute before:inset-y-0 before:left-0 before:w-[3px]",
                             "before:bg-[var(--team-color)] before:content-['']",
                             teamToneClasses[tone],
                           ]}
@@ -495,8 +568,8 @@ const historicalSeasons = [
                           <header class="mb-4 flex min-h-0 items-start justify-between gap-4">
                             <h4
                               class:list={[
-                                'm-0 text-[clamp(1.15rem,2vw,1.65rem)] font-bold',
-                                'tracking-[-0.035em] uppercase',
+                                "m-0 text-[clamp(1.15rem,2vw,1.65rem)] font-bold",
+                                "tracking-[-0.035em] uppercase",
                               ]}
                             >
                               {name}
@@ -505,26 +578,25 @@ const historicalSeasons = [
 
                           <ul
                             class:list={[
-                              'm-0 grid flex-1 list-none grid-cols-1',
-                              'border-t border-[#ffffff14] p-0',
+                              "m-0 grid flex-1 list-none grid-cols-1",
+                              "border-t border-[#ffffff14] p-0",
                             ]}
                             aria-label={`${name} players`}
                           >
                             {players.map((ign) => (
                               <li
                                 class:list={[
-                                  'flex min-h-12 min-w-0 items-center gap-[0.65rem]',
-                                  'border-b border-[#ffffff14]',
-                                  'px-[0.6rem] py-[0.7rem]',
-                                  'before:h-[0.3rem] before:w-[0.3rem] before:flex-none',
-                                  'before:rounded-full before:bg-[var(--team-color)]',
+                                  "flex min-h-12 min-w-0 items-center gap-[0.65rem]",
+                                  "border-b border-[#ffffff14]",
+                                  "px-[0.6rem] py-[0.7rem]",
+                                  "before:h-[0.3rem] before:w-[0.3rem] before:flex-none",
+                                  "before:rounded-full before:bg-[var(--team-color)]",
                                   "before:content-['']",
                                 ]}
                               >
-                                <strong
-                                  class="min-w-0 text-[0.78rem] tracking-[0.02em] [overflow-wrap:anywhere]"
-                                  >{ign}</strong
-                                >
+                                <strong class="min-w-0 text-[0.78rem] tracking-[0.02em] [overflow-wrap:anywhere]">
+                                  {ign}
+                                </strong>
                               </li>
                             ))}
                           </ul>
