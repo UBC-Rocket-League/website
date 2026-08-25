@@ -1,196 +1,273 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const heroImage = "/banners/ubcrl_banner_1.JPG";
+
+const heroSlides = [
+  {
+    title: "Welcome to UBC Rocket League",
+    subtitle: "Placeholder hero copy goes here.",
+  },
+  {
+    title: "Compete. Practice. Improve.",
+    subtitle: "Placeholder hero copy goes here.",
+  },
+  {
+    title: "Join a Community of Ballers",
+    subtitle: "Placeholder hero copy goes here.",
+  },
+];
+
+const exploreCards = [
+  {
+    title: "About Us",
+    description: "Who we are and what UBC Rocket League is all about.",
+  },
+  {
+    title: "Our Teams",
+    description: "Meet the squads competing across every division.",
+  },
+  {
+    title: "Get Merch",
+    description: "Rep the crest with our latest team gear.",
+  },
+];
+
+const upcomingCards = [
+  { title: "Weekly Scrims", meta: "Tue, 7:00 PM" },
+  { title: "Fall Tryouts", meta: "Sept 5–7" },
+  { title: "LAN Watch Party", meta: "Sept 12" },
+];
+
+const recentCards = [
+  { title: "Fall Kickoff Recap", meta: "Aug 30" },
+  { title: "Alumni Showcase", meta: "Aug 18" },
+  { title: "3v3 Ladder Results", meta: "Aug 10" },
+];
 ---
 
 <BaseLayout
   title="UBC RL"
   description="Home of the UBC Rocket League community."
-  overlayHeader
 >
-  <main>
-    <section
-      class:list={[
-        "grid min-h-svh place-items-center",
-        "bg-[radial-gradient(circle_at_75%_65%,#1c5db833,transparent_34rem),linear-gradient(135deg,#080b10_0%,#05070b_60%,#0a1830_100%)]",
-        "px-[clamp(1.25rem,8vw,8rem)] pt-[clamp(9rem,18vw,14rem)] pb-20",
-        "max-[850px]:pt-44",
-      ]}
-    >
-      <div
-        class:list={[
-          "grid w-full max-w-[78rem] items-center",
-          "grid-cols-[minmax(0,1.2fr)_minmax(18rem,0.8fr)]",
-          "gap-[clamp(2rem,6vw,6rem)]",
-          "max-[850px]:grid-cols-[minmax(0,1fr)]",
-        ]}
+  <main
+    class:list={[
+      "bg-white text-black",
+      "lg:h-[calc(100svh-6.1rem)] lg:overflow-hidden",
+    ]}
+  >
+    <div class="flex flex-col lg:h-full lg:flex-row">
+      <!-- Main container: ~5/6 width -->
+      <section
+        class="flex flex-col lg:h-full lg:flex-[5] lg:border-r-2 lg:border-black"
       >
-        <div>
-          <h1
-            class:list={[
-              "m-0 max-w-[12ch]",
-              "text-[clamp(3.5rem,7vw,7rem)] leading-[0.9] font-bold",
-              "tracking-[-0.07em] uppercase",
-            ]}
-          >
-            Our homepage went for boost.
-          </h1>
-          <p
-            class:list={[
-              "mt-8 mb-0 max-w-[38rem]",
-              "text-[clamp(1rem,2vw,1.25rem)] leading-[1.6] text-[#aeb6c4]",
-            ]}
-          >
-            It'll rotate back eventually. Unlike your solo queue teammate.
-          </p>
+        <!-- Hero carousel: top 2/3 -->
+        <div
+          id="hero-carousel"
+          class="relative h-[70vh] overflow-hidden bg-black sm:h-[60vh] lg:h-auto lg:min-h-0 lg:flex-[7]"
+        >
+          {
+            heroSlides.map((slide, i) => (
+              <div
+                data-slide={i}
+                class:list={[
+                  "absolute inset-0 transition-opacity duration-700",
+                  i === 0 ? "opacity-100" : "pointer-events-none opacity-0",
+                ]}
+              >
+                <img
+                  src={heroImage}
+                  alt=""
+                  class="h-full w-full object-cover"
+                  loading={i === 0 ? "eager" : "lazy"}
+                />
+                <div class="absolute inset-y-0 left-0 flex items-center">
+                  <div class="m-4 max-w-md border-2 border-black bg-white/90 px-6 py-5 sm:m-8 sm:px-8 sm:py-6">
+                    <p class="text-2xl font-black tracking-tight uppercase sm:text-4xl">
+                      {slide.title}
+                    </p>
+                    <p class="mt-2 text-sm text-black/80 sm:text-base">
+                      {slide.subtitle}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
         </div>
 
-        <figure
-          class:list={[
-            "m-0 w-full rotate-2",
-            "max-[850px]:mx-auto max-[850px]:w-full",
-            "max-[850px]:max-w-[28rem] max-[850px]:rotate-1",
-          ]}
-        >
-          <svg
-            class="block h-auto w-full"
-            viewBox="0 0 640 610"
-            role="img"
-            aria-labelledby="underwear-title underwear-description"
+        <!-- Subheader + 3 cards: bottom 1/3 -->
+        <div class="flex flex-col lg:min-h-0 lg:flex-[4]">
+          <div
+            class="flex items-center justify-between gap-4 border-b-2 border-black px-4 pt-4 pb-2 sm:px-6"
           >
-            <title id="underwear-title">UBC Rocket League underwear</title>
-            <desc id="underwear-description">
-              A pair of white boxer briefs printed with the UBC Rocket League
-              crest.
-            </desc>
-            <defs>
-              <linearGradient id="fabric" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#ffffff"></stop>
-                <stop offset="0.55" stop-color="#e8edf5"></stop>
-                <stop offset="1" stop-color="#b8c5d8"></stop>
-              </linearGradient>
-              <linearGradient id="waistband" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#1f65a7"></stop>
-                <stop offset="1" stop-color="#102e61"></stop>
-              </linearGradient>
-              <filter
-                id="underwear-shadow"
-                x="-20%"
-                y="-20%"
-                width="140%"
-                height="150%"
-              >
-                <feDropShadow
-                  dx="0"
-                  dy="18"
-                  stdDeviation="16"
-                  flood-color="#000"
-                  flood-opacity="0.42"></feDropShadow>
-              </filter>
-            </defs>
-
-            <ellipse
-              cx="320"
-              cy="551"
-              rx="238"
-              ry="24"
-              fill="#000"
-              opacity="0.24"></ellipse>
-            <g filter="url(#underwear-shadow)">
-              <path
-                d="M92 142 H548 L526 516 H368 L351 366 Q320 338 289 366 L272 516 H114 Z"
-                fill="url(#fabric)"
-                stroke="#d6dfeb"
-                stroke-width="6"
-                stroke-linejoin="round"></path>
-              <path
-                d="M102 164 L121 492 H273 L289 366 Q320 338 351 366 L367 492 H519 L538 164"
-                fill="none"
-                stroke="#aab8cb"
-                stroke-width="4"></path>
-              <path
-                d="M277 161 C270 239 278 323 320 366 C362 323 370 239 363 161 Z"
-                fill="#d5deea"
-                stroke="#aab8cb"
-                stroke-width="4"></path>
-              <path
-                d="M328 177 C350 224 346 294 315 334"
-                fill="none"
-                stroke="#95a5ba"
-                stroke-width="5"
-                stroke-linecap="round"></path>
-              <path d="M119 476 H276" stroke="#f58a1f" stroke-width="9"></path>
-              <path d="M364 476 H521" stroke="#f58a1f" stroke-width="9"></path>
-              <path
-                d="M111 200 C163 187 211 189 258 207"
-                fill="none"
-                stroke="#fff"
-                stroke-width="8"
-                opacity="0.45"></path>
-              <path
-                d="M382 203 C429 188 478 188 530 201"
-                fill="none"
-                stroke="#fff"
-                stroke-width="8"
-                opacity="0.32"></path>
-              <rect
-                x="68"
-                y="62"
-                width="504"
-                height="108"
-                rx="18"
-                fill="url(#waistband)"></rect>
-              <path
-                d="M80 91 H560"
-                stroke="#ffffff"
-                stroke-width="5"
-                opacity="0.85"></path>
-              <path
-                d="M80 145 H560"
-                stroke="#0b2149"
-                stroke-width="6"
-                opacity="0.7"></path>
-              <text
-                x="320"
-                y="134"
-                fill="#ffffff"
-                font-family="Arial, Helvetica, sans-serif"
-                font-size="38"
-                font-weight="800"
-                letter-spacing="9"
-                text-anchor="middle">UBC / RL</text
-              >
-              <image
-                href="/ubc-rl-crest.png"
-                x="132"
-                y="234"
-                width="150"
-                height="155"
-                preserveAspectRatio="xMidYMid meet"
-              />
-              <path
-                d="M410 257 L492 242"
-                stroke="#b5c1d1"
-                stroke-width="6"
-                stroke-linecap="round"
-                opacity="0.6"></path>
-              <path
-                d="M411 284 L500 271"
-                stroke="#b5c1d1"
-                stroke-width="5"
-                stroke-linecap="round"
-                opacity="0.45"></path>
-            </g>
-          </svg>
-          <figcaption
+            <h2 class="text-lg font-black tracking-wide uppercase sm:text-xl">
+              Explore UBC RL
+            </h2>
+            <div
+              id="hero-dots"
+              class="flex gap-2"
+              role="tablist"
+              aria-label="Hero slides"
+            >
+              {
+                heroSlides.map((_, i) => (
+                  <button
+                    type="button"
+                    data-dot={i}
+                    class:list={[
+                      "h-1.5 w-8 border-2 border-black",
+                      i === 0 ? "bg-black" : "bg-white",
+                    ]}
+                    aria-label={`Go to slide ${i + 1}`}
+                  />
+                ))
+              }
+            </div>
+          </div>
+          <div
             class:list={[
-              "-mt-4 text-center",
-              "text-[0.7rem] font-bold tracking-[0.14em] text-[#718096] uppercase",
+              "grid flex-1 grid-cols-1 gap-4 p-4 sm:grid-cols-3 sm:px-6 sm:py-4",
+              "lg:min-h-0 lg:auto-rows-fr lg:overflow-hidden",
             ]}
           >
-            Officially unofficial team kit
-          </figcaption>
-        </figure>
-      </div>
-    </section>
+            {
+              exploreCards.map((card) => (
+                <article class="flex h-full min-h-0 flex-col border-2 border-black bg-neutral-100">
+                  <div class="relative aspect-[4/3] overflow-hidden lg:aspect-auto lg:min-h-0 lg:flex-1">
+                    <img
+                      src={heroImage}
+                      alt=""
+                      class="absolute inset-0 h-full w-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="flex-none border-t-2 border-black p-2 sm:p-3">
+                    <p class="text-sm font-bold uppercase tracking-wide sm:text-base">
+                      {card.title}
+                    </p>
+                    <p class="mt-1 text-xs text-black/70 sm:text-sm">
+                      {card.description}
+                    </p>
+                  </div>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- Sidebar: ~1/6 width -->
+      <aside
+        class="flex flex-col border-t-2 border-black lg:h-full lg:flex-1 lg:border-t-0 lg:border-l-2"
+      >
+        <div class="flex flex-1 flex-col lg:min-h-0 lg:overflow-hidden">
+          <h2
+            class="border-b-2 border-black px-3 pt-3 pb-2 text-sm font-black tracking-wide uppercase sm:text-base"
+          >
+            Upcoming Activities
+          </h2>
+          <div
+            class="flex flex-1 flex-col gap-2 p-2 lg:min-h-0 lg:overflow-hidden lg:px-4"
+          >
+            {
+              upcomingCards.map((card) => (
+                <article class="flex h-20 min-h-0 flex-row items-stretch border-2 border-black bg-neutral-100 lg:h-auto lg:flex-1">
+                  <div class="min-w-0 flex-1 p-2">
+                    <p class="line-clamp-2 text-xs font-bold uppercase tracking-wide">
+                      {card.title}
+                    </p>
+                    <p class="mt-1 text-[0.65rem] text-black/70">{card.meta}</p>
+                  </div>
+                  <div class="w-16 flex-none border-l-2 border-black">
+                    <img
+                      src={heroImage}
+                      alt=""
+                      class="h-full w-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+
+        <div
+          class="flex flex-1 flex-col border-t-2 border-black lg:min-h-0 lg:overflow-hidden"
+        >
+          <h2
+            class="border-b-2 border-black px-3 pt-3 pb-2 text-sm font-black tracking-wide uppercase sm:text-base"
+          >
+            Recent Activities
+          </h2>
+          <div
+            class="flex flex-1 flex-col gap-2 p-2 lg:min-h-0 lg:overflow-hidden lg:px-4"
+          >
+            {
+              recentCards.map((card) => (
+                <article class="flex h-20 min-h-0 flex-row items-stretch border-2 border-black bg-neutral-100 lg:h-auto lg:flex-1">
+                  <div class="min-w-0 flex-1 p-2">
+                    <p class="line-clamp-2 text-xs font-bold uppercase tracking-wide">
+                      {card.title}
+                    </p>
+                    <p class="mt-1 text-[0.65rem] text-black/70">{card.meta}</p>
+                  </div>
+                  <div class="w-16 flex-none border-l-2 border-black">
+                    <img
+                      src={heroImage}
+                      alt=""
+                      class="h-full w-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </aside>
+    </div>
   </main>
+
+  <script>
+    const slides = document.querySelectorAll<HTMLElement>(
+      "#hero-carousel [data-slide]",
+    );
+    const dots = document.querySelectorAll<HTMLButtonElement>(
+      "#hero-dots [data-dot]",
+    );
+
+    let active = 0;
+    let timer: ReturnType<typeof setInterval>;
+
+    function show(index: number) {
+      active = (index + slides.length) % slides.length;
+
+      slides.forEach((slide, i) => {
+        slide.classList.toggle("opacity-100", i === active);
+        slide.classList.toggle("opacity-0", i !== active);
+        slide.classList.toggle("pointer-events-none", i !== active);
+      });
+
+      dots.forEach((dot, i) => {
+        dot.classList.toggle("bg-black", i === active);
+        dot.classList.toggle("bg-white", i !== active);
+      });
+    }
+
+    function start() {
+      timer = setInterval(() => show(active + 1), 5000);
+    }
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener("click", () => {
+        show(i);
+        clearInterval(timer);
+        start();
+      });
+    });
+
+    start();
+  </script>
 </BaseLayout>
