@@ -1,7 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const player = (ign: string, image: string | null = "/pfp/drag/drag1.jpg") => ({
+const defaultPlayerImage = "/pfp/Construction-card.jpg";
+const player = (ign: string, image = defaultPlayerImage) => ({
   ign,
   image,
 });
@@ -26,90 +27,23 @@ const seasons = [
     summary: null,
     terms: [
       {
-        label: "Tryouts upcoming:",
-        detail: null,
-        compactLabel: true,
-        tryoutDate: "August 25, 2026",
-        tryoutTime: "8:00 PM",
-        tryoutDatetime: "2026-08-25T20:00:00-07:00",
         teams: [
           {
             name: "UBC Gold",
             tier: "Main roster",
             tone: "gold",
-            players: [
-              player("TBD", null),
-              player("TBD", null),
-              player("TBD", null),
-            ],
+            substitute: null,
+            players: [player("J"), player("Fervent"), player("Vizion")],
           },
           {
             name: "UBC Blue",
             tier: null,
             tone: "blue",
-            players: [
-              player("TBD", null),
-              player("TBD", null),
-              player("TBD", null),
-            ],
-          },
-        ],
-      },
-    ],
-  },
-  {
-    year: "2025-2026",
-    status: "Previous season",
-    summary: null,
-    terms: [
-      {
-        label: "Term 2",
-        detail: null,
-        compactLabel: false,
-        tryoutDate: null,
-        tryoutTime: null,
-        tryoutDatetime: null,
-        teams: [
-          {
-            name: "UBC Gold",
-            tier: "Main roster",
-            tone: "gold",
-            players: [player("J"), player("Vizion"), player("ExpiredKetchup")],
-          },
-          {
-            name: "UBC Blue",
-            tier: null,
-            tone: "blue",
-            players: [
-              player("Cow_B"),
-              player("Dragussy"),
-              player("Puffyfish14"),
-            ],
-          },
-        ],
-      },
-      {
-        label: "Term 1",
-        detail: null,
-        compactLabel: false,
-        tryoutDate: null,
-        tryoutTime: null,
-        tryoutDatetime: null,
-        teams: [
-          {
-            name: "UBC Gold",
-            tier: "Main roster",
-            tone: "gold",
-            players: [player("J"), player("Vizion"), player("Cow_B")],
-          },
-          {
-            name: "UBC Blue",
-            tier: null,
-            tone: "blue",
+            substitute: "Xeno",
             players: [
               player("ExpiredKetchup"),
-              player("simp"),
-              player("Puffyfish14"),
+              player("Dragoius", "/pfp/drag/drag1.jpg"),
+              player("rome"),
             ],
           },
         ],
@@ -119,6 +53,29 @@ const seasons = [
 ];
 
 const historicalSeasons = [
+  {
+    year: "2025-2026",
+    terms: [
+      {
+        label: "Term 2",
+        teams: [
+          historicalTeam("Gold", "gold", ["J", "Vizion", "ExpiredKetchup"]),
+          historicalTeam("Blue", "blue", ["Cow_B", "Dragoius", "Puffyfish14"]),
+        ],
+      },
+      {
+        label: "Term 1",
+        teams: [
+          historicalTeam("Gold", "gold", ["J", "Vizion", "Cow_B"]),
+          historicalTeam("Blue", "blue", [
+            "ExpiredKetchup",
+            "Dragoius",
+            "Puffyfish14",
+          ]),
+        ],
+      },
+    ],
+  },
   {
     year: "2024-2025",
     terms: [
@@ -238,6 +195,36 @@ const historicalSeasons = [
       },
     ],
   },
+  {
+    year: "2020-2021",
+    terms: [
+      {
+        label: "Term 2",
+        teams: [
+          historicalTeam("Gold", "gold", ["Harrylakers", "Frodo", "Ski"]),
+          historicalTeam("Blue", "blue", ["Fervent", "Padster", "Fatal MB"]),
+        ],
+      },
+      {
+        label: "Term 1",
+        teams: [
+          historicalTeam("Gold", "gold", ["Harrylakers", "Frodo", "Ski"]),
+          historicalTeam("Blue", "blue", ["Fervent", "Padster", "Giftedgecko"]),
+        ],
+      },
+    ],
+  },
+  {
+    year: "2019-2020",
+    terms: [
+      {
+        label: "Term 2",
+        teams: [
+          historicalTeam("Gold", "gold", ["Harrylakers", "Padster", "Ski"]),
+        ],
+      },
+    ],
+  },
 ];
 ---
 
@@ -307,173 +294,139 @@ const historicalSeasons = [
             </header>
 
             <div class="grid gap-16 pt-12">
-              {terms.map(
-                ({
-                  label,
-                  detail,
-                  compactLabel,
-                  tryoutDate,
-                  tryoutTime,
-                  tryoutDatetime,
-                  teams,
-                }) => (
-                  <section
+              {terms.map(({ teams }) => (
+                <section
+                  class:list={[
+                    "border border-[#ffffff17] bg-[#0b0f16]",
+                    "p-[clamp(1.25rem,3vw,2.5rem)]",
+                    "max-[600px]:mx-[-0.25rem]",
+                  ]}
+                  aria-label={`${year} teams`}
+                >
+                  <div
                     class:list={[
-                      "border border-[#ffffff17] bg-[#0b0f16]",
-                      "p-[clamp(1.25rem,3vw,2.5rem)]",
-                      "max-[600px]:mx-[-0.25rem]",
+                      "grid grid-cols-2 gap-[clamp(1rem,2.5vw,2rem)]",
+                      "max-[950px]:grid-cols-1",
                     ]}
-                    aria-label={`${year} ${label}${tryoutDate ? ` on ${tryoutDate} at ${tryoutTime}` : ""}`}
                   >
-                    <header
-                      class:list={[
-                        "mb-8 flex items-end justify-between gap-8",
-                        "max-[600px]:flex-col max-[600px]:items-start",
-                        "max-[600px]:gap-2",
-                      ]}
-                    >
-                      {compactLabel ? (
-                        <p
+                    {teams.map(({ name, tier, tone, substitute, players }) => (
+                      <article
+                        class:list={[
+                          "relative overflow-hidden border",
+                          "bg-[linear-gradient(145deg,color-mix(in_srgb,var(--team-color)_10%,transparent),transparent_48%),#080b10]",
+                          "p-[clamp(1rem,2.2vw,1.75rem)]",
+                          "[border-color:color-mix(in_srgb,var(--team-color)_30%,transparent)]",
+                          "before:absolute before:inset-y-0 before:left-0 before:w-[3px]",
+                          "before:bg-[var(--team-color)] before:content-['']",
+                          teamToneClasses[tone as TeamTone],
+                        ]}
+                      >
+                        <header
                           class:list={[
-                            "m-0 text-[0.8rem] font-extrabold",
-                            "tracking-[0.15em] text-[#727e8f] uppercase",
+                            "mb-[clamp(1.5rem,3vw,2.5rem)]",
+                            "flex min-h-14 items-start justify-between gap-4",
                           ]}
                         >
-                          {label}
-                        </p>
-                      ) : (
-                        <h3
-                          class:list={[
-                            "m-0 text-[clamp(1.35rem,2.5vw,2.1rem)] font-bold",
-                            "tracking-[-0.04em] uppercase",
-                          ]}
-                        >
-                          {label}
-                        </h3>
-                      )}
-                      {tryoutDate && tryoutTime && tryoutDatetime ? (
-                        <p
-                          class:list={[
-                            "m-0 text-[0.8rem] font-extrabold",
-                            "tracking-[0.15em] text-[#727e8f] uppercase",
-                          ]}
-                        >
-                          <time datetime={tryoutDatetime}>
-                            {tryoutDate} / {tryoutTime}
-                          </time>
-                        </p>
-                      ) : (
-                        detail && (
-                          <p
-                            class:list={[
-                              "m-0 text-[0.8rem] font-extrabold",
-                              "tracking-[0.15em] text-[#727e8f] uppercase",
-                            ]}
-                          >
-                            {detail}
-                          </p>
-                        )
-                      )}
-                    </header>
-
-                    <div
-                      class:list={[
-                        "grid grid-cols-2 gap-[clamp(1rem,2.5vw,2rem)]",
-                        "max-[950px]:grid-cols-1",
-                      ]}
-                    >
-                      {teams.map(({ name, tier, tone, players }) => (
-                        <article
-                          class:list={[
-                            "relative overflow-hidden border",
-                            "bg-[linear-gradient(145deg,color-mix(in_srgb,var(--team-color)_10%,transparent),transparent_48%),#080b10]",
-                            "p-[clamp(1rem,2.2vw,1.75rem)]",
-                            "[border-color:color-mix(in_srgb,var(--team-color)_30%,transparent)]",
-                            "before:absolute before:inset-y-0 before:left-0 before:w-[3px]",
-                            "before:bg-[var(--team-color)] before:content-['']",
-                            teamToneClasses[tone as TeamTone],
-                          ]}
-                        >
-                          <header
-                            class:list={[
-                              "mb-[clamp(1.5rem,3vw,2.5rem)]",
-                              "flex min-h-14 items-start justify-between gap-4",
-                            ]}
-                          >
-                            <div>
-                              <h4
+                          <div>
+                            <h4
+                              class:list={[
+                                "m-0 text-[clamp(1.15rem,2vw,1.65rem)] font-bold",
+                                "tracking-[-0.035em] uppercase",
+                              ]}
+                            >
+                              {name}
+                            </h4>
+                            {tier && (
+                              <p
                                 class:list={[
-                                  "m-0 text-[clamp(1.15rem,2vw,1.65rem)] font-bold",
-                                  "tracking-[-0.035em] uppercase",
+                                  "mt-[0.4rem] mb-0 text-[0.62rem] font-black",
+                                  "tracking-[0.18em] text-[var(--team-color)] uppercase",
                                 ]}
                               >
-                                {name}
-                              </h4>
-                              {tier && (
-                                <p
-                                  class:list={[
-                                    "mt-[0.4rem] mb-0 text-[0.62rem] font-black",
-                                    "tracking-[0.18em] text-[var(--team-color)] uppercase",
-                                  ]}
-                                >
-                                  {tier}
-                                </p>
-                              )}
-                            </div>
-                          </header>
+                                {tier}
+                              </p>
+                            )}
+                          </div>
+                          {substitute && (
+                            <p
+                              class:list={[
+                                "m-0 flex flex-none items-center overflow-hidden border",
+                                "bg-[color-mix(in_srgb,var(--team-color)_8%,#080b10)]",
+                                "[border-color:color-mix(in_srgb,var(--team-color)_45%,transparent)]",
+                              ]}
+                              aria-label={`Substitute: ${substitute}`}
+                            >
+                              <span
+                                class:list={[
+                                  "self-stretch bg-[var(--team-color)] px-2 py-2",
+                                  "text-[0.58rem] font-black tracking-[0.15em]",
+                                  "text-[#05070b] uppercase",
+                                ]}
+                              >
+                                Sub
+                              </span>
+                              <strong class="px-3 py-2 text-[0.75rem] tracking-[0.02em]">
+                                {substitute}
+                              </strong>
+                            </p>
+                          )}
+                        </header>
 
-                          <ul
-                            class:list={[
-                              "m-0 grid list-none grid-cols-3 p-0",
-                              "gap-[clamp(0.55rem,1.5vw,1rem)]",
-                            ]}
-                            aria-label={`${name} players`}
-                          >
-                            {players.map(({ ign, image }) => (
-                              <li class="min-w-0">
-                                <div
-                                  class:list={[
-                                    "relative aspect-[4/5] overflow-hidden",
-                                    "border border-[#ffffff20]",
-                                    "bg-[linear-gradient(135deg,transparent_49.5%,#ffffff0a_50%,transparent_50.5%),linear-gradient(45deg,transparent_49.5%,#ffffff0a_50%,transparent_50.5%),linear-gradient(160deg,color-mix(in_srgb,var(--team-color)_10%,transparent),#0d121b)]",
-                                    "before:absolute before:top-[0.45rem] before:left-[0.45rem]",
-                                    "before:h-4 before:w-4 before:border-t before:border-l",
-                                    "before:content-['']",
-                                    "after:absolute after:right-[0.45rem] after:bottom-[0.45rem]",
-                                    "after:h-4 after:w-4 after:border-r after:border-b",
-                                    "after:content-['']",
-                                    "before:[border-color:color-mix(in_srgb,var(--team-color)_70%,transparent)]",
-                                    "after:[border-color:color-mix(in_srgb,var(--team-color)_70%,transparent)]",
-                                  ]}
-                                >
-                                  {image && (
-                                    <img
-                                      class="relative z-[1] block h-full w-full object-cover"
-                                      src={image}
-                                      alt={`Portrait of ${ign}`}
-                                      loading="lazy"
-                                    />
-                                  )}
-                                </div>
-                                <strong
-                                  class:list={[
-                                    "mt-3 block min-w-0 text-center leading-[1.2] [overflow-wrap:anywhere]",
-                                    ign === "TBD"
-                                      ? "text-[0.65rem] tracking-[0.15em] text-[#687384]"
-                                      : "text-[clamp(0.65rem,1.15vw,0.9rem)] tracking-[0.02em]",
-                                  ]}
-                                >
-                                  {ign}
-                                </strong>
-                              </li>
-                            ))}
-                          </ul>
-                        </article>
-                      ))}
-                    </div>
-                  </section>
-                ),
-              )}
+                        <ul
+                          class:list={[
+                            "m-0 grid list-none grid-cols-3 p-0",
+                            "gap-[clamp(0.55rem,1.5vw,1rem)]",
+                          ]}
+                          aria-label={`${name} players`}
+                        >
+                          {players.map(({ ign, image }) => (
+                            <li class="min-w-0">
+                              <div
+                                class:list={[
+                                  "relative aspect-[4/5] overflow-hidden",
+                                  "border border-[#ffffff20]",
+                                  "bg-[linear-gradient(135deg,transparent_49.5%,#ffffff0a_50%,transparent_50.5%),linear-gradient(45deg,transparent_49.5%,#ffffff0a_50%,transparent_50.5%),linear-gradient(160deg,color-mix(in_srgb,var(--team-color)_10%,transparent),#0d121b)]",
+                                  "before:absolute before:top-[0.45rem] before:left-[0.45rem]",
+                                  "before:h-4 before:w-4 before:border-t before:border-l",
+                                  "before:content-['']",
+                                  "after:absolute after:right-[0.45rem] after:bottom-[0.45rem]",
+                                  "after:h-4 after:w-4 after:border-r after:border-b",
+                                  "after:content-['']",
+                                  "before:[border-color:color-mix(in_srgb,var(--team-color)_70%,transparent)]",
+                                  "after:[border-color:color-mix(in_srgb,var(--team-color)_70%,transparent)]",
+                                ]}
+                              >
+                                {image && (
+                                  <img
+                                    class="relative z-[1] block h-full w-full object-cover"
+                                    src={image}
+                                    alt={
+                                      image === defaultPlayerImage
+                                        ? ""
+                                        : `Portrait of ${ign}`
+                                    }
+                                    loading="lazy"
+                                  />
+                                )}
+                              </div>
+                              <strong
+                                class:list={[
+                                  "mt-3 block min-w-0 text-center leading-[1.2] [overflow-wrap:anywhere]",
+                                  ign === "TBD"
+                                    ? "text-[0.65rem] tracking-[0.15em] text-[#687384]"
+                                    : "text-[clamp(0.65rem,1.15vw,0.9rem)] tracking-[0.02em]",
+                                ]}
+                              >
+                                {ign}
+                              </strong>
+                            </li>
+                          ))}
+                        </ul>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+              ))}
             </div>
           </article>
         ))
@@ -483,7 +436,6 @@ const historicalSeasons = [
     <section
       id="earlier-seasons"
       class:list={[
-        "border-t border-[#ffffff1a]",
         "bg-[radial-gradient(circle_at_15%_25%,#174d9624,transparent_28rem),#05070b]",
         "px-[clamp(1.25rem,6vw,6rem)] py-[clamp(4rem,8vw,7rem)]",
       ]}
