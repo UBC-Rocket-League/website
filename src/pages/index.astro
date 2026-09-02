@@ -1,5 +1,22 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { heroImage, heroSlides, exploreCards } from "./index-content.js";
+import { eventCategories, events } from "./index-events.js";
+
+const fallbackStreamLink = "https://www.twitch.tv/ubcesports";
+
+const eventDateFormatter = new Intl.DateTimeFormat("en-US", {
+  month: "short",
+  day: "numeric",
+});
+const eventTimeFormatter = new Intl.DateTimeFormat("en-US", {
+  hour: "numeric",
+  minute: "2-digit",
+});
+
+function eventStart(event: (typeof events)[number]) {
+  return new Date(`${event.date}T${event.time}:00`);
+}
 ---
 
 <BaseLayout
@@ -7,190 +24,359 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   description="Home of the UBC Rocket League community."
   overlayHeader
 >
-  <main>
-    <section
-      class:list={[
-        "grid min-h-svh place-items-center",
-        "bg-[radial-gradient(circle_at_75%_65%,#1c5db833,transparent_34rem),linear-gradient(135deg,#080b10_0%,#05070b_60%,#0a1830_100%)]",
-        "px-[clamp(1.25rem,8vw,8rem)] pt-[clamp(9rem,18vw,14rem)] pb-20",
-        "max-[850px]:pt-44",
-      ]}
-    >
+  <main
+    class:list={[
+      "bg-[#0e1336] font-body text-white/85",
+      "lg:h-svh lg:overflow-hidden",
+    ]}
+  >
+    <div class="flex flex-col lg:h-full">
+      <!-- Hero carousel: top 2/3 -->
       <div
-        class:list={[
-          "grid w-full max-w-[78rem] items-center",
-          "grid-cols-[minmax(0,1.2fr)_minmax(18rem,0.8fr)]",
-          "gap-[clamp(2rem,6vw,6rem)]",
-          "max-[850px]:grid-cols-[minmax(0,1fr)]",
-        ]}
-      >
-        <div>
-          <h1
-            class:list={[
-              "m-0 max-w-[12ch]",
-              "text-[clamp(3.5rem,7vw,7rem)] leading-[0.9] font-bold",
-              "tracking-[-0.07em] uppercase",
-            ]}
-          >
-            Our homepage went for boost.
-          </h1>
-          <p
-            class:list={[
-              "mt-8 mb-0 max-w-[38rem]",
-              "text-[clamp(1rem,2vw,1.25rem)] leading-[1.6] text-[#aeb6c4]",
-            ]}
-          >
-            It'll rotate back eventually. Unlike your solo queue teammate.
-          </p>
+          id="hero-carousel"
+          class="relative h-[70vh] overflow-hidden bg-black sm:h-[60vh] lg:h-auto lg:min-h-0 lg:flex-[7]"
+        >
+          {
+            heroSlides.map((slide, i) => (
+              <div
+                data-slide={i}
+                class:list={[
+                  "absolute inset-0 transition-opacity duration-700",
+                  i === 0 ? "opacity-100" : "pointer-events-none opacity-0",
+                ]}
+              >
+                <img
+                  src={heroImage}
+                  alt=""
+                  class="h-full w-full object-cover object-center lg:object-[50%_30%]"
+                  loading={i === 0 ? "eager" : "lazy"}
+                />
+                <div class="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(14,19,54,0.88)_0%,rgba(14,19,54,0)_33%)]" />
+                <div class="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.65)_0%,rgba(0,0,0,0)_18%)]" />
+                <div class="absolute inset-y-0 left-0 flex items-center">
+                  <div class="m-4 max-w-md sm:m-8">
+                    <p class="font-display text-2xl font-black tracking-tight text-white uppercase [text-shadow:0_2px_6px_rgba(0,0,0,0.65)] sm:text-4xl">
+                      {slide.title}
+                    </p>
+                    <p class="mt-2 text-sm text-white/85 [text-shadow:0_1px_4px_rgba(0,0,0,0.6)] sm:text-base">
+                      {slide.subtitle}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
         </div>
 
-        <figure
-          class:list={[
-            "m-0 w-full rotate-2",
-            "max-[850px]:mx-auto max-[850px]:w-full",
-            "max-[850px]:max-w-[28rem] max-[850px]:rotate-1",
-          ]}
-        >
-          <svg
-            class="block h-auto w-full"
-            viewBox="0 0 640 610"
-            role="img"
-            aria-labelledby="underwear-title underwear-description"
+        <!-- Subheader + 3 cards: bottom 1/3 -->
+        <div class="flex flex-col lg:min-h-0 lg:flex-[4]">
+          <div
+            class="flex items-center justify-between gap-4 px-4 pt-4 pb-3 sm:px-6"
           >
-            <title id="underwear-title">UBC Rocket League underwear</title>
-            <desc id="underwear-description">
-              A pair of white boxer briefs printed with the UBC Rocket League
-              crest.
-            </desc>
-            <defs>
-              <linearGradient id="fabric" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#ffffff"></stop>
-                <stop offset="0.55" stop-color="#e8edf5"></stop>
-                <stop offset="1" stop-color="#b8c5d8"></stop>
-              </linearGradient>
-              <linearGradient id="waistband" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#1f65a7"></stop>
-                <stop offset="1" stop-color="#102e61"></stop>
-              </linearGradient>
-              <filter
-                id="underwear-shadow"
-                x="-20%"
-                y="-20%"
-                width="140%"
-                height="150%"
-              >
-                <feDropShadow
-                  dx="0"
-                  dy="18"
-                  stdDeviation="16"
-                  flood-color="#000"
-                  flood-opacity="0.42"></feDropShadow>
-              </filter>
-            </defs>
-
-            <ellipse
-              cx="320"
-              cy="551"
-              rx="238"
-              ry="24"
-              fill="#000"
-              opacity="0.24"></ellipse>
-            <g filter="url(#underwear-shadow)">
-              <path
-                d="M92 142 H548 L526 516 H368 L351 366 Q320 338 289 366 L272 516 H114 Z"
-                fill="url(#fabric)"
-                stroke="#d6dfeb"
-                stroke-width="6"
-                stroke-linejoin="round"></path>
-              <path
-                d="M102 164 L121 492 H273 L289 366 Q320 338 351 366 L367 492 H519 L538 164"
-                fill="none"
-                stroke="#aab8cb"
-                stroke-width="4"></path>
-              <path
-                d="M277 161 C270 239 278 323 320 366 C362 323 370 239 363 161 Z"
-                fill="#d5deea"
-                stroke="#aab8cb"
-                stroke-width="4"></path>
-              <path
-                d="M328 177 C350 224 346 294 315 334"
-                fill="none"
-                stroke="#95a5ba"
-                stroke-width="5"
-                stroke-linecap="round"></path>
-              <path d="M119 476 H276" stroke="#f58a1f" stroke-width="9"></path>
-              <path d="M364 476 H521" stroke="#f58a1f" stroke-width="9"></path>
-              <path
-                d="M111 200 C163 187 211 189 258 207"
-                fill="none"
-                stroke="#fff"
-                stroke-width="8"
-                opacity="0.45"></path>
-              <path
-                d="M382 203 C429 188 478 188 530 201"
-                fill="none"
-                stroke="#fff"
-                stroke-width="8"
-                opacity="0.32"></path>
-              <rect
-                x="68"
-                y="62"
-                width="504"
-                height="108"
-                rx="18"
-                fill="url(#waistband)"></rect>
-              <path
-                d="M80 91 H560"
-                stroke="#ffffff"
-                stroke-width="5"
-                opacity="0.85"></path>
-              <path
-                d="M80 145 H560"
-                stroke="#0b2149"
-                stroke-width="6"
-                opacity="0.7"></path>
-              <text
-                x="320"
-                y="134"
-                fill="#ffffff"
-                font-family="Arial, Helvetica, sans-serif"
-                font-size="38"
-                font-weight="800"
-                letter-spacing="9"
-                text-anchor="middle">UBC / RL</text
-              >
-              <image
-                href="/ubc-rl-crest.png"
-                x="132"
-                y="234"
-                width="150"
-                height="155"
-                preserveAspectRatio="xMidYMid meet"
-              />
-              <path
-                d="M410 257 L492 242"
-                stroke="#b5c1d1"
-                stroke-width="6"
-                stroke-linecap="round"
-                opacity="0.6"></path>
-              <path
-                d="M411 284 L500 271"
-                stroke="#b5c1d1"
-                stroke-width="5"
-                stroke-linecap="round"
-                opacity="0.45"></path>
-            </g>
-          </svg>
-          <figcaption
+            <h2
+              class="font-display text-lg font-black tracking-wide text-[#0e1336] uppercase sm:text-xl"
+            >
+              Explore UBC RL
+            </h2>
+            <div
+              id="hero-dots"
+              class="flex gap-2"
+              role="tablist"
+              aria-label="Hero slides"
+            >
+              {
+                heroSlides.map((_, i) => (
+                  <button
+                    type="button"
+                    data-dot={i}
+                    class:list={[
+                      "h-1.5 w-8 cursor-pointer transition-colors duration-150 hover:bg-[#1a3fa3]",
+                      i === 0 ? "bg-[#1e19bf]" : "bg-white/25",
+                    ]}
+                    aria-label={`Go to slide ${i + 1}`}
+                  />
+                ))
+              }
+            </div>
+          </div>
+          <div
             class:list={[
-              "-mt-4 text-center",
-              "text-[0.7rem] font-bold tracking-[0.14em] text-[#718096] uppercase",
+              "grid flex-1 grid-cols-1 gap-4 p-4 sm:grid-cols-3 sm:px-6 sm:py-4",
+              "lg:min-h-0 lg:auto-rows-fr lg:overflow-hidden",
             ]}
           >
-            Officially unofficial team kit
-          </figcaption>
-        </figure>
-      </div>
-    </section>
+            {
+              exploreCards.map((card) => (
+                <a
+                  href={card.href}
+                  class="flex h-full min-h-0 flex-col bg-gradient-to-t from-[#1b45b3] to-[#101843] no-underline shadow-[0_8px_14px_-8px_rgba(0,0,0,0.55)] transition-transform duration-200 ease-out hover:-translate-y-1.5"
+                >
+                  <div class="relative aspect-[4/3] overflow-hidden lg:aspect-auto lg:min-h-0 lg:flex-1">
+                    <img
+                      src={card.image}
+                      alt=""
+                      class="absolute inset-0 h-full w-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="flex-none p-2 sm:p-3">
+                    <p class="font-display text-sm font-bold tracking-wide text-[#b0efff] uppercase sm:text-base">
+                      {card.title}
+                    </p>
+                    <p class="mt-1 text-xs text-white sm:text-sm">
+                      {card.description}
+                    </p>
+                  </div>
+                </a>
+              ))
+            }
+          </div>
+        </div>
+    </div>
   </main>
+
+  <!-- When We Play: event schedule -->
+  <section
+    class:list={[
+      "relative bg-[linear-gradient(135deg,#b5f6ff_0%,#0891e1_100%)]",
+      "px-4 py-12 sm:px-6 lg:px-12 lg:py-16",
+      "lg:flex lg:min-h-svh lg:flex-col lg:justify-center",
+    ]}
+  >
+    <div
+      class="pointer-events-none absolute inset-x-0 top-0 h-40 sm:h-56 lg:h-72"
+      style="background: linear-gradient(to bottom,
+        rgba(14,19,54,1) 0%,
+        rgba(14,19,54,0.738) 19%,
+        rgba(14,19,54,0.541) 34%,
+        rgba(14,19,54,0.382) 47%,
+        rgba(14,19,54,0.278) 56.5%,
+        rgba(14,19,54,0.194) 65%,
+        rgba(14,19,54,0.126) 73%,
+        rgba(14,19,54,0.075) 80.2%,
+        rgba(14,19,54,0.042) 86.1%,
+        rgba(14,19,54,0.021) 91%,
+        rgba(14,19,54,0.008) 95.2%,
+        rgba(14,19,54,0.002) 98.2%,
+        rgba(14,19,54,0) 100%);"
+      aria-hidden="true"
+    />
+    <div class="mx-auto w-full max-w-6xl">
+      <div class="mb-8 flex items-start justify-between gap-4 sm:mb-10">
+        <div>
+          <h2 class="font-display text-3xl font-black tracking-tight text-[#0e1336] uppercase sm:text-4xl">
+            Upcoming Events
+          </h2>
+          <p class="mt-1 text-xs text-[#0e1336]/60">
+            * time in PDT/Vancouver
+          </p>
+        </div>
+        <div class="flex flex-none items-center gap-3 pt-1">
+          <a
+            href={fallbackStreamLink}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="UBC Esports on Twitch"
+            class="text-[#9146ff] hover:opacity-70"
+          >
+            <svg class="h-12 w-12 sm:h-14 sm:w-14" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0 1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.572 11.143-3.429 3.428h-3.428l-3 3v-3H6.857V1.714h13.715Z"
+              />
+            </svg>
+          </a>
+          <a
+            href="https://discord.gg/daFX3cDWh2"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="UBC RL on Discord"
+            class="text-[#5865f2] hover:opacity-70"
+          >
+            <svg class="h-12 w-12 sm:h-14 sm:w-14" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M20.32 4.37a19.8 19.8 0 0 0-4.89-1.52.08.08 0 0 0-.08.04c-.21.37-.44.86-.61 1.25a18.3 18.3 0 0 0-5.48 0 12.6 12.6 0 0 0-.62-1.25.08.08 0 0 0-.08-.04A19.7 19.7 0 0 0 3.68 4.37a.07.07 0 0 0-.03.03C.53 9.05-.32 13.58.1 18.06a.08.08 0 0 0 .03.05 19.9 19.9 0 0 0 5.99 3.03.08.08 0 0 0 .09-.03c.46-.63.87-1.3 1.22-1.99a.08.08 0 0 0-.04-.11 13.1 13.1 0 0 1-1.87-.89.08.08 0 0 1-.01-.13l.37-.29a.07.07 0 0 1 .08-.01c3.93 1.79 8.18 1.79 12.06 0a.07.07 0 0 1 .08.01l.37.29a.08.08 0 0 1-.01.13c-.6.35-1.23.65-1.87.89a.08.08 0 0 0-.04.11c.36.7.77 1.36 1.23 1.99a.08.08 0 0 0 .08.03 19.8 19.8 0 0 0 6-3.03.08.08 0 0 0 .03-.05c.5-5.18-.84-9.68-3.55-13.66a.06.06 0 0 0-.03-.03ZM8.02 15.33c-1.18 0-2.16-1.08-2.16-2.42 0-1.33.96-2.42 2.16-2.42 1.21 0 2.18 1.1 2.16 2.42 0 1.34-.96 2.42-2.16 2.42Zm7.98 0c-1.18 0-2.16-1.08-2.16-2.42 0-1.33.96-2.42 2.16-2.42 1.21 0 2.17 1.1 2.16 2.42 0 1.34-.95 2.42-2.16 2.42Z"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-4 lg:flex-row lg:items-stretch">
+        {
+          eventCategories.map((category) => {
+            const items = events.filter((event) => event.category === category);
+            return (
+              <div class="flex h-[28rem] flex-1 flex-col bg-gradient-to-b from-[#2d344a] to-[#0e1336] p-5 shadow-[0_8px_14px_-8px_rgba(0,0,0,0.55)] transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-[0_8px_14px_-8px_rgba(0,0,0,0.55),0_0_36px_6px_rgba(30,25,191,0.3)]">
+                <p class="font-display flex-none text-base font-black tracking-wide text-[#7195ff] uppercase sm:text-lg">
+                  {category}
+                </p>
+                <ul class="mt-4 flex min-h-0 flex-1 flex-col divide-y divide-white/10 overflow-y-auto">
+                  {items.map((event) => (
+                    <li class="flex items-start justify-between gap-3 py-3 first:pt-0 last:pb-0">
+                      <div class="min-w-0">
+                        <p class="font-display text-sm font-bold tracking-wide text-white uppercase sm:text-base">
+                          {event.title}
+                        </p>
+                        {event.team && (
+                          <span class="mt-1 inline-flex items-center gap-1.5 text-xs font-bold tracking-wide text-white/60 uppercase">
+                            <span
+                              class="h-1.5 w-1.5 flex-none"
+                              style={{
+                                background:
+                                  event.team === "Gold" ? "#d9a441" : "#4d91ff",
+                              }}
+                            />
+                            {event.team}
+                          </span>
+                        )}
+                        {event.streamed && (
+                          <span class="mt-1 block text-[0.65rem] font-bold tracking-wide text-[#7195ff] uppercase">
+                            Streamed
+                          </span>
+                        )}
+                      </div>
+                      <div class="flex-none text-right">
+                        <p class="text-xs font-bold text-[#0069ff] uppercase">
+                          {eventDateFormatter.format(eventStart(event))}
+                        </p>
+                        <p class="text-[0.65rem] text-white/60">
+                          {eventTimeFormatter.format(eventStart(event))}
+                        </p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })
+        }
+      </div>
+
+      <div
+        id="live-status"
+        class="mt-4 flex flex-col items-start justify-between gap-4 bg-[#0e1336] p-5 shadow-[0_8px_14px_-8px_rgba(0,0,0,0.55)] sm:flex-row sm:items-center"
+      >
+        <div class="flex items-center gap-3">
+          <span
+            id="live-dot"
+            class="h-2.5 w-2.5 flex-none rounded-full bg-white/20"
+          />
+          <div>
+            <p
+              id="live-label"
+              class="text-xs font-bold tracking-wide text-white/50 uppercase"
+            >
+              No Stream Right Now
+            </p>
+            <p
+              id="live-title"
+              class="font-display text-base font-black tracking-wide text-white/70 uppercase sm:text-lg"
+            >
+              Check back during a scheduled event
+            </p>
+          </div>
+        </div>
+        <a
+          id="live-link"
+          href={fallbackStreamLink}
+          target="_blank"
+          rel="noreferrer"
+          class="hidden flex-none bg-[#1e19bf] px-4 py-3 text-xs font-black tracking-wide text-white uppercase hover:bg-[#2a24e0]"
+        >
+          Watch on <span id="live-platform">Twitch</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline define:vars={{ events, fallbackStreamLink }}>
+    function eventWindow(event) {
+      const start = new Date(`${event.date}T${event.time}:00`);
+      const end = new Date(start.getTime() + event.durationMinutes * 60000);
+      return { start, end };
+    }
+
+    function findLiveEvent() {
+      const now = new Date();
+      return events.find((event) => {
+        if (!event.streamed) return false;
+        const { start, end } = eventWindow(event);
+        return now >= start && now <= end;
+      });
+    }
+
+    function renderLiveStatus() {
+      const dot = document.getElementById("live-dot");
+      const label = document.getElementById("live-label");
+      const title = document.getElementById("live-title");
+      const link = document.getElementById("live-link");
+      const platform = document.getElementById("live-platform");
+      if (!dot || !label || !title || !link || !platform) return;
+
+      const live = findLiveEvent();
+
+      dot.classList.toggle("bg-red-500", Boolean(live));
+      dot.classList.toggle("animate-pulse", Boolean(live));
+      dot.classList.toggle("bg-white/20", !live);
+      label.classList.toggle("text-red-400", Boolean(live));
+      label.classList.toggle("text-white/50", !live);
+      title.classList.toggle("text-white", Boolean(live));
+      title.classList.toggle("text-white/70", !live);
+      link.classList.toggle("hidden", !live);
+
+      label.textContent = live ? "Live Now" : "No Stream Right Now";
+      title.textContent = live ? live.title : "Check back during a scheduled event";
+
+      if (live) {
+        link.href = live.link || fallbackStreamLink;
+        platform.textContent = live.platform || "Twitch";
+      }
+    }
+
+    renderLiveStatus();
+    setInterval(renderLiveStatus, 30000);
+  </script>
+
+  <script>
+    const slides = document.querySelectorAll<HTMLElement>(
+      "#hero-carousel [data-slide]",
+    );
+    const dots = document.querySelectorAll<HTMLButtonElement>(
+      "#hero-dots [data-dot]",
+    );
+
+    let active = 0;
+    let timer: ReturnType<typeof setInterval>;
+
+    function show(index: number) {
+      active = (index + slides.length) % slides.length;
+
+      slides.forEach((slide, i) => {
+        slide.classList.toggle("opacity-100", i === active);
+        slide.classList.toggle("opacity-0", i !== active);
+        slide.classList.toggle("pointer-events-none", i !== active);
+      });
+
+      dots.forEach((dot, i) => {
+        dot.classList.toggle("bg-[#1e19bf]", i === active);
+        dot.classList.toggle("bg-white/25", i !== active);
+      });
+    }
+
+    function start() {
+      timer = setInterval(() => show(active + 1), 5000);
+    }
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener("click", () => {
+        show(i);
+        clearInterval(timer);
+        start();
+      });
+    });
+
+    start();
+  </script>
 </BaseLayout>

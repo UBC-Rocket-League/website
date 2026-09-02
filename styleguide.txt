@@ -1,0 +1,19 @@
+Colors:
+- #0069ff -> card text important info non-title (eg. date)
+- #95b3ff -> card background
+- #7195ff -> header/subjeader text
+- #0e1336 -> main background - image overlay fade for text bg
+- #2d344a -> footer and card header + content
+- #b5f6ff -> new section background (faded to #0891e1)
+- #1e19bf -> accent?
+- #0891e1 -> new section background (faded to #b5f6ff)
+- #3a468a -> fade 2
+
+Rules:
+- square edges for sections/cards etc (no rounding/border radius)
+- no borders
+- cards may have a small/medium short fade shadow where appropriate (only on the bottom, not diagonal/other)
+- banner images must have a fade of color #0e1336 coming from the direction text is present, only if text is present. So if there is text on the left of a banner
+the fade should go from left to right and end 1/4 to 1/3 of the image length from the side it is coming from, depending on the width of the image.
+- text that is on top of images should only have the banner image fade as a background, not a seperate background. Use minimal text shadow as well
+
